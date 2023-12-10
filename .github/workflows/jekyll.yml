@@ -35,3 +35,6 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         target_branch: 'gh-pages' # 静态文件将被推送到的分支
+      permissions:
+        id-token: write
+      
