@@ -18,11 +18,19 @@ jobs:
       with:
         ruby-version: '3.0'  # 使用更新的 Ruby 版本
 
-    - name: Update RubyGems
-      run: gem update --system
+    - name: Install ImageMagick
+      run: sudo apt-get install libmagickwand-dev
+
+    - name: Cache Ruby Gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
 
     - name: Install dependencies
-      run: bundle install
+      run: bundle config set path 'vendor/bundle' && bundle install
 
     - name: Build and deploy
       uses: helaili/jekyll-action@v2
