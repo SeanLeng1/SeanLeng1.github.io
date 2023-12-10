@@ -1,0 +1,24 @@
+name: Build and Deploy Jekyll
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.7' # 根据您的项目选择 Ruby 版本
+
+    - name: Build and deploy
+      uses: jekyll/actions-pages@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        target_branch: 'gh-pages' # 静态文件将被推送到的分支
