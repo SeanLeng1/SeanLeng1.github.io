@@ -1,4 +1,4 @@
-name: Build and Deploy Jekyll
+name: Build and Deploy Jekyll Site
 
 on:
   push:
@@ -8,13 +8,21 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '2.7' # 根据您的项目选择 Ruby 版本
+        ruby-version: '3.0'  # 使用更新的 Ruby 版本
+
+    - name: Update RubyGems
+      run: gem update --system
+
+    - name: Install dependencies
+      run: bundle install
 
     - name: Build and deploy
       uses: helaili/jekyll-action@v2
