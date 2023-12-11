@@ -37,6 +37,6 @@ jobs:
       uses: actions/deploy-pages@v3
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        target_branch: 'gh-pages' # 静态文件将被推送到的分支
+
 
       
