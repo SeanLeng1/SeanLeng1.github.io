@@ -33,6 +33,15 @@ jobs:
     - name: Install dependencies
       run: bundle config set path 'vendor/bundle' && bundle install
 
+    - name: Build Jekyll site
+      run: bundle exec jekyll build
+
+    - name: Upload built site
+      uses: actions/upload-artifact@v2
+      with:
+        name: built-site
+        path: _site  # 假设 Jekyll 构建的输出目录是 _site
+
     - name: Build and deploy
       uses: actions/deploy-pages@v3
       with:
