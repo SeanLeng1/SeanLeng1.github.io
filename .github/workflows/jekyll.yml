@@ -34,7 +34,7 @@ jobs:
       run: bundle config set path 'vendor/bundle' && bundle install
 
     - name: Build and deploy
-      uses: actions/deploy-pages@v2
+      uses: actions/deploy-pages@v3
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         target_branch: 'gh-pages' # 静态文件将被推送到的分支
