@@ -5,7 +5,7 @@ permalink: /service/
 nav: true
 ---
 
-#### Academic service
+<!-- #### Academic service
 
 - Journal editorship:
   - Guest editor, ACM Transactions on Intelligence Systems and Technology (TIST)
@@ -54,4 +54,4 @@ nav: true
 - Excellent Graduate, NCUT 2014.
 - Excellent Bachelor's Graduation Thesis, NCUT 2014.
 - Beijing Merit Student, Beijing City 2013.
-- National Scholarship (3x), Ministry of Education 2012, 2013, 2014.
+- National Scholarship (3x), Ministry of Education 2012, 2013, 2014. -->

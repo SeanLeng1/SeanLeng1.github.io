@@ -5,7 +5,7 @@ permalink: /students/
 nav: true
 ---
 
-#### Interns at MSRA
+<!-- #### Interns at MSRA
 
 Current interns:
 
@@ -51,4 +51,4 @@ Alumni:
 - Ph.D student at Institute of Acoustics, CAS: Han Zhu (ICASSP * 2, TASLP).
 - Master/Ph.D students at Institute of Automation, CAS: YiFan Zhang (KDD'23).
 - Ph.D student at University of Tokyo: Yivan Zhang, Wei Wang.
-- Ph.D student at Geogia Tech: Yiqiao Jin.
+- Ph.D student at Geogia Tech: Yiqiao Jin. -->
