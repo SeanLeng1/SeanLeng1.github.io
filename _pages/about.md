@@ -14,7 +14,6 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-<!-- Senior Researcher, Microsoft Research Asia<br> -->
 I am a fourth-year undergraduate student in Computer Science at the University of Rochester, where I have the opportunity to be advised by [**Prof. Jiebo Luo**](https://www.cs.rochester.edu/u/jluo/#Prospective)<br>
 <!-- Building 2, No. 5 Danling Street, Haidian District, Beijing, China<br> -->
 8 Arborwood, Irvine, California, United States<br>
