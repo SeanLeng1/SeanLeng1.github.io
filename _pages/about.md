@@ -6,7 +6,7 @@ description:
 
 profile:
   align: left
-  image: me3.png
+  image: me2.png
   address: 
 
 news: true  # includes a list of news items
