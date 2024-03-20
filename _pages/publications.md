@@ -38,7 +38,7 @@ nav: true
   {% bibliography -f books -q @*[year={{y}}]* %}
 {% endfor %}
 
-</div>
+</div> -->
 
 #### Papers
 
@@ -49,4 +49,4 @@ nav: true
   {% bibliography -f pubs -q @*[year={{y}}]* %}
 {% endfor %}
 
-</div> -->
+</div>
