@@ -23,6 +23,14 @@ jixuanl [at] andrew.cmu.edu, jleng3 [at] u.rochester.edu, jixuanleng [at] gmail.
 
 <!-- Dr. Jindong Wang is currently a Senior Researcher at Microsoft Research Asia. He obtained his Ph.D from Institute of Computing Technology, Chinese Academy of Sciences in 2019. He visited Qiang Yang’s group at Hong Kong University of Science and Technology in 2018. His research interest includes robust machine learning, transfer learning, semi-supervised learning, and federated learning. His recent interest is large language models. He has published over 50 papers with 7000 citations at leading conferences and journals such as ICLR, NeurIPS, TKDE, TASLP etc. He has 6 highly cited papers according to [Google Scholar metrics](https://scholar.google.com/citations?view_op=top_venues). He received the best paper award at ICCSE'18 and IJCAI'19 federated learning workshop and the prestigous excellent Ph.D thesis award (only 1 at ICT each year). In 2022 and 2023, he was selected as one of the [AI 2000 Most Influential Scholars](https://www.aminer.cn/ai2000?domain_ids=5dc122672ebaa6faa962c2a4) by AMiner between 2013-2023. He serves as the senior program committee member of IJCAI and AAAI, and reviewers for top conferences and journals like ICML, NeurIPS, ICLR, CVPR, TPAMI, AIJ etc. He opensourced several projects to help build a better community, such as transferlearning, torchSSL, USB, personalizedFL, and robustlearn, which received over 12K stars on Github. He published a textbook [Introduction to Transfer Learning](http://jd92.wang/tlbook) to help starters quickly learn transfer learning. He gave tutorials at [IJCAI'22](https://dgresearch.github.io/), [WSDM'23](https://dgresearch.github.io/), and [KDD'23](https://mltrust.github.io/). -->
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+<div style="font-family: 'Dancing Script', cursive; text-align: center;">
+History is like a log-scaled graph - the past feels arbitrarily near, while the future feels infinitely long.
+</div>
+
+
 
 I am a fourth-year undergraduate student in Computer Science at the University of Rochester, where I have the opportunity to be advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/#Prospective). I am also collaborating with [Prof. Haohan Wang](https://haohanwang.github.io/) at UIUC [DREAM Lab](https://dreamlabuiuc.github.io/).<br>
 
