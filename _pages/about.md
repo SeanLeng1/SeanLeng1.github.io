@@ -30,8 +30,6 @@ jixuanl [at] andrew.cmu.edu, jleng3 [at] u.rochester.edu, jixuanleng [at] gmail.
 History is like a log-scaled graph - the past feels arbitrarily near, while the future feels infinitely long.
 </div>
 
-
-
 I am a fourth-year undergraduate student in Computer Science at the University of Rochester, where I have the opportunity to be advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/#Prospective). I am also collaborating with [Prof. Haohan Wang](https://haohanwang.github.io/) at UIUC [DREAM Lab](https://dreamlabuiuc.github.io/).<br>
 
 Nothing yet.
