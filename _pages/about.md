@@ -37,7 +37,7 @@ I am a fourth-year undergraduate student in Computer Science at the University o
 Nothing yet.
 
 <!-- **Research interest:** robust machine learning, out-of-distribution / domain generalization, transfer learning, semi-supervised learning, federated learning, and related applications such as activity recognition and computer vision. These days, I'm particularly interested in Large Language Models (LLMs) [evaluation](https://llm-eval.github.io/) and [enhancement](https://llm-enhance.github.io/). See this [page](https://jd92.wang/research/) for more details. *Interested in [internship](https://zhuanlan.zhihu.com/p/102558267) or collaboration? Contact me.* -->
-**Research interests:** Reliable Foundation Models (LLMs and VLMs), domain generalization and model robustness, trustworthy machine learning, applications of AI in healthcares.
+**Research interests:** Reliable Foundation Models (LLMs and VLMs), efficient LLM systems, domain generalization and model robustness, trustworthy machine learning, applications of AI in healthcares.
 
 
 <!-- **Announcement:** I'm experimenting a new form of research collaboration. You can click [here](https://forms.office.com/r/32Fs6uAjT6) if you are interested!
