@@ -12,11 +12,12 @@ profile:
 news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
+highlights: false  # include a list of highlights
 ---
 
 
 <!-- Building 2, No. 5 Danling Street, Haidian District, Beijing, China<br> -->
-BS in Computer Science, University of Rochester<br>
+B.S. in Computer Science, University of Rochester<br>
 8 Arborwood, Irvine, California, United States<br>
 jixuanl [at] andrew.cmu.edu, jleng3 [at] u.rochester.edu, jixuanleng [at] gmail.com<br>
 [Google scholar](https://scholar.google.com/citations?hl=en&user=Jyqbex4AAAAJ) | [DBLP](https://dblp.org/pid/261/6970.html) | [Github](https://github.com/SeanLeng1) || [Twitter/X](https://twitter.com/JixuanLeng) | [Zhihu](https://www.zhihu.com/people/alonefu-63) | [Wechat](http://jixuanleng.com/assets/img/wechat_public_account.jpg) | [Bilibili](https://space.bilibili.com/97155602) || [Resume]() 
@@ -36,7 +37,7 @@ I am a fourth-year undergraduate student in Computer Science at the University o
 
 
 <!-- **Research interest:** robust machine learning, out-of-distribution / domain generalization, transfer learning, semi-supervised learning, federated learning, and related applications such as activity recognition and computer vision. These days, I'm particularly interested in Large Language Models (LLMs) [evaluation](https://llm-eval.github.io/) and [enhancement](https://llm-enhance.github.io/). See this [page](https://jd92.wang/research/) for more details. *Interested in [internship](https://zhuanlan.zhihu.com/p/102558267) or collaboration? Contact me.* -->
-**Research interests:** efficient LLM systems, reliable foundation models, out-of-distribution / domain generalization, trustworthy machine leraning, and related applications of AI in healthcares.
+**Research interests:** Efficient LLM systems, Reliable Foundation Models, Out-Of-Distribution / Domain Generalization, Trustworthy Machine Learning, and related Applications of AI in Healthcares.
 
 
 <!-- **Announcement:** I'm experimenting a new form of research collaboration. You can click [here](https://forms.office.com/r/32Fs6uAjT6) if you are interested!

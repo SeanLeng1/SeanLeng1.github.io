@@ -35,10 +35,12 @@ layout: default
       {% include news.html %}
     {% endif %}
 
-    {% include highlights.html %}
-
     {% if page.selected_papers %}
       {% include selected_papers.html %}
+    {% endif %}
+
+    {% if page.highlights %}
+      {% include highlights.html %}
     {% endif %}
 
  {% if page.social %}
