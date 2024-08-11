@@ -18,14 +18,30 @@
     {% else %}
       <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">{{entry.title}}</div>
       <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
+        {% assign coauthors = entry.coauthors | split: ', ' %}
         {% for author in entry.author_array %}
           {% assign author_is_self = false %}
+          <!-- coauthor logic -->
+          {% assign author_is_coauthor = false %}     
           {% if author.last == site.scholar.last_name%}
             {% if site.scholar.first_name contains author.first%}
               {% assign author_is_self = true %}
             {% endif %}
           {% endif %}
           {% assign coauthor_url = nil %}
+          <!-- coauthor logic -->
+          {% for coauthor in coauthors %}
+            {% assign coauthor_parts = coauthor | split: ' ' %}
+            {% if coauthor_parts.size > 1 %}
+              {% assign coauthor_first = coauthor_parts.first %}
+              {% assign coauthor_last = coauthor_parts.last %}
+              {% if author.first == coauthor_first and author.last == coauthor_last %}
+                {% assign author_is_coauthor = true %}
+                {% break %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
           {% if site.data.coauthors[author.last] %}
             {% for coauthor in site.data.coauthors[author.last] %}
               {% if coauthor.firstname contains author.first %}
@@ -34,34 +50,50 @@
               {% endif %}
             {% endfor %}
           {% endif %}
-          
+
           {% if forloop.length == 1 %}
             {% if author_is_self %}
+              <em><b>{{author.first}} {{author.last}}</b></em>
               {% if entry.corr %}
-                <em><b>{{author.first}} {{author.last}}</b></em><sup>#</sup>
-              {% else %}
-                <em><b>{{author.first}} {{author.last}}</b></em>
+                <sup>#</sup>
               {% endif %}
+              {% if author_is_coauthor %}
+                <b><sup>*</sup></b>
+              {% endif %}
+
             {% else %}
+              <em><b>{{author.first}} {{author.last}}</b></em>
               {% if entry.corr %}
-                <em><b>{{author.first}} {{author.last}}</b></em><sup>#</sup>
-              {% else %}
-                <em><b>{{author.first}} {{author.last}}</b></em>
+                <sup>#</sup>
               {% endif %}
+              <!-- coauthor logic -->
+              {% if author_is_coauthor %}
+                b><sup>*</sup></b>
+              {% endif %}
+
             {% endif %}
+        
           {% else %}
             {% unless forloop.last %}
               {% if author_is_self %}
+              <em><b>{{author.first}} {{author.last}}</b></em>
                 {% if entry.corr %}
-                  <em><b>{{author.first}} {{author.last}}</b></em><sup>#</sup>
-                {% else %}
-                  <em><b>{{author.first}} {{author.last}}</b></em>
+                  <sup>#</sup>
+                {% endif %}
+                <!-- coauthor logic -->
+                {% if author_is_coauthor %}
+                  <b><sup>*</sup></b>
                 {% endif %},
+
               {% else %}
                 {% if coauthor_url %}
                   <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>,
                 {% else %}
-                  {{author.first}} {{author.last}},
+                  {{author.first}} {{author.last}}
+                  <!-- coauthor logic -->
+                  {% if author_is_coauthor %}
+                    <b><sup>*</sup></b>
+                  {% endif %},
                 {% endif %}
               {% endif %}
             {% else %}

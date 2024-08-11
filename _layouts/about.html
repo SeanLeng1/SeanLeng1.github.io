@@ -40,6 +40,10 @@ layout: default
       {% include selected_papers.html %}
     {% endif %}
 
+    {% if page.selected_preprints %}
+      {% include selected_preprints.html %}
+    {% endif %}
+
     {% if page.highlights %}
       {% include highlights.html %}
     {% endif %}

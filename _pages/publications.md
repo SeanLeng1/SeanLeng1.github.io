@@ -40,7 +40,8 @@ nav: true
 
 </div> -->
 
-#### Papers
+#### Papers (**\*** denotes equal contribution)
+
 
 <div class="publications">
 
