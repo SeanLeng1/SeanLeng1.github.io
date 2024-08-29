@@ -6,7 +6,7 @@ description:
 
 profile:
   align: left
-  image: me2.png
+  image: dog.png
   address: 
 
 news: true  # includes a list of news items
@@ -34,9 +34,7 @@ History is like a log-scaled graph - the past feels arbitrarily near, while the 
 
 </div><br> -->
 
-
-I am a fourth-year undergraduate student in Computer Science at the University of Rochester, where I have the opportunity to be advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/#Prospective). I am also collaborating with [Prof. Haohan Wang](https://haohanwang.github.io/) at UIUC [DREAM Lab](https://dreamlabuiuc.github.io/). In the summer 2024, I will be a visiting researcher at Washington University in St. Louis with [Prof. Jiaxin Huang](https://teapot123.github.io/).<br>
-
+I am currently a first-year master student in Machine Learning at Carnegie Mellon University. Previously, I completed my undergraduate studies in Computer Science at University of Rochester, where I had the privilege of being advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/#Prospective). I have also collaborated with [Prof. Haohan Wang](https://haohanwang.github.io/) at UIUC [DREAM Lab](https://dreamlabuiuc.github.io/). In the summer of 2024, I was a visiting researcher at Washington University in St. Louis with [Prof. Jiaxin Huang](https://teapot123.github.io/).<br>
 
 <!-- **Research interest:** robust machine learning, out-of-distribution / domain generalization, transfer learning, semi-supervised learning, federated learning, and related applications such as activity recognition and computer vision. These days, I'm particularly interested in Large Language Models (LLMs) [evaluation](https://llm-eval.github.io/) and [enhancement](https://llm-enhance.github.io/). See this [page](https://jd92.wang/research/) for more details. *Interested in [internship](https://zhuanlan.zhihu.com/p/102558267) or collaboration? Contact me.* -->
 **Research interests:** Efficient LLM systems, Reliable Foundation Models, Out-Of-Distribution / Domain Generalization, Trustworthy Machine Learning, and related Applications of AI in Healthcares.
