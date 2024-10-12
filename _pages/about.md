@@ -5,8 +5,8 @@ permalink: /
 description: 
 
 profile:
-  align: left
-  image: dog.png
+  align: right
+  image: oreo.jpg
   address: 
 
 news: true  # includes a list of news items
