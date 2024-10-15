@@ -112,10 +112,15 @@
       </div>
 
       <div style="padding-top: 0em; padding-bottom: 0px; margin-bottom: -.1em;">
+      <!-- for journal  -->
       {% if entry.type == "article" %}
         <em>{{entry.journal}}</em>
+      <!-- for book  -->
       {% elsif entry.type == "inproceedings" %}
         <em>{{entry.booktitle}}</em>
+      <!-- for preprint  -->
+      {% elsif entry.type == "misc" %}
+        <em>Preprint</em>
       {% endif %}
       {% if entry.year %}
         {{entry.year}}
