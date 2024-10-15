@@ -36,12 +36,12 @@ layout: default
       {% include news.html %}
     {% endif %}
 
-    {% if page.selected_papers %}
-      {% include selected_papers.html %}
-    {% endif %}
-
     {% if page.selected_preprints %}
       {% include selected_preprints.html %}
+    {% endif %}
+
+    {% if page.selected_papers %}
+      {% include selected_papers.html %}
     {% endif %}
 
     {% if page.highlights %}
