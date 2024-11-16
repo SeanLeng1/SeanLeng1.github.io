@@ -40,24 +40,18 @@ nav: true
 
 </div> -->
 
-
-#### Preprints (**\*** denotes equal contribution)
-<!-- this is stupid by the way -->
-<div style="margin-bottom: 30px;"></div>
-<div class="preprints">
-{% for y in page.years %}
-  <div>{{y}}</div>
-  {% bibliography -f preprint -q @*[year={{y}}]* %}
-{% endfor %}
-
-</div>
-
-#### Papers (**\*** denotes equal contribution)
-
+<!-- _pages/publications.md -->
 <div class="publications">
-{% for y in page.years %}
-  <div>{{y}}</div>
-  {% bibliography -f pubs -q @*[year={{y}}]* %}
-{% endfor %}
-
+  {% for y in page.years %}
+    <div>{{ y }}</div>
+    {% bibliography -f pubs -q @*[year={{ y }}]* %}
+  {% endfor %}
 </div>
+
+
+
+
+
+
+
+
