@@ -19,7 +19,7 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.0'  # 使用 Ruby 3.0 版本
+        ruby-version: '2.7' 
 
     - name: Install ImageMagick
       run: sudo apt-get install libmagickwand-dev
@@ -38,9 +38,6 @@ jobs:
 
     - name: Upload built site
       uses: actions/upload-artifact@v3
-      # with:
-      #   name: built-site
-      #   path: _site  # 假设 Jekyll 构建的输出目录是 _site
 
     - name: Build and deploy
       uses: actions/deploy-pages@v3

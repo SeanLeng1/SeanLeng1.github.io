@@ -32,7 +32,6 @@ group :jekyll_plugins do
   # gem 'hawkins'
   # gem 'jekyll-scholar'
   
-  gem 'bibtex-ruby'
   gem 'hawkins'
   gem 'jekyll'
   gem 'jekyll-archives'
