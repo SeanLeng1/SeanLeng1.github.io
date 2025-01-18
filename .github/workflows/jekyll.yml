@@ -39,7 +39,7 @@ jobs:
     - name: Upload built site
       uses: actions/upload-artifact@v3
       with:
-        name: built-site
+        name: github-pages
         path: _site
 
     - name: Build and deploy
