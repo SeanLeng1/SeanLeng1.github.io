@@ -117,7 +117,14 @@
       {% endif %}
       {% if author.wikipedia %}
         <li><a href="https://en.wikipedia.org/wiki/User:{{ author.wikipedia }}"><i class="fab fa-fw fa-wikipedia-w" aria-hidden="true"></i> Wikipedia</a></li>
-{% endif %}
+      {% endif %}
+      {% if author.wechat %}
+        <li>
+          <a href="#" onclick="toggleWeChatQR(); return false;">
+            <i class="fab fa-weixin" aria-hidden="true"></i> WeChat
+          </a>
+        </li>
+      {% endif %}
     </ul>
       <div class="author__urls_sm">
       {% if author.uri %}
@@ -213,6 +220,21 @@
       {% if author.wikipedia %}
         <a href="https://en.wikipedia.org/wiki/User:{{ author.wikipedia }}"><i class="fab fa-fw fa-wikipedia-w" aria-hidden="true"></i></a>
       {% endif %}
+      {% if author.wechat %}
+        <li>
+          <a href="#" onclick="toggleWeChatQR(); return false;">
+            <i class="fab fa-weixin" aria-hidden="true"></i> WeChat
+          </a>
+        </li>
+      {% endif %}
     </div>
+  </div>
+</div>
+
+
+<div id="wechat-qr-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); z-index: 99999;">
+  <div id="wechat-qr" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 30px; border-radius: 12px; z-index: 100000;">
+    <img src="{{ author.wechat | relative_url }}" alt="WeChat QR Code" style="width: 300px; height: 300px; object-fit: contain;">
+    <button onclick="toggleWeChatQR()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
   </div>
 </div>

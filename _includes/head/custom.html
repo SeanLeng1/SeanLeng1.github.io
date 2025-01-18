@@ -21,3 +21,23 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
 <!-- end custom head snippets -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Move the overlay to the body
+    const overlay = document.getElementById('wechat-qr-overlay');
+    if (overlay) {
+      document.body.appendChild(overlay);
+    }
+  
+    window.toggleWeChatQR = function() {
+      const overlay = document.getElementById('wechat-qr-overlay');
+      if (overlay.style.display === 'none' || !overlay.style.display) {
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    };
+  });
+  </script>

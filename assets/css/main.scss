@@ -40,6 +40,12 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 
+.year-box {
+    display: block;
+    width: 100%;
+    border: none;
+}
+
 .paper-box {
     display: flex;
     justify-content: left;

@@ -6,7 +6,9 @@ author_profile: true
 redirect_from: 
   - /about/
   - /about.html
+years: [2024]
 ---
+<!-- https://github.com/erikthedeveloper/code-review-emoji-guide -->
 
 {% if site.google_scholar_stats_use_cdn %}
 {% assign gsDataBaseUrl = "https://cdn.jsdelivr.net/gh/" | append: site.repository | append: "@" %}
@@ -17,42 +19,55 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. Suspendisse condimentum, libero vel tempus mattis, risus risus vulputate libero, elementum fermentum mi neque vel nisl. Maecenas facilisis maximus dignissim. Curabitur mattis vulputate dui, tincidunt varius libero luctus eu. Mauris mauris nulla, scelerisque eget massa id, tincidunt congue felis. Sed convallis tempor ipsum rhoncus viverra. Pellentesque nulla orci, accumsan volutpat fringilla vitae, maximus sit amet tortor. Aliquam ultricies odio ut volutpat scelerisque. Donec nisl nisl, porttitor vitae pharetra quis, fringilla sed mi. Fusce pretium dolor ut aliquam consequat. Cras volutpat, tellus accumsan mattis molestie, nisl lacus tempus massa, nec malesuada tortor leo vel quam. Aliquam vel ex consectetur, vehicula leo nec, efficitur eros. Donec convallis non urna quis feugiat.
+I am currently a first-year MSML student at Carnegie Mellon University. Previously, I completed my undergraduate studies in Computer Science at University of Rochester, where I had the privilege of being advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/#Prospective). I have also collaborated with [Prof. Haohan Wang](https://haohanwang.github.io/) at UIUC [DREAM Lab](https://dreamlabuiuc.github.io/). In the summer of 2024, I was a visiting researcher at Washington University in St. Louis with [Prof. Jiaxin Huang](https://teapot123.github.io/).
 
-My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>).
+My research interests lie in improving training and inference efficiency as well as model alignment of both <span style="color:rgb(144,200,144)">**LLMs**</span> and <span style="color:lightpink">**VLMs**</span>. 
 
+Feel free to email me if you are interested in **collaborating or discussing research ideas**.
+
+<!-- My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=Jyqbex4AAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a>  -->
+
+<!-- (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=Jyqbex4AAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). -->
+
+<!-- <span style="color:red">🔈**I am actively seeking for 2025 Summer HCI Research Internship, please don’t hesitate to contact me if you think I might be a good fit!**</span> -->
+
+<span class='anchor' id='-news'></span>
 
 # 🔥 News
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- *2024.10*: &nbsp;🎉🎉 New preprint: ["Taming Overconfidence in LLMs: Reward Calibration in RLHF"](https://arxiv.org/pdf/2410.09724) is out on arxiv. Code is also released.
+- *2024.09*: &nbsp;🎉🎉 One paper ["S<sup>2</sup>FT: Efficient, Scalable and Generalizable LLM Fine-tuning by Structured Sparsity"](https://openreview.net/forum?id=lEUle8S4xQ&referrer=%5Bthe%20profile%20of%20Xinyu%20Yang%5D) accepted by NIPS 2024 (poster).
+- *2024.08*: &nbsp;📚📚 I will start my Master in Machine Learning at Carnegie Mellon University.
+- *2024.05*: &nbsp;🎉🎉 ["Development of UroSAM: A Machine Learning Model to Automatically Identify Kidney Stone Composition from Endoscopic Video"](https://www.liebertpub.com/doi/10.1089/end.2023.0740) is accepted for publication at Journal of Endourology.
 
-# 📝 Publications 
-
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
-
-[Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
-
-**Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
-
-[**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-</div>
-</div>
-
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
-
-# 🎖 Honors and Awards
-- *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+<span class='anchor' id='-education'></span>
 
 # 📖 Educations
-- *2019.06 - 2022.04 (now)*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2015.09 - 2019.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- *2024.08 - Present*, M.S. in Machine Learning, Carnegie Mellon University, USA
+- *2020.08 - 2024.05*, B.S. in Computer Science, University of Rochester, USA
 
-# 💬 Invited Talks
-- *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)
+<span class='anchor' id='-publications'></span>
 
-# 💻 Internships
-- *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
+# 📝 Publications (* denotes equal contribution) {#publications}
+
+<div class="publications">
+  {% for y in page.years %}
+    <div>{{ y }}</div>
+    {% bibliography -f papers %}
+  {% endfor %}
+</div>
+
+<span class='anchor' id='-research'></span>
+
+# 🔬 Research Experience
+- *2025.01 - Present*, Independent Study, Carnegie Mellon University, advised by [Prof. William Cohen](https://www.cs.cmu.edu/~wcohen/).
+- *2024.06 - Present*, Visiting Researcher (Onsite during summer), Washington University in St. Louis, advised by [Prof. Jiaxin Huang](https://teapot123.github.io/).
+- *2023.12 - 2024.05*, Honor Independent Study, [VIStA (Visual Intelligence & Social Multimedia Analytics)](https://www.cs.rochester.edu/u/jluo/\#VISTA), advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/) and [Dr. Rajat K. Jain](https://www.urmc.rochester.edu/people/112361798-rajat-k-jain).
+- *2022.12 - 2024.05*, Research Internship (Remote), [Dream Lab iSchool UIUC](https://dreamlabuiuc.github.io/\#intro), advised by [Prof. Haohan Wang](https://haohanwang.github.io/)
+
+<span class='anchor' id='-service'></span>
+
+# 📝 Service
+- *2024.10 - Present*, TMLR reviewer.
+- *2022.01 - 2023.05*, Teaching Assistant for CSC261/461: Database System, University of Rochester.
+
+<!-- 🛠️ Skills -->
