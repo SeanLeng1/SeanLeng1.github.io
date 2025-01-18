@@ -301,6 +301,7 @@ DEPENDENCIES
   eventmachine (= 1.2.7)!
   github-pages
   hawkins
+  jekyll
   jekyll-feed
   jekyll-scholar
   jekyll-sitemap
