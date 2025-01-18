@@ -31,7 +31,7 @@ group :jekyll_plugins do
   # gem 'jekyll-sitemap'
   # gem 'hawkins'
   # gem 'jekyll-scholar'
-  
+
   gem 'hawkins'
   gem 'jekyll'
   gem 'jekyll-archives'
@@ -43,7 +43,6 @@ group :jekyll_plugins do
   gem 'jekyll-responsive-image'
   gem 'jekyll-scholar'
   gem 'jekyll-sitemap'
-  gem 'jekyll-target-blank'
   gem 'jekyll-twitter-plugin'
   gem 'jemoji'
   gem 'unicode_utils'
