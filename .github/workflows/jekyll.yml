@@ -19,32 +19,26 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.0'
-        bundler-cache: true  # This will cache dependencies automatically
-
-    - name: Install ImageMagick
-      run: sudo apt-get install libmagickwand-dev
-
-    - name: Install dependencies
-      run: |
-        bundle config set path 'vendor/bundle'
-        bundle install
-
-    - name: Build Jekyll site
-      run: bundle exec jekyll build
-
+        bundler-cache: true # this will cache installed gems automatically
+        
     - name: Setup Pages
+      id: pages
       uses: actions/configure-pages@v3
+
+    - name: Build with Jekyll
+      uses: actions/jekyll-build-pages@v1
+      with:
+        source: ./
+        destination: ./_site
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v2
-      with:
-        path: '_site'
 
     - name: Deploy to GitHub Pages
       id: deployment
