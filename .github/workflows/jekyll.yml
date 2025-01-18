@@ -38,6 +38,9 @@ jobs:
 
     - name: Upload built site
       uses: actions/upload-artifact@v3
+      with:
+        name: built-site
+        path: _site
 
     - name: Build and deploy
       uses: actions/deploy-pages@v3
