@@ -40,30 +40,8 @@ jobs:
     - name: Build Jekyll site
       run: bundle exec jekyll build
 
-    - name: Check for Symlinks in _site
-      run: |
-        echo "Searching for symbolic links in _site..."
-        find _site -type l
-
-    # Diagnostic Step: Check _site Size
-    - name: Check _site Directory Size
-      run: |
-        echo "Calculating size of _site directory..."
-        du -sh _site
-
-    # Diagnostic Step: List Largest Files
-    - name: List Largest Files in _site
-      run: |
-        echo "Listing top 20 largest files in _site..."
-        find _site -type f -exec du -h {} + | sort -rh | head -n 20
-
-    - name: Upload built site
-      uses: actions/upload-artifact@v3
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        name: github-pages
-        path: _site
-
-    - name: Build and deploy
-      uses: actions/deploy-pages@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
