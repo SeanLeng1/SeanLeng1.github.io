@@ -6,40 +6,43 @@ on:
       - main
       
 permissions:
-  contents: read
-  pages: write
   id-token: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.0'
-        bundler-cache: true # this will cache installed gems automatically
-        
-    - name: Setup Pages
-      id: pages
-      uses: actions/configure-pages@v3
+        ruby-version: '3.0'  # 使用 Ruby 3.0 版本
 
-    - name: Build with Jekyll
-      uses: actions/jekyll-build-pages@v1
+    - name: Install ImageMagick
+      run: sudo apt-get install libmagickwand-dev
+
+    - name: Cache Ruby Gems
+      uses: actions/cache@v2
       with:
-        source: ./
-        destination: ./_site
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}-new
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
+    - name: Install dependencies
+      run: bundle config set path 'vendor/bundle' && bundle install
 
-    - name: Deploy to GitHub Pages
-      id: deployment
+    - name: Build Jekyll site
+      run: bundle exec jekyll build
+
+    - name: Upload built site
+      uses: actions/upload-artifact@v3
+      # with:
+      #   name: built-site
+      #   path: _site  # 假设 Jekyll 构建的输出目录是 _site
+
+    - name: Build and deploy
       uses: actions/deploy-pages@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
