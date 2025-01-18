@@ -31,4 +31,5 @@ group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'hawkins'
   gem 'jekyll-scholar'
+  gem 'bibtex-ruby'
 end
