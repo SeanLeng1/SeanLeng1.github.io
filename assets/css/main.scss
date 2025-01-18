@@ -1,15 +1,6 @@
 ---
 ---
-
-/*
- *    Minimal Mistakes Jekyll Theme
- *
- *  - Michael Rose
- *  - mademistakes.com
- *  - https://twitter.com/mmistakes
- *
-*/
-
+/* Existing Imports */
 @import "vendor/breakpoint/breakpoint"; // media query mixins
 @import "variables";
 @import "mixins";
@@ -40,76 +31,129 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 
-.year-box {
+/* Custom Styles */
+
+/* Publication Container */
+.publication-container {
+    max-width: 100%;
     display: block;
-    width: 100%;
-    border: none;
+    overflow-x: auto; /* Allows horizontal scrolling if necessary */
+    padding: 1em; /* Optional: Adds some padding */
 }
 
+/* Paper Box */
 .paper-box {
     display: flex;
-    justify-content: left;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     border-bottom: 1px #efefef solid;
-    padding: 2em 0 2em 0;
-    
+    padding: 2em 0;
 
-    .paper-box-image{
-        justify-content: center;
+    /* Paper Box Image */
+    .paper-box-image {
         display: flex;
+        justify-content: center;
         width: 100%;
         order: 2;
+        
         img {
-            max-width: 400px;
+            max-width: 100%; /* Ensures image is responsive */
+            height: auto;
             box-shadow: 3px 3px 6px #888;
             object-fit: cover;
         }
     }
     
-    .paper-box-text{
+    /* Paper Box Text */
+    .paper-box-text {
         max-width: 100%;
         order: 1;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
+    /* Responsive Adjustments */
     @include breakpoint($medium) {
-        .paper-box-image{
-            justify-content: left;
+        flex-direction: row;
+
+        .paper-box-image {
+            justify-content: flex-start;
             min-width: 200px;
             max-width: 40%;
             order: 1;
         }
         
-        .paper-box-text{
-            justify-content: left;
+        .paper-box-text {
+            justify-content: flex-start;
             padding-left: 2em;
             max-width: 60%;
             order: 2;
         }
-
     }
 
+    /* Additional Responsive Tweaks */
+    @include breakpoint($small) {
+        padding: 1em 0;
 
+        .paper-box-image {
+            max-width: 100%;
+            order: 2;
+            margin-bottom: 1em;
+        }
+        
+        .paper-box-text {
+            max-width: 100%;
+            padding-left: 0;
+            order: 1;
+        }
+    }
 }
 
-$scroll_offset : 2em;
-h1:before, .anchor:before { 
-    content: ''; 
-    display: block; 
-    position: relative; 
-    width: 0; 
-    height: $scroll_offset; 
-    margin-top: -$scroll_offset;
+/* Title, Author, and Venue Styles */
+.title, .author, .venue {
+    padding: 0;
+    margin: 0 0 0.5em 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
-.badge {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    position: absolute;
-    margin-top: .5em;
-    margin-left: -.5em;
-    color: white;
-    background-color: #00369f;
-    font-size: .8em;
+/* Ensure Links Wrap Properly */
+.venue a, .author a, .title a {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    /* Optional: Adjust link styles for better readability */
+    color: #00369f;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+/* Adjust Font Sizes for Readability on Smaller Screens */
+@media (max-width: 600px) {
+    .title {
+        font-size: 1.1em;
+    }
+
+    .author, .venue {
+        font-size: 0.9em;
+    }
+}
+
+/* Optional: Add Horizontal Scrolling Indicator */
+.publication-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.publication-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.publication-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }

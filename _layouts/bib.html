@@ -4,9 +4,9 @@
   {% else %}
     <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
       <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; white-space: nowrap;">{{entry.title}}</div>
+        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">{{entry.title}}</div>
 
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; white-space: nowrap;">
+        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
           {% assign coauthors = entry.coauthors | split: ', ' %}
           {% for author in entry.author_array %}
             {% assign author_is_self = false %}
@@ -72,7 +72,7 @@
           {% endfor %}
         </div>
 
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; white-space: nowrap;">
+        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
           {% if entry.type == "article" %}
             <em>{{entry.journal}}</em>
           {% elsif entry.type == "inproceedings" %}

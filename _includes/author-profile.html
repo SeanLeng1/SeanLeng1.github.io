@@ -221,11 +221,9 @@
         <a href="https://en.wikipedia.org/wiki/User:{{ author.wikipedia }}"><i class="fab fa-fw fa-wikipedia-w" aria-hidden="true"></i></a>
       {% endif %}
       {% if author.wechat %}
-        <li>
-          <a href="#" onclick="toggleWeChatQR(); return false;">
-            <i class="fab fa-weixin" aria-hidden="true"></i> WeChat
-          </a>
-        </li>
+        <a href="#" onclick="toggleWeChatQR(); return false;">
+          <i class="fab fa-weixin" aria-hidden="true"></i>
+        </a>
       {% endif %}
     </div>
   </div>
