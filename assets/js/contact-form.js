@@ -7,6 +7,8 @@ function openContactModal() {
   function closeContactModal() {
     const modal = document.getElementById('contact-modal');
     const modalContent = modal.querySelector('.modal-content');
+    const warning = document.getElementById('warning-message');
+    const form = document.getElementById('contact-form');
     
     modal.style.animation = 'fadeIn 0.3s ease-out reverse';
     modalContent.style.animation = 'slideIn 0.3s ease-out reverse';
@@ -14,9 +16,14 @@ function openContactModal() {
     setTimeout(() => {
       modal.style.display = 'none';
       document.body.style.overflow = '';
-      // Reset the modal to initial state
-      document.getElementById('warning-message').style.display = 'block';
-      document.getElementById('contact-form').style.display = 'none';
+      
+      // Reset everything to initial state
+      warning.style.display = 'block';
+      warning.style.opacity = '1';
+      form.style.display = 'none';
+      form.style.opacity = '0';
+      
+      // Clear animations
       modal.style.animation = '';
       modalContent.style.animation = '';
     }, 300);
