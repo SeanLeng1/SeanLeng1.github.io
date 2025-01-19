@@ -98,6 +98,43 @@
     };
   });
   </script>
+
+<script>
+  function openDeadlinesModal() {
+      const modal = document.getElementById('deadlines-modal');
+      if (modal) {
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+      }
+  }
+  
+  function closeDeadlinesModal() {
+      const modal = document.getElementById('deadlines-modal');
+      if (modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+      }
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+      // Handle ESC key
+      document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+              closeDeadlinesModal();
+          }
+      });
+  
+      // Handle click outside modal
+      const modal = document.getElementById('deadlines-modal');
+      if (modal) {
+          modal.addEventListener('click', function(e) {
+              if (e.target === modal) {
+                  closeDeadlinesModal();
+              }
+          });
+      }
+  });
+  </script>
   </head>
 
   <body>
@@ -113,17 +150,33 @@
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="#about-me">Homepage</a></li>
           
-            <li class="masthead__menu-item"><a href="/#about-me">About Me</a></li>
+            
+              <li class="masthead__menu-item"><a href="/#about-me">About Me</a></li>
+            
           
-            <li class="masthead__menu-item"><a href="/#-news">News</a></li>
+            
+              <li class="masthead__menu-item"><a href="/#-news">News</a></li>
+            
           
-            <li class="masthead__menu-item"><a href="/#-education">Education</a></li>
+            
+              <li class="masthead__menu-item"><a href="/#-education">Education</a></li>
+            
           
-            <li class="masthead__menu-item"><a href="/#-publications">Publications</a></li>
+            
+              <li class="masthead__menu-item"><a href="/#-publications">Publications</a></li>
+            
           
-            <li class="masthead__menu-item"><a href="/#-research">Research Experience</a></li>
+            
+              <li class="masthead__menu-item"><a href="/#-research">Research Experience</a></li>
+            
           
-            <li class="masthead__menu-item"><a href="/#-service">Service</a></li>
+            
+              <li class="masthead__menu-item"><a href="/#-service">Service</a></li>
+            
+          
+            
+              <li class="masthead__menu-item"><a href="javascript:void(0);" onclick="openDeadlinesModal(); return false;" class="deadlines-trigger">Deadlines</a></li>
+            
           
         </ul>
         <ul class="hidden-links hidden"></ul>
@@ -203,7 +256,7 @@
       
       
         <li>
-          <a href="#" onclick="toggleWeChatQR(); return false;">
+          <a href="javascript:void(0);" onclick="handleWeChatClick(event)" style="cursor: pointer;">
             <i class="fab fa-weixin" aria-hidden="true"></i> WeChat
           </a>
         </li>
@@ -254,21 +307,21 @@
       
       
       
-        <a href="#" onclick="toggleWeChatQR(); return false;">
-          <i class="fab fa-weixin" aria-hidden="true"></i>
-        </a>
+      <a href="javascript:void(0);" onclick="handleWeChatClick(event)" style="cursor: pointer;">
+        <i class="fab fa-weixin" aria-hidden="true"></i>
+      </a>
       
     </div>
   </div>
 </div>
 
 
-<div id="wechat-qr-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); z-index: 99999;">
+<!-- <div id="wechat-qr-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); z-index: 99999;">
   <div id="wechat-qr" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 30px; border-radius: 12px; z-index: 100000;">
     <img src="/images/wechat_public_account.jpg" alt="WeChat QR Code" style="width: 300px; height: 300px; object-fit: contain;">
     <button onclick="toggleWeChatQR()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
   </div>
-</div>
+</div> -->
   
   </div>
 
@@ -278,6 +331,137 @@
         <div class="page__inner-wrap">
           <section class="page__content" itemprop="text">
             <!-- https://github.com/erikthedeveloper/code-review-emoji-guide -->
+
+<!-- Include the modal component -->
+<!-- Modal container with animations -->
+<style>
+  @keyframes modalFadeIn {
+    from { 
+      opacity: 0; 
+    }
+    to { 
+      opacity: 1; 
+    }
+  }
+  
+  @keyframes modalScaleIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  #deadlines-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    opacity: 0;
+    animation: modalFadeIn 0.3s ease-out forwards;
+  }
+  
+  #deadlines-modal.closing {
+    animation: modalFadeIn 0.3s ease-out reverse;
+  }
+  
+  .modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: 90vh;
+    margin: 5vh auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    opacity: 0;
+    animation: modalScaleIn 0.3s ease-out forwards;
+  }
+  
+  .modal-content.closing {
+    animation: modalScaleIn 0.3s ease-out reverse;
+  }
+  
+  .modal-close-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.2s ease;
+  }
+  
+  .modal-close-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+  }
+  </style>
+
+<div id="deadlines-modal">
+    <div class="modal-content">
+      <button onclick="closeDeadlinesModal()" class="modal-close-button">&times;</button>
+      <iframe src="https://aideadlin.es/?sub=NLP,ML" class="modal-iframe"></iframe>
+    </div>
+  </div>
+
+<script>
+  function openDeadlinesModal() {
+    const modal = document.getElementById('deadlines-modal');
+    modal.style.display = 'block';
+    // Force reflow to ensure animation plays
+    modal.offsetHeight;
+  }
+  
+  function closeDeadlinesModal() {
+    const modal = document.getElementById('deadlines-modal');
+    const modalContent = modal.querySelector('.modal-content');
+    
+    // Add closing animations
+    modal.classList.add('closing');
+    modalContent.classList.add('closing');
+    
+    // Wait for animation to complete before hiding
+    setTimeout(() => {
+      modal.style.display = 'none';
+      // Remove closing classes for next open
+      modal.classList.remove('closing');
+      modalContent.classList.remove('closing');
+    }, 300);
+  }
+  
+  // Close modal when clicking outside
+  document.getElementById('deadlines-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeDeadlinesModal();
+    }
+  });
+  
+  // Close modal on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('deadlines-modal').style.display === 'block') {
+      closeDeadlinesModal();
+    }
+  });
+  </script>
 
 <p><span class="anchor" id="about-me"></span></p>
 
@@ -951,6 +1135,58 @@
 
 <!-- 🛠️ Skills -->
 
+<!-- Contact -->
+<link rel="stylesheet" href="/assets/css/contact-form.css" />
+
+<!-- Contact Button -->
+<div style="text-align: center; margin: 40px 0;">
+  <button onclick="openContactModal()" class="contact-button">Get in Touch</button>
+</div>
+
+<!-- Modal Container -->
+<div id="contact-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button onclick="closeContactModal()" class="close-button">&times;</button>
+    
+    <!-- Warning Message -->
+    <div id="warning-message" class="warning-message">
+      <h3>Contact Information</h3>
+      <p>Please note that this contact form is for informal inquiries. I might not be able to respond to all messages. Consider using email for formal communication.</p>
+      <button onclick="showContactForm()" class="contact-button">Continue</button>
+    </div>
+    
+    <!-- Contact Form -->
+    <div id="contact-form" class="contact-form">
+      <h3>Send Message</h3>
+      <form action="https://formspree.io/f/xrbbwwdj" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="form-control" required="" />
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="_replyto" class="form-control" required="" />
+        </div>
+        
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="_subject" class="form-control" required="" />
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" class="form-control" required=""></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/assets/js/contact-form.js"></script>
+
+
           </section>
         </div>
       </article>
@@ -989,6 +1225,116 @@
     })
 </script>
 
+    <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes scaleIn {
+      from { 
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+      to { 
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+    
+    #wechat-qr-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 99999;
+      opacity: 0;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+    
+    #wechat-qr {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      z-index: 100000;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      opacity: 0;
+      animation: scaleIn 0.3s ease-out forwards;
+    }
+    
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    
+    .close-button:hover {
+      background-color: rgba(0,0,0,0.1);
+      color: #333;
+    }
+    
+    .qr-image {
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
+      display: block;
+      border-radius: 8px;
+    }
+    </style>
+    
+    <div id="wechat-qr-overlay">
+      <div id="wechat-qr">
+        <img class="qr-image" src="/images/wechat_public_account.jpg" alt="WeChat QR Code">
+        <button class="close-button" onclick="toggleWeChatQR()">×</button>
+      </div>
+    </div>
+    
+    <script>
+   function handleWeChatClick(event) {
+    event.preventDefault();  // This prevents the default link behavior
+        toggleWeChatQR();
+    };
 
+    function toggleWeChatQR() {
+    const overlay = document.getElementById('wechat-qr-overlay');
+    
+    if (overlay.style.display === 'none' || !overlay.style.display) {
+        overlay.style.display = 'block';
+        // Force reflow to ensure animation plays
+        overlay.offsetHeight;
+    } else {
+        // Add fade out animation
+        overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
+        document.getElementById('wechat-qr').style.animation = 'scaleIn 0.3s ease-out reverse';
+        
+        // Wait for animation to complete before hiding
+        setTimeout(() => {
+        overlay.style.display = 'none';
+        // Reset animations for next open
+        overlay.style.animation = '';
+        document.getElementById('wechat-qr').style.animation = '';
+        }, 300);
+    }
+    };
+    </script>  
   </body>
 </html>
