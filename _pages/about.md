@@ -10,6 +10,9 @@ years: [2024]
 ---
 <!-- https://github.com/erikthedeveloper/code-review-emoji-guide -->
 
+<!-- Include the modal component -->
+{% include deadlines-modal.html %}
+
 {% if site.google_scholar_stats_use_cdn %}
 {% assign gsDataBaseUrl = "https://cdn.jsdelivr.net/gh/" | append: site.repository | append: "@" %}
 {% else %}
@@ -71,3 +74,9 @@ Feel free to email me if you are interested in **collaborating or discussing res
 - *2022.01 - 2023.05*, Teaching Assistant for CSC261/461: Database System, University of Rochester.
 
 <!-- 🛠️ Skills -->
+
+
+<!-- Contact -->
+<link rel="stylesheet" href="{{ '/assets/css/contact-form.css' | relative_url }}">
+{% include contact-form.html %}
+<script src="{{ '/assets/js/contact-form.js' | relative_url }}"></script>

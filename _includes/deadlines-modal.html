@@ -1,0 +1,129 @@
+<!-- Modal container with animations -->
+<style>
+  @keyframes modalFadeIn {
+    from { 
+      opacity: 0; 
+    }
+    to { 
+      opacity: 1; 
+    }
+  }
+  
+  @keyframes modalScaleIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  #deadlines-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    opacity: 0;
+    animation: modalFadeIn 0.3s ease-out forwards;
+  }
+  
+  #deadlines-modal.closing {
+    animation: modalFadeIn 0.3s ease-out reverse;
+  }
+  
+  .modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: 90vh;
+    margin: 5vh auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    opacity: 0;
+    animation: modalScaleIn 0.3s ease-out forwards;
+  }
+  
+  .modal-content.closing {
+    animation: modalScaleIn 0.3s ease-out reverse;
+  }
+  
+  .modal-close-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.2s ease;
+  }
+  
+  .modal-close-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+  }
+  </style>
+  
+  <div id="deadlines-modal">
+    <div class="modal-content">
+      <button onclick="closeDeadlinesModal()" class="modal-close-button">&times;</button>
+      <iframe src="https://aideadlin.es/?sub=NLP,ML" class="modal-iframe"></iframe>
+    </div>
+  </div>
+  
+  <script>
+  function openDeadlinesModal() {
+    const modal = document.getElementById('deadlines-modal');
+    modal.style.display = 'block';
+    // Force reflow to ensure animation plays
+    modal.offsetHeight;
+  }
+  
+  function closeDeadlinesModal() {
+    const modal = document.getElementById('deadlines-modal');
+    const modalContent = modal.querySelector('.modal-content');
+    
+    // Add closing animations
+    modal.classList.add('closing');
+    modalContent.classList.add('closing');
+    
+    // Wait for animation to complete before hiding
+    setTimeout(() => {
+      modal.style.display = 'none';
+      // Remove closing classes for next open
+      modal.classList.remove('closing');
+      modalContent.classList.remove('closing');
+    }, 300);
+  }
+  
+  // Close modal when clicking outside
+  document.getElementById('deadlines-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeDeadlinesModal();
+    }
+  });
+  
+  // Close modal on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('deadlines-modal').style.display === 'block') {
+      closeDeadlinesModal();
+    }
+  });
+  </script>
