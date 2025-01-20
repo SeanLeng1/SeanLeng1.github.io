@@ -333,25 +333,21 @@
             <!-- https://github.com/erikthedeveloper/code-review-emoji-guide -->
 
 <!-- Include the modal component -->
-<!-- Modal container with animations -->
+<!-- Mobile-friendly modal container -->
 <style>
   @keyframes modalFadeIn {
-    from { 
-      opacity: 0; 
-    }
-    to { 
-      opacity: 1; 
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
   
   @keyframes modalScaleIn {
     from { 
       opacity: 0;
-      transform: scale(0.7);
+      transform: translate(-50%, -50%) scale(0.7);
     }
     to { 
       opacity: 1;
-      transform: scale(1);
+      transform: translate(-50%, -50%) scale(1);
     }
   }
   
@@ -365,47 +361,67 @@
     background: rgba(0,0,0,0.5);
     z-index: 9999;
     opacity: 0;
-    animation: modalFadeIn 0.3s ease-out forwards;
-  }
-  
-  #deadlines-modal.closing {
-    animation: modalFadeIn 0.3s ease-out reverse;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .modal-content {
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
     width: 90%;
     max-width: 1200px;
     height: 90vh;
-    margin: 5vh auto;
+    transform: translate(-50%, -50%);
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     opacity: 0;
-    animation: modalScaleIn 0.3s ease-out forwards;
   }
   
-  .modal-content.closing {
-    animation: modalScaleIn 0.3s ease-out reverse;
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 95%;
+      height: 80vh;
+      max-height: 600px;
+    }
   }
   
   .modal-close-button {
     position: absolute;
     right: 10px;
     top: 10px;
-    background: white;
-    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  @media (max-width: 768px) {
+    .modal-close-button {
+      top: -45px;
+      right: 0;
+      background: white;
+    }
   }
   
   .modal-close-button:hover {
     background-color: #f0f0f0;
+    transform: scale(1.1);
+  }
+  
+  .modal-close-button:active {
+    transform: scale(0.95);
   }
   
   .modal-iframe {
@@ -413,55 +429,69 @@
     height: 100%;
     border: none;
     border-radius: 8px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  </style>
+</style>
 
 <div id="deadlines-modal">
-    <div class="modal-content">
-      <button onclick="closeDeadlinesModal()" class="modal-close-button">&times;</button>
-      <iframe src="https://aideadlin.es/?sub=NLP,ML" class="modal-iframe"></iframe>
-    </div>
+  <div class="modal-content">
+    <button onclick="closeDeadlinesModal()" class="modal-close-button" aria-label="Close modal">&times;</button>
+    <iframe src="https://aideadlin.es/?sub=NLP,ML" class="modal-iframe" title="Conference Deadlines"></iframe>
   </div>
+</div>
 
 <script>
-  function openDeadlinesModal() {
-    const modal = document.getElementById('deadlines-modal');
-    modal.style.display = 'block';
-    // Force reflow to ensure animation plays
-    modal.offsetHeight;
+const deadlinesModal = document.getElementById('deadlines-modal');
+const deadlinesModalContent = deadlinesModal.querySelector('.modal-content');
+let isDeadlinesModalClosing = false;
+
+function openDeadlinesModal() {
+  // Reset all states
+  isDeadlinesModalClosing = false;
+  deadlinesModal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  
+  // Force browser reflow
+  void deadlinesModal.offsetWidth;
+  void deadlinesModalContent.offsetWidth;
+  
+  // Apply animations
+  deadlinesModal.style.animation = 'modalFadeIn 0.3s ease-out forwards';
+  deadlinesModalContent.style.animation = 'modalScaleIn 0.3s ease-out forwards';
+}
+
+function closeDeadlinesModal() {
+  if (isDeadlinesModalClosing) return;
+  isDeadlinesModalClosing = true;
+  
+  document.body.style.overflow = '';
+  deadlinesModal.style.animation = 'modalFadeIn 0.3s ease-out reverse';
+  deadlinesModalContent.style.animation = 'modalScaleIn 0.3s ease-out reverse';
+
+  setTimeout(() => {
+    deadlinesModal.style.display = 'none';
+    // Clear animation states
+    deadlinesModal.style.animation = '';
+    deadlinesModalContent.style.animation = '';
+    isDeadlinesModalClosing = false;
+  }, 300);
+}
+
+// Close modal when clicking outside
+deadlinesModal.addEventListener('click', function(event) {
+  if (event.target === this && !isDeadlinesModalClosing) {
+    closeDeadlinesModal();
   }
-  
-  function closeDeadlinesModal() {
-    const modal = document.getElementById('deadlines-modal');
-    const modalContent = modal.querySelector('.modal-content');
-    
-    // Add closing animations
-    modal.classList.add('closing');
-    modalContent.classList.add('closing');
-    
-    // Wait for animation to complete before hiding
-    setTimeout(() => {
-      modal.style.display = 'none';
-      // Remove closing classes for next open
-      modal.classList.remove('closing');
-      modalContent.classList.remove('closing');
-    }, 300);
+});
+
+// Close modal on ESC key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && deadlinesModal.style.display === 'block' && !isDeadlinesModalClosing) {
+    closeDeadlinesModal();
   }
-  
-  // Close modal when clicking outside
-  document.getElementById('deadlines-modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeDeadlinesModal();
-    }
-  });
-  
-  // Close modal on ESC key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.getElementById('deadlines-modal').style.display === 'block') {
-      closeDeadlinesModal();
-    }
-  });
-  </script>
+});
+</script>
 
 <p><span class="anchor" id="about-me"></span></p>
 
