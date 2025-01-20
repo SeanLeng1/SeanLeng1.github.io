@@ -50,11 +50,15 @@ function closeContactModal() {
 
 function showContactForm() {
   if (isClosing) return;
-  warning.style.opacity = '0';
   
+  warning.style.opacity = '0';
   setTimeout(() => {
     warning.style.display = 'none';
     form.style.display = 'block';
+    
+    // Force browser reflow
+    void form.offsetWidth;
+    
     form.style.opacity = '1';
   }, 300);
 }
@@ -63,8 +67,7 @@ function showContactForm() {
 modal.addEventListener('click', function(event) {
   if (event.target === this && !isClosing) {
     closeContactModal();
-  }
-});
+  });
 
 // Prevent click propagation from modal content
 modalContent.addEventListener('click', function(event) {
