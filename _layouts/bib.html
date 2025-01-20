@@ -121,9 +121,11 @@
           {% if entry.openreview %}<a href="{{ entry.openreview }}">OpenReview</a>{% endif %}
           {% if entry.video %}<a href="{{ entry.video }}">Video</a>{% endif %}
           {% if entry.zhihu %}<a href="{{ entry.zhihu }}">Zhihu</a>{% endif %}
+          {% if entry.preview %}
+          <a href="#" class="preview-button" data-preview="{{ entry.preview | relative_url }}">Preview</a>
+          {% endif %}
           ]
         </div>
-
         {% if entry.special %}
         <div class="special"><b>({{entry.special}})</b></div>
         {% endif %}
@@ -135,7 +137,10 @@
         {% if entry.bibtex_show %}
         <div class="bibtex hidden">{% highlight bibtex %}{{ entry.bibtex }}{% endhighlight %}</div>
         {% endif %}
+
       </div>
     </div>
   {% endif %}
 </div>
+
+

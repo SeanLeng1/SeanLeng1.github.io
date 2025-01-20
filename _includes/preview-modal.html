@@ -1,0 +1,162 @@
+<!-- Paper Preview Modal -->
+<div id="previewModal" class="preview-modal">
+  <div class="preview-content">
+    <span class="preview-close-button">&times;</span>  <!-- Changed class name here -->
+    <img id="previewImage" src="" alt="Preview">
+  </div>
+</div>
+
+<style>
+.preview-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background-color: rgb(222, 243, 253);
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9em;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+  }
+
+.preview-button:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+.preview-button::before {
+  content: "👁️"; /* Using eye emoji as icon */
+  font-size: 1em;
+}
+
+.preview-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.3s ease;
+  opacity: 0;
+}
+
+.preview-modal.show {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.preview-content {
+  position: relative;
+  margin: auto;
+  padding: 20px;
+  max-width: 800px;
+  max-height: 80vh;
+  top: 50%;
+  transform: translateY(-50%) scale(0.95);
+  text-align: center;
+  transition: transform 0.3s ease;
+  opacity: 0;
+}
+
+.preview-modal.show .preview-content {
+  transform: translateY(-50%) scale(1);
+  opacity: 1;
+}
+
+.preview-content img {
+  width: auto;
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.preview-close-button {  /* Changed class name here */
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #666;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.3s ease, color 0.2s ease;
+  padding: 10px;
+}
+
+.preview-modal.show .preview-close-button {  /* Changed class name here */
+  opacity: 1;
+}
+
+.preview-close-button:hover {  /* Changed class name here */
+  color: #fff;
+}
+</style>
+
+<script>
+function initializeModal() {
+  const modal = document.getElementById('previewModal');
+  const modalImg = document.getElementById('previewImage');
+  const closeBtn = document.querySelector('.preview-close-button');  // Changed class name here
+  const previewButtons = document.querySelectorAll('.preview-button');
+
+  function openModal() {
+    modal.style.display = "block";
+    requestAnimationFrame(() => {
+      modal.classList.add('show');
+    });
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.style.display = "none";
+      modalImg.src = '';
+    }, 300);
+  }
+
+  // Open modal
+  previewButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      modalImg.src = this.getAttribute('data-preview');
+      openModal();
+    });
+  });
+
+  // Close button
+  closeBtn.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    closeModal();
+  });
+
+  // Close when clicking outside
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Handle ESC key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeModal);
+} else {
+  initializeModal();
+}
+</script>
