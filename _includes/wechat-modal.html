@@ -20,12 +20,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0,0,0,0.5);
     z-index: 99999;
     opacity: 0;
     animation: fadeIn 0.3s ease-out forwards;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   
   #wechat-qr {
@@ -40,6 +42,8 @@
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
     opacity: 0;
     animation: scaleIn 0.3s ease-out forwards;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   
   .close-button {
@@ -58,6 +62,8 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .close-button:hover {
@@ -71,6 +77,8 @@
     object-fit: contain;
     display: block;
     border-radius: 8px;
+    -webkit-user-select: none;
+    user-select: none;
   }
   </style>
   
@@ -82,30 +90,38 @@
   </div>
   
   <script>
- function handleWeChatClick(event) {
-  event.preventDefault();  // This prevents the default link behavior
-      toggleWeChatQR();
-  };
+  function handleWeChatClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleWeChatQR();
+  }
 
   function toggleWeChatQR() {
-  const overlay = document.getElementById('wechat-qr-overlay');
-  
-  if (overlay.style.display === 'none' || !overlay.style.display) {
+    const overlay = document.getElementById('wechat-qr-overlay');
+    
+    if (overlay.style.display === 'none' || !overlay.style.display) {
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
       overlay.style.display = 'block';
-      // Force reflow to ensure animation plays
-      overlay.offsetHeight;
-  } else {
-      // Add fade out animation
+      overlay.style.animation = 'fadeIn 0.3s ease-out forwards';
+      document.getElementById('wechat-qr').style.animation = 'scaleIn 0.3s ease-out forwards';
+    } else {
+      document.body.style.overflow = ''; // Restore scrolling
       overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
       document.getElementById('wechat-qr').style.animation = 'scaleIn 0.3s ease-out reverse';
       
-      // Wait for animation to complete before hiding
       setTimeout(() => {
-      overlay.style.display = 'none';
-      // Reset animations for next open
-      overlay.style.animation = '';
-      document.getElementById('wechat-qr').style.animation = '';
+        overlay.style.display = 'none';
+        // Reset animations
+        overlay.style.animation = '';
+        document.getElementById('wechat-qr').style.animation = '';
       }, 300);
+    }
   }
-  };
+
+  // Close overlay when clicking outside the QR code
+  document.getElementById('wechat-qr-overlay').addEventListener('click', function(event) {
+    if (event.target === this) {
+      toggleWeChatQR();
+    }
+  });
   </script>
