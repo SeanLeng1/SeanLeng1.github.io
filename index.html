@@ -1160,22 +1160,19 @@
 
 <!-- Contact Button -->
 <div style="text-align: center; margin: 40px 0;">
-  <button onclick="openContactModal()" class="contact-button">Get in Touch</button>
+  <button onclick="handleContactClick(event)" class="contact-button">Get in Touch</button>
 </div>
 
-<!-- Modal Container -->
 <div id="contact-modal" class="modal-overlay">
   <div class="modal-content">
-    <button onclick="closeContactModal()" class="close-button">&times;</button>
+    <button onclick="handleCloseClick(event)" class="close-button">&times;</button>
     
-    <!-- Warning Message -->
     <div id="warning-message" class="warning-message">
       <h3>Contact Information</h3>
-      <p>Please note that this contact form is for informal inquiries. I might not be able to respond to all messages. Consider using email for formal communication.</p>
-      <button onclick="showContactForm()" class="contact-button">Continue</button>
+      <p>Please note that this contact form is for informal inquiries. I might not be able to respond to all messages.</p>
+      <button onclick="handleContinueClick(event)" class="contact-button">Continue</button>
     </div>
     
-    <!-- Contact Form -->
     <div id="contact-form" class="contact-form">
       <h3>Send Message</h3>
       <form action="https://formspree.io/f/xrbbwwdj" method="POST">
