@@ -1,113 +1,67 @@
 let isClosing = false;
-let isAnimating = false;
-const ANIMATION_DURATION = 300;
 const modal = document.getElementById('contact-modal');
 const modalContent = modal.querySelector('.modal-content');
 const warning = document.getElementById('warning-message');
 const form = document.getElementById('contact-form');
 
-function resetState() {
-  isClosing = false;
-  isAnimating = false;
-  modal.style.animation = '';
-  modalContent.style.animation = '';
-  warning.style.transition = '';
-  form.style.transition = '';
-}
-
-function forceReflow(...elements) {
-  elements.forEach(el => void el.offsetHeight);
-}
-
 function openContactModal() {
-  if (isAnimating) return;
-  isAnimating = true;
-  
-  // Reset everything first
-  resetState();
-  
-  // Set initial display states
+  // Reset all states
+  isClosing = false;
   modal.style.display = 'block';
-  modalContent.style.display = 'block';
-  warning.style.display = 'block';
-  form.style.display = 'none';
   document.body.style.overflow = 'hidden';
   
-  // Force reflow before animations
-  forceReflow(modal, modalContent, warning);
+  // Force browser reflow
+  void modal.offsetWidth;
+  void modalContent.offsetWidth;
   
-  // Set initial opacity states
+  // Reset to initial state
+  warning.style.display = 'block';
   warning.style.opacity = '1';
+  form.style.display = 'none';
   form.style.opacity = '0';
   
-  // Start animations
-  requestAnimationFrame(() => {
-    modal.style.animation = 'fadeIn 0.3s ease-out forwards';
-    modalContent.style.animation = 'scaleIn 0.3s ease-out forwards';
-    
-    setTimeout(() => {
-      isAnimating = false;
-    }, ANIMATION_DURATION);
-  });
+  // Apply animations
+  modal.style.animation = 'fadeIn 0.3s ease-out forwards';
+  modalContent.style.animation = 'slideIn 0.3s ease-out forwards';
 }
 
 function closeContactModal() {
-  if (isAnimating || isClosing) return;
+  if (isClosing) return;
   isClosing = true;
-  isAnimating = true;
   
   document.body.style.overflow = '';
-  
-  // Force reflow before animations
-  forceReflow(modal, modalContent);
-  
-  requestAnimationFrame(() => {
-    modal.style.animation = 'fadeIn 0.3s ease-out reverse';
-    modalContent.style.animation = 'scaleIn 0.3s ease-out reverse';
+  modal.style.animation = 'fadeIn 0.3s ease-out reverse';
+  modalContent.style.animation = 'slideIn 0.3s ease-out reverse';
+
+  setTimeout(() => {
+    modal.style.display = 'none';
+    // Clear animation states
+    modal.style.animation = '';
+    modalContent.style.animation = '';
+    isClosing = false;
     
-    setTimeout(() => {
-      modal.style.display = 'none';
-      warning.style.display = 'block';
-      warning.style.opacity = '1';
-      form.style.display = 'none';
-      form.style.opacity = '0';
-      
-      // Complete reset after everything is done
-      resetState();
-    }, ANIMATION_DURATION);
-  });
+    // Reset form state after animation
+    warning.style.display = 'block';
+    warning.style.opacity = '1';
+    form.style.display = 'none';
+    form.style.opacity = '0';
+  }, 300);
 }
 
 function showContactForm() {
-  if (isAnimating || isClosing) return;
-  isAnimating = true;
-  
-  warning.style.transition = 'opacity 0.3s ease-out';
-  form.style.transition = 'opacity 0.3s ease-out';
-  
-  // Start warning fadeout
+  if (isClosing) return;
   warning.style.opacity = '0';
   
   setTimeout(() => {
     warning.style.display = 'none';
     form.style.display = 'block';
-    
-    // Force reflow before showing form
-    forceReflow(form);
-    
-    requestAnimationFrame(() => {
-      form.style.opacity = '1';
-      
-      setTimeout(() => {
-        isAnimating = false;
-      }, ANIMATION_DURATION);
-    });
-  }, ANIMATION_DURATION);
+    form.style.opacity = '1';
+  }, 300);
 }
 
 // Close modal when clicking outside
 modal.addEventListener('click', function(event) {
-  if (event.target === this && !isClosing && !isAnimating) {
+  if (event.target === this && !isClosing) {
     closeContactModal();
   }
 });
@@ -119,7 +73,7 @@ modalContent.addEventListener('click', function(event) {
 
 // Close modal on ESC key
 document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape' && modal.style.display === 'block' && !isClosing && !isAnimating) {
+  if (event.key === 'Escape' && modal.style.display === 'block' && !isClosing) {
     closeContactModal();
   }
 });
