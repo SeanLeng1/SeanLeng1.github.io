@@ -81,3 +81,17 @@ Feel free to email me if you are interested in **collaborating or discussing res
 <link rel="stylesheet" href="{{ '/assets/css/contact-form.css' | relative_url }}">
 {% include contact-form.html %}
 <script src="{{ '/assets/js/contact-form.js' | relative_url }}"></script>
+
+
+
+
+<!-- <script src="{{ '/assets/js/webPet.min.js' | relative_url }}"></script> -->
+<!-- Initialize the WebPet -->
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const pet = new WebPet({
+      name: 'Kitty',
+      // Add any additional custom configurations here
+    });
+  });
+</script> -->
