@@ -50,7 +50,7 @@
         <li><a href="https://www.linkedin.com/in/{{ author.linkedin }}"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
       {% endif %}
       {% if author.dblp %}
-        <li><a href="{{ author.dblp }}"><i class="ai ai-dblp ai-fw" aria-hidden="true"></i> DBLP</a></li>
+        <li class="hide-on-mobile"><a href="{{ author.dblp }}"><i class="ai ai-dblp ai-fw" aria-hidden="true"></i> DBLP</a></li>
       {% endif %}
       {% if author.xing %}
         <li><a href="https://www.xing.com/profile/{{ author.xing }}"><i class="fab fa-fw fa-xing-square" aria-hidden="true"></i> XING</a></li>
@@ -152,7 +152,9 @@
         <a href="https://www.linkedin.com/in/{{ author.linkedin }}"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i></a>
       {% endif %}
       {% if author.dblp %}
+      <li class="hide-on-mobile">
         <a href="{{ author.dblp }}"><i class="ai ai-dblp ai-fw" aria-hidden="true"></i></a>
+      </li>
       {% endif %}
       {% if author.xing %}
         <a href="https://www.xing.com/profile/{{ author.xing }}"><i class="fab fa-fw fa-xing-square" aria-hidden="true"></i></a>
@@ -225,6 +227,11 @@
         <i class="fab fa-weixin" aria-hidden="true"></i>
       </a>
       {% endif %}
+    </div>
+  </div>
+  <div class="oreo-container">
+    <div class="frame-container">
+      <img src="/images/oreo.jpg" alt="Decorative image" class="oreo-image">
     </div>
   </div>
 </div>

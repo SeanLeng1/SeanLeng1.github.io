@@ -157,3 +157,66 @@
 .publication-container::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
+
+
+// orea image
+.oreo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    margin-left: -60px;
+    width: 220px;
+    height: 220px;
+    position: relative;
+  }
+
+@keyframes rotate3D {
+  0% {
+    transform: perspective(1000px) rotateY(0deg) rotateX(10deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(180deg) rotateX(10deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(360deg) rotateX(10deg);
+  }
+}
+
+.oreo-image {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  animation: rotate3D 8s infinite linear;
+  transform-style: preserve-3d;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background: white;
+  border: 4px solid #ffffff;
+}
+
+// @media screen and (max-width: 768px) {
+//   .oreo-container {
+//     display: none;
+//   }
+// }
+
+@media screen and (max-width: 768px) {
+    .hide-on-mobile {
+        display: none !important;
+      }
+
+    .oreo-container {
+      width: 100px;  /* Reduce size */
+      height: 100px;
+      margin-left: 0px;
+    }
+  
+    .oreo-image {
+      width: 80px;  /* Scale down image */
+      height: 80px;
+      border-width: 2px; /* Reduce border thickness */
+    }
+  }
+  
