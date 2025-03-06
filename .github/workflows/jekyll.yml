@@ -29,7 +29,7 @@ jobs:
       run: sudo apt-get install libmagickwand-dev
 
     - name: Cache Ruby Gems
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: vendor/bundle
         key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}-new
