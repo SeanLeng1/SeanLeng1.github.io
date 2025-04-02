@@ -1,3 +1,19 @@
+@misc{leng2025crosswordbenchevaluatingreasoningcapabilities,
+      title={CrossWordBench: Evaluating the Reasoning Capabilities of LLMs and LVLMs with Controllable Puzzle Generation}, 
+      author={Jixuan Leng and Chengsong Huang and Langlin Huang and Bill Yuchen Lin and William W. Cohen and Haohan Wang and Jiaxin Huang},
+      year={2025},
+      month={04},
+      eprint={2504.00043},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      arxiv={https://arxiv.org/abs/2504.00043}, 
+      code={https://github.com/SeanLeng1/CrossWordBench},
+      dataset={https://huggingface.co/datasets/HINT-lab/CrossWordBench},
+      preview={/images/preview/crosswordbench-data-pipeline.png},
+      selected={true},
+      coauthors={},
+}
+
 @misc{huang2025efficienttesttimescalingselfcalibration,
     title={Efficient Test-Time Scaling via Self-Calibration}, 
     author={Chengsong Huang and Langlin Huang and Jixuan Leng and Jiacheng Liu and Jiaxin Huang},
@@ -7,8 +23,8 @@
     archivePrefix={arXiv},
     primaryClass={cs.LG},
     arxiv={https://arxiv.org/abs/2503.00031}, 
+    code={https://github.com/Chengsong-Huang/Self-Calibration},
     selected={true},
-    preprints={true},
     preview={/images/preview/efficient-confidence-test-time-scaling.png},
     coauthors={},
 }
@@ -16,7 +32,7 @@
 @inproceedings{leng2024tamingoverconfidencellmsreward,
     title={Taming Overconfidence in LLMs: Reward Calibration in RLHF}, 
     author={Jixuan Leng and Chengsong Huang and Banghua Zhu and Jiaxin Huang},
-    booktitle={The Thirteenth International Conference on Learning Representations (ICLR)},
+    booktitle={International Conference on Learning Representations (ICLR)},
     abbr={ICLR},
     year={2025},
     month={02},
@@ -25,23 +41,22 @@
     primaryClass={cs.CL},
     arxiv={https://arxiv.org/abs/2410.09724}, 
     code={https://github.com/SeanLeng1/Reward-Calibration}, 
+    openreview={https://openreview.net/forum?id=l0tg0jzsdL},
     selected={true},
-    preprints={false},
     preview={/images/preview/calibration-framework.png},
     coauthors={},
 }
 
 
 @inproceedings{yang2024sft,
-  title={{$S^{2}FT$}: Efficient, Scalable and Generalizable {LLM} Fine-tuning by Structured Sparsity},
+  title={S²FT: Efficient, Scalable and Generalizable {LLM} Fine-tuning by Structured Sparsity},
   author={Xinyu Yang and Jixuan Leng and Geyang Guo and Jiawei Zhao and Ryumei Nakada and Linjun Zhang and Huaxiu Yao and Beidi Chen},
-  booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems (NeurIPS)},
+  booktitle={Conference on Neural Information Processing Systems (NeurIPS)},
   abbr={NeurIPS},
   year={2024},
   month={9},
   arxiv={https://arxiv.org/abs/2412.06289},
   selected={true},
-  preprints={false},
   openreview={https://openreview.net/pdf?id=lEUle8S4xQ},
   preview={/images/preview/poster_s2ft-1.png},
   code={https://infini-ai-lab.github.io/S2FT-Page/}, 
@@ -63,7 +78,6 @@
     eprint={https://doi.org/10.1089/end.2023.0740},
     abstract={Introduction: Chemical composition analysis is important in prevention counseling for kidney stone disease. Advances in laser technology have made dusting techniques more prevalent, but this offers no consistent way to collect enough material to send for chemical analysis, leading many to forgo this test. We developed a novel machine learning (ML) model to effectively assess stone composition based on intraoperative endoscopic video data. Methods: Two endourologists performed ureteroscopy for kidney stones ≥ 10 mm. Representative videos were recorded intraoperatively. Individual frames were extracted from the videos, and the stone was outlined by human tracing. An ML model, UroSAM, was built and trained to automatically identify kidney stones in the images and predict the majority stone composition as follows: calcium oxalate monohydrate (COM), dihydrate (COD), calcium phosphate (CAP), or uric acid (UA). UroSAM was built on top of the publicly available Segment Anything Model (SAM) and incorporated a U-Net convolutional neural network (CNN). Discussion: A total of 78 ureteroscopy videos were collected; 50 were used for the model after exclusions (32 COM, 8 COD, 8 CAP, 2 UA). The ML model segmented the images with 94.77\% precision. Dice coefficient (0.9135) and Intersection over Union (0.8496) confirmed good segmentation performance of the ML model. A video-wise evaluation demonstrated 60\% correct classification of stone composition. Subgroup analysis showed correct classification in 84.4\% of COM videos. A post hoc adaptive threshold technique was used to mitigate biasing of the model toward COM because of data imbalance; this improved the overall correct classification to 62\% while improving the classification of COD, CAP, and UA videos. Conclusions: This study demonstrates the effective development of UroSAM, an ML model that precisely identifies kidney stones from natural endoscopic video data. More high-quality video data will improve the performance of the model in classifying the majority stone composition.},
     selected={true},
-    preprints={false},
     coauthors={},
 }
 
@@ -80,7 +94,6 @@
   openreview={https://openreview.net/forum?id=4KLwep6mA1}, 
   code={https://github.com/SeanLeng1/SCMD},
   selected={true},
-  preprints={false},
   coauthors={},
 }
 

@@ -109,6 +109,7 @@
           {% endif %}
           {% if entry.blog %}<a href="{{ entry.blog }}">Blog</a>{% endif %}
           {% if entry.code %}<a href="{{ entry.code }}">Code</a>{% endif %}
+          {% if entry.dataset %}<a href="{{ entry.dataset }}">Dataset</a>{% endif %}
           {% if entry.poster %}
             {% if entry.poster contains '://' %}
               <a href="{{ entry.poster }}">Poster</a>
