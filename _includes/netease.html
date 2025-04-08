@@ -1,157 +1,262 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="UTF-8">
-  <title>netease music player</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
-  <style>
-    /* outer container: fixed position, right side, circular shape */
+<!-- NetEase Music Player Component -->
+  
+<!-- Preconnect to CDNs -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Defer CSS loading until needed -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css"></noscript>
+
+<style>
+  /* outer container: fixed position, right side, circular shape */
+  #music-floating {
+    position: fixed;
+    top: calc(50% - 30px);
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(250, 1, 1, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    will-change: top, width, height, border-radius, opacity;
+    opacity: 0.7;
+    z-index: 500;
+  }
+
+  /* larger size for desktop, smaller for mobile */
+  @media only screen and (min-width: 769px) {
     #music-floating {
-      position: fixed;
-      /* https://github.com/DIYgod/APlayer/issues/797 and https://github.com/DIYgod/APlayer/issues/791 */
-      top: calc(50% - 30px);
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background: #f0f0f0;
-      border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(250, 1, 1, 0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      will-change: top, width, height, border-radius, opacity;
-      opacity: 0.7;
-      z-index: 500;  /* 1000 can be slow on mobile */
+      /* Must use absolute position for desktop due to volume control issues */
+      /* See: https://github.com/DIYgod/APlayer/issues/797 and https://github.com/DIYgod/APlayer/issues/791 */
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      /* Position properly at the top */
+      top: 80px;
     }
+  }
 
-    /* larger size for desktop, smaller for mobile */
-    @media only screen and (min-width: 769px) {
-      #music-floating {
-        width: 90px;
-        height: 90px;
-        top: calc(50% - 45px);
-      }
-    }
+  /* inside content area: 100% width and height, rounded corners */
+  #music-floating .content {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden;
+    position: relative;
+  }
 
-    /* inside content area: 100% width and height, rounded corners */
-    #music-floating .content {
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      overflow: hidden;
-      position: relative;
-    }
+  /* Base expanded state shared by both mobile and desktop */
+  #music-floating.expanded {
+    width: 500px;
+    height: 300px;
+    border-radius: 10px;
+    opacity: 1;
+  }
 
-    /* expanded state: desktop and mobile share */
+  /* Desktop-specific expanded state settings */
+  @media only screen and (min-width: 769px) {
     #music-floating.expanded {
-      width: 500px;
-      height: 300px;
-      top: calc(50% - 150px);
-      border-radius: 10px;
-      opacity: 1;
+      /* Keep absolute positioning for desktop expanded state */
+      position: absolute;
+      /* Fix the expanded position to appear in viewport properly */
+      top: 80px;
+      right: 20px;
     }
+  }
 
-    #music-player {
-      display: none;
-      width: 100%;
-      height: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-    }
-    
-    #music-floating.expanded #music-player {
-      display: block;
-    }
-    #music-floating.expanded #music-icon {
-      display: none;
-    }
+  #music-player {
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  #music-floating.expanded #music-player {
+    display: block;
+  }
+  #music-floating.expanded #music-icon {
+    display: none;
+  }
 
-    #music-icon {
-      text-align: center;
-      font-size: 14px;
-      color: #333;
-      line-height: 60px;
-      height: 100%;
-      width: 100%;
+  #music-icon {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    line-height: 60px;
+    height: 100%;
+    width: 100%;
+  }
+  #music-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  
+  .aplayer {
+    box-shadow: none !important;
+    margin: 0 !important;
+    height: 100% !important;
+  }
+  
+  /* Loading indicator */
+  .loading-indicator {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #C20C0C;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  #music-floating.loading .loading-indicator {
+    display: block;
+  }
+  
+  /* Mobile styles: click to expand, show player */
+  @media only screen and (max-width: 768px) {
+    #music-floating.expanded {
+      /* Use percentage of viewport width for mobile */
+      width: 90vw;
+      height: 300px; 
+      right: 20px; 
+      /* Center vertically based on player height */
+      top: calc(50% - 150px); 
+      transform-origin: right center;
+      /* Mobile must use fixed positioning */
+      position: fixed;
     }
-    #music-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-    
-    .aplayer {
-      box-shadow: none !important;
-      margin: 0 !important;
-      height: 100% !important;
-    }
-    
-    /* mobile styles: click to expand, show player */
-    @media only screen and (max-width: 768px) {
-      #music-floating.expanded {
-        width: 90vw;
-        height: 300px; 
-        right: 20px; 
-        top: calc(50% - 150px); 
-        transform-origin: right center; 
-      }
-    }
-  </style>
-</head>
-<body>
-  <div id="music-floating">
-    <div class="content">
-      <div id="music-icon">
-        <img src="images/NetEase_Music-Logo.png" alt="Music">
-      </div>
-      <div id="music-player">
-        <div id="aplayer">
-          <meting-js 
-            server="netease" 
-            type="playlist" 
-            id="602810440" 
-            autoplay="false" 
-            theme="#C20C0C"
-            limit="100"
-            volume="0.1">
-          </meting-js>
-        </div>
-      </div>
+  }
+</style>
+
+<div id="music-floating">
+  <div class="content">
+    <div id="music-icon">
+      <img src="{{ '/images/NetEase_Music-Logo.png' | relative_url }}" alt="音乐">
     </div>
+    <div id="music-player">
+      <div id="aplayer"></div>
+    </div>
+    <div class="loading-indicator"></div>
   </div>
-  
+</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/meting/2.0.1/Meting.min.js"></script>
-  
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const musicFloating = document.getElementById('music-floating');
-
-      // check if the user is on a mobile device or desktop
-      if (window.matchMedia('(hover: hover)').matches) {
-          // desktop: hover to expand
-          musicFloating.addEventListener('mouseenter', function() {
-            musicFloating.classList.add('expanded');
-          });
-          musicFloating.addEventListener('mouseleave', function() {
-            musicFloating.classList.remove('expanded');
-          });
-      } else {
-          // mobile: click to expand
-          musicFloating.addEventListener('click', function(e) {
-            e.stopPropagation();
-            musicFloating.classList.toggle('expanded');
-          });
-          document.addEventListener('click', function(e) {
-            if (!musicFloating.contains(e.target)) {
-              musicFloating.classList.remove('expanded');
-            }
-          });
-          document.getElementById('music-player').addEventListener('click', function(e) {
-            e.stopPropagation();
-          });
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const musicFloating = document.getElementById('music-floating');
+    let playerInitialized = false;
+    let scriptsLoaded = false;
+    
+    // Function to load scripts dynamically
+    function loadScripts(callback) {
+      if (scriptsLoaded) {
+        callback();
+        return;
       }
-    });
-  </script>
-</body>
-</html>
+      
+      const aplayerScript = document.createElement('script');
+      aplayerScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js';
+      aplayerScript.async = true;
+      
+      const metingScript = document.createElement('script');
+      metingScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/meting/2.0.1/Meting.min.js';
+      metingScript.async = true;
+      
+      aplayerScript.onload = function() {
+        document.body.appendChild(metingScript);
+      };
+      
+      metingScript.onload = function() {
+        scriptsLoaded = true;
+        callback();
+      };
+      
+      document.body.appendChild(aplayerScript);
+    }
+    
+    // Function to initialize the player
+    function initializePlayer() {
+      if (playerInitialized) return;
+      
+      musicFloating.classList.add('loading');
+      
+      loadScripts(function() {
+        const metingElement = document.createElement('meting-js');
+        metingElement.setAttribute('server', 'netease');
+        metingElement.setAttribute('type', 'playlist');
+        metingElement.setAttribute('id', '602810440');
+        metingElement.setAttribute('autoplay', 'false');
+        metingElement.setAttribute('theme', '#C20C0C');
+        metingElement.setAttribute('limit', '100');
+        metingElement.setAttribute('volume', '0.1');
+        
+        document.getElementById('aplayer').appendChild(metingElement);
+        
+        // Fix for volume control issues
+        setTimeout(function() {
+          const aplayerInstance = document.querySelector('.aplayer-controller');
+          if (aplayerInstance) {
+            playerInitialized = true;
+            musicFloating.classList.remove('loading');
+          }
+        }, 1000);
+      });
+    }
+    
+    // Event handler for expanding/collapsing the player
+    function handlePlayerToggle() {
+      if (!musicFloating.classList.contains('expanded')) {
+        musicFloating.classList.add('expanded');
+        if (!playerInitialized) {
+          initializePlayer();
+        }
+      } else {
+        musicFloating.classList.remove('expanded');
+      }
+    }
+    
+    // Set up event listeners based on device type
+    if (window.matchMedia('(hover: hover)').matches) {
+      // Desktop: hover to expand
+      musicFloating.addEventListener('mouseenter', function() {
+        musicFloating.classList.add('expanded');
+        if (!playerInitialized) {
+          initializePlayer();
+        }
+      });
+      
+      musicFloating.addEventListener('mouseleave', function() {
+        musicFloating.classList.remove('expanded');
+      });
+    } else {
+      // Mobile: click to expand
+      musicFloating.addEventListener('click', function(e) {
+        e.stopPropagation();
+        handlePlayerToggle();
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (!musicFloating.contains(e.target)) {
+          musicFloating.classList.remove('expanded');
+        }
+      });
+      
+      document.getElementById('music-player').addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+  });
+</script>
