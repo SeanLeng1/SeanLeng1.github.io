@@ -19,7 +19,7 @@
       transition: all 0.3s ease;
       will-change: top, width, height, border-radius, opacity;
       opacity: 0.7;
-      z-index: 1000;
+      z-index: 500;  /* 1000 can be slow on mobile */
     }
 
     /* larger size for desktop, smaller for mobile */
@@ -101,7 +101,7 @@
   <div id="music-floating">
     <div class="content">
       <div id="music-icon">
-        <img src="images/NetEase_Music-Logo.png" alt="音乐">
+        <img src="images/NetEase_Music-Logo.png" alt="Music">
       </div>
       <div id="music-player">
         <div id="aplayer">
@@ -112,13 +112,14 @@
             autoplay="false" 
             theme="#C20C0C"
             limit="100"
-            volume="0.5">
+            volume="0.1">
           </meting-js>
         </div>
       </div>
     </div>
   </div>
   
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/meting/2.0.1/Meting.min.js"></script>
   
