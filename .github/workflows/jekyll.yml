@@ -20,6 +20,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Update apt-get package list
+      run: sudo apt-get update
+
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
