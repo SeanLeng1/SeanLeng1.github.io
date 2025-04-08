@@ -23,6 +23,13 @@
     will-change: top, width, height, border-radius, opacity;
     opacity: 0.7;
     z-index: 100;
+    touch-action: none; /* Prevent browser handling of touch events */
+  }
+  
+  /* Add a dragging class for when the component is being dragged */
+  #music-floating.dragging {
+    transition: none; /* Disable transitions during drag for smoother movement */
+    opacity: 0.9;
   }
 
   /* larger size for desktop, smaller for mobile */
@@ -46,7 +53,16 @@
     overflow: hidden;
     position: relative;
   }
-
+  
+  /* Prevent the content from jumping during transitions */
+  #music-floating.expand-left .content {
+    transform-origin: left center;
+  }
+  
+  #music-floating.expand-right .content {
+    transform-origin: right center;
+  }
+  
   /* Base expanded state shared by both mobile and desktop */
   #music-floating.expanded {
     width: 500px;
@@ -54,6 +70,15 @@
     border-radius: 10px;
     opacity: 1;
   }
+  
+  /* For debugging - adds a colored border based on expansion direction
+  #music-floating.expand-right.expanded {
+    border: 2px solid blue;
+  }
+  
+  #music-floating.expand-left.expanded {
+    border: 2px solid red;
+  } */
 
   /* Desktop-specific expanded state settings */
   @media only screen and (min-width: 769px) {
@@ -132,12 +157,20 @@
       /* Use percentage of viewport width for mobile */
       width: 90vw;
       height: 300px; 
-      right: 20px; 
-      /* Center vertically based on player height */
-      top: calc(50% - 150px); 
-      transform-origin: right center;
       /* Mobile must use fixed positioning */
       position: fixed;
+    }
+    
+    /* Right-side expansion on mobile */
+    #music-floating.expand-right.expanded {
+      left: auto;
+      right: 20px;
+    }
+    
+    /* Left-side expansion on mobile */
+    #music-floating.expand-left.expanded {
+      right: auto;
+      left: 20px;
     }
   }
 </style>
@@ -159,6 +192,28 @@
     const musicFloating = document.getElementById('music-floating');
     let playerInitialized = false;
     let scriptsLoaded = false;
+    
+    // Set initial expansion direction class
+    musicFloating.classList.add('expand-right');
+    
+    // Restore position from localStorage if available
+    function restorePosition() {
+      const savedPos = localStorage.getItem('musicPlayerPosition');
+      if (savedPos) {
+        try {
+          const pos = JSON.parse(savedPos);
+          musicFloating.style.top = pos.top;
+          musicFloating.style.right = pos.right;
+          musicFloating.style.bottom = pos.bottom;
+          musicFloating.style.left = pos.left;
+        } catch (e) {
+          console.error('Error restoring position:', e);
+        }
+      }
+    }
+    
+    // Try to restore saved position
+    restorePosition();
     
     // Function to load scripts dynamically
     function loadScripts(callback) {
@@ -206,19 +261,25 @@
         document.getElementById('aplayer').appendChild(metingElement);
         
         // Fix for volume control issues
-        // setTimeout(function() {
-        //   const aplayerInstance = document.querySelector('.aplayer-controller');
-        //   if (aplayerInstance) {
-        //     playerInitialized = true;
-        //     musicFloating.classList.remove('loading');
-        //   }
-        // }, 1000);
+        setTimeout(function() {
+          const aplayerInstance = document.querySelector('.aplayer-controller');
+          if (aplayerInstance) {
+            playerInitialized = true;
+            musicFloating.classList.remove('loading');
+          }
+        }, 1000);
       });
     }
     
     // Event handler for expanding/collapsing the player
     function handlePlayerToggle() {
       if (!musicFloating.classList.contains('expanded')) {
+        // Before expanding, determine which direction to expand based on position
+        determineExpandDirection();
+        
+        // Force reflow to ensure styles are applied
+        void musicFloating.offsetWidth;
+        
         musicFloating.classList.add('expanded');
         if (!playerInitialized) {
           initializePlayer();
@@ -228,13 +289,231 @@
       }
     }
     
+    // Determine whether to expand left or right based on current position
+    function determineExpandDirection() {
+      const windowWidth = window.innerWidth;
+      const rect = musicFloating.getBoundingClientRect();
+      const centerX = rect.left + (rect.width / 2);
+      
+      // 记录当前为未展开状态时的位置信息
+      const currentLeft = rect.left;
+      const currentRight = windowWidth - rect.right;
+      
+      console.log("Position - Left: " + currentLeft + "px, Right: " + currentRight + "px, Center: " + centerX + "px, Window: " + windowWidth + "px");
+      
+      // If center is in the right half of the screen, expand left
+      // Otherwise, expand right
+      if (centerX > windowWidth / 2) {
+        console.log("Expanding LEFT"); 
+        musicFloating.classList.remove('expand-right');
+        musicFloating.classList.add('expand-left');
+        
+        if (musicFloating.style.right) {
+          musicFloating.style.left = 'auto';
+        }
+      } else {
+        console.log("Expanding RIGHT");
+        musicFloating.classList.remove('expand-left');
+        musicFloating.classList.add('expand-right');
+        
+        if (musicFloating.style.left) {
+          musicFloating.style.right = 'auto';
+        }
+      }
+    }
+    
+    // Draggable functionality for mobile devices
+    let isDragging = false;
+    let startX, startY, startRight, startBottom, startTop, startLeft;
+    let usingRightBottom = true; // Track which side we're using (right/bottom or left/top)
+    
+    function handleDragStart(e) {
+      // If the player is expanded, handle clicks within the content differently
+      if (musicFloating.classList.contains('expanded')) {
+        // Only allow clicks in the icon area when expanded
+        if (e.target.closest('#music-icon')) {
+          handlePlayerToggle();
+        }
+        return;
+      }
+      
+      // Set a flag to track that we started a potential drag operation
+      isDragging = true;
+      musicFloating.classList.add('dragging');
+      
+      // Get current position styles
+      const style = window.getComputedStyle(musicFloating);
+      
+      // Detect which positioning we're using
+      const hasRight = style.right !== 'auto';
+      const hasBottom = style.bottom !== 'auto';
+      
+      // Store initial positions
+      if (hasRight) {
+        startRight = parseInt(style.right);
+        startLeft = null;
+      } else {
+        startLeft = parseInt(style.left);
+        startRight = null;
+      }
+      
+      if (hasBottom) {
+        startBottom = parseInt(style.bottom);
+        startTop = null;
+      } else {
+        startTop = parseInt(style.top);
+        startBottom = null;
+      }
+      
+      usingRightBottom = hasRight && hasBottom;
+      
+      // Store initial cursor/touch position
+      if (e.type === 'mousedown') {
+        startX = e.clientX;
+        startY = e.clientY;
+        // Add event listeners for mouse movement
+        document.addEventListener('mousemove', handleDragMove);
+        document.addEventListener('mouseup', handleDragEnd);
+      } else if (e.type === 'touchstart') {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        // Add event listeners for touch movement
+        document.addEventListener('touchmove', handleDragMove, { passive: false });
+        document.addEventListener('touchend', handleDragEnd);
+      }
+      
+      // Prevent default to avoid text selection, etc.
+      e.preventDefault();
+    }
+    
+    function handleDragMove(e) {
+      if (!isDragging) return;
+      
+      let currentX, currentY;
+      
+      if (e.type === 'mousemove') {
+        currentX = e.clientX;
+        currentY = e.clientY;
+      } else if (e.type === 'touchmove') {
+        currentX = e.touches[0].clientX;
+        currentY = e.touches[0].clientY;
+        e.preventDefault(); // Prevent scrolling while dragging
+      }
+      
+      // Calculate the difference
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
+      
+      // Calculate new positions based on current positioning model
+      let newTop, newRight, newBottom, newLeft;
+      
+      // Update the position based on whether we're using right/bottom or left/top
+      if (startRight !== null) {
+        newRight = Math.max(0, startRight - diffX) + 'px';
+        musicFloating.style.right = newRight;
+        musicFloating.style.left = 'auto';
+      } else if (startLeft !== null) {
+        newLeft = Math.max(0, startLeft + diffX) + 'px';
+        musicFloating.style.left = newLeft;
+        musicFloating.style.right = 'auto';
+      }
+      
+      if (startBottom !== null) {
+        newBottom = Math.max(0, startBottom - diffY) + 'px';
+        musicFloating.style.bottom = newBottom;
+        musicFloating.style.top = 'auto';
+      } else if (startTop !== null) {
+        newTop = Math.max(0, startTop + diffY) + 'px';
+        musicFloating.style.top = newTop;
+        musicFloating.style.bottom = 'auto';
+      }
+      
+      // Update expansion direction during drag for better UX
+      if (isMobile) {
+        const windowWidth = window.innerWidth;
+        const rect = musicFloating.getBoundingClientRect();
+        const centerX = rect.left + (rect.width / 2);
+        
+        // Update expansion direction class
+        if (centerX > windowWidth / 2) {
+          if (!musicFloating.classList.contains('expand-left')) {
+            musicFloating.classList.remove('expand-right');
+            musicFloating.classList.add('expand-left');
+          }
+        } else {
+          if (!musicFloating.classList.contains('expand-right')) {
+            musicFloating.classList.remove('expand-left');
+            musicFloating.classList.add('expand-right');
+          }
+        }
+      }
+    }
+    
+    function handleDragEnd(e) {
+      if (!isDragging) return;
+      
+      // Detect if this was just a tap (very little movement) or a drag
+      let wasDragged = false;
+      
+      if (e.type === 'mouseup') {
+        const diffX = Math.abs(e.clientX - startX);
+        const diffY = Math.abs(e.clientY - startY);
+        wasDragged = (diffX > 5 || diffY > 5); // Consider it a drag if moved more than 5px
+      } else if (e.type === 'touchend' && e.changedTouches && e.changedTouches.length > 0) {
+        const diffX = Math.abs(e.changedTouches[0].clientX - startX);
+        const diffY = Math.abs(e.changedTouches[0].clientY - startY);
+        wasDragged = (diffX > 5 || diffY > 5); // Consider it a drag if moved more than 5px
+      }
+      
+      isDragging = false;
+      musicFloating.classList.remove('dragging');
+      
+      // Remove event listeners
+      document.removeEventListener('mousemove', handleDragMove);
+      document.removeEventListener('mouseup', handleDragEnd);
+      document.removeEventListener('touchmove', handleDragMove);
+      document.removeEventListener('touchend', handleDragEnd);
+      
+      // Save position to localStorage
+      const style = window.getComputedStyle(musicFloating);
+      const position = {
+        top: style.top,
+        right: style.right,
+        bottom: style.bottom,
+        left: style.left
+      };
+      
+      localStorage.setItem('musicPlayerPosition', JSON.stringify(position));
+      
+      // If this was just a tap (not a drag), trigger the toggle
+      if (!wasDragged) {
+        // Small delay to ensure click event doesn't conflict
+        setTimeout(function() {
+          handlePlayerToggle();
+        }, 10);
+      }
+    }
+    
+    // Set up drag event listeners for mobile
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) {
+      musicFloating.addEventListener('mousedown', handleDragStart);
+      musicFloating.addEventListener('touchstart', handleDragStart, { passive: false });
+    }
+    
     // Set up event listeners based on device type
     if (window.matchMedia('(hover: hover)').matches) {
       // Desktop: hover to expand
       musicFloating.addEventListener('mouseenter', function() {
-        musicFloating.classList.add('expanded');
-        if (!playerInitialized) {
-          initializePlayer();
+        if (!isDragging) { // Don't expand if we're dragging
+          // Always expand right on desktop (as it's positioned absolutely)
+          musicFloating.classList.remove('expand-left');
+          musicFloating.classList.add('expand-right');
+          
+          musicFloating.classList.add('expanded');
+          if (!playerInitialized) {
+            initializePlayer();
+          }
         }
       });
       
@@ -242,11 +521,8 @@
         musicFloating.classList.remove('expanded');
       });
     } else {
-      // Mobile: click to expand
-      musicFloating.addEventListener('click', function(e) {
-        e.stopPropagation();
-        handlePlayerToggle();
-      });
+      // Mobile: For mobile, we'll handle click in the dragEnd function
+      // Instead of using click event which can conflict with drag
       
       document.addEventListener('click', function(e) {
         if (!musicFloating.contains(e.target)) {
