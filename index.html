@@ -1612,7 +1612,7 @@ document.addEventListener('keydown', function(e) {
     transition: all 0.3s ease;
     will-change: top, width, height, border-radius, opacity;
     opacity: 0.7;
-    z-index: 500;
+    z-index: 100;
   }
 
   /* larger size for desktop, smaller for mobile */
@@ -1787,7 +1787,7 @@ document.addEventListener('keydown', function(e) {
         const metingElement = document.createElement('meting-js');
         metingElement.setAttribute('server', 'netease');
         metingElement.setAttribute('type', 'playlist');
-        metingElement.setAttribute('id', '602810440');
+        metingElement.setAttribute('id', '13558690545');
         metingElement.setAttribute('autoplay', 'false');
         metingElement.setAttribute('theme', '#C20C0C');
         metingElement.setAttribute('limit', '100');
@@ -1796,13 +1796,13 @@ document.addEventListener('keydown', function(e) {
         document.getElementById('aplayer').appendChild(metingElement);
         
         // Fix for volume control issues
-        setTimeout(function() {
-          const aplayerInstance = document.querySelector('.aplayer-controller');
-          if (aplayerInstance) {
-            playerInitialized = true;
-            musicFloating.classList.remove('loading');
-          }
-        }, 1000);
+        // setTimeout(function() {
+        //   const aplayerInstance = document.querySelector('.aplayer-controller');
+        //   if (aplayerInstance) {
+        //     playerInitialized = true;
+        //     musicFloating.classList.remove('loading');
+        //   }
+        // }, 1000);
       });
     }
     
