@@ -83,8 +83,8 @@ Feel free to email me if you are interested in **collaborating or discussing res
 {% include contact-form.html %}
 <script src="{{ '/assets/js/contact-form.js' | relative_url }}"></script>
 
-
-
+<!-- Music -->
+{% include netease.html %}
 
 
 <!-- <script src="{{ '/assets/js/webPet.min.js' | relative_url }}"></script> -->
