@@ -22,7 +22,7 @@ years: [2025, 2024]
 
 <span class='anchor' id='about-me'></span>
 
-I am currently a first-year MSML student at Carnegie Mellon University. Previously, I completed my undergraduate studies in Computer Science at University of Rochester, where I had the privilege of being advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/#Prospective). I have also collaborated with [Prof. Haohan Wang](https://haohanwang.github.io/) at UIUC [DREAM Lab](https://dreamlabuiuc.github.io/). In the summer of 2024, I was a visiting researcher at Washington University in St. Louis with [Prof. Jiaxin Huang](https://teapot123.github.io/).
+I am currently a first-year MSML student at Carnegie Mellon University advised by [Prof. William W. Cohen](https://www.cs.cmu.edu/~wcohen/). Previously, I completed my undergraduate studies in Computer Science at University of Rochester, where I had the privilege of being advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/#Prospective). I have also collaborated with [Prof. Haohan Wang](https://haohanwang.github.io/) at UIUC [DREAM Lab](https://dreamlabuiuc.github.io/). In the summer of 2024, I was a visiting researcher at Washington University in St. Louis with [Prof. Jiaxin Huang](https://teapot123.github.io/).
 
 My research interests lie in improving training and inference efficiency as well as model alignment of both <span style="color:rgb(144, 174, 200)">**LLMs**</span> and <span style="color:lightpink">**VLMs**</span>. 
 
