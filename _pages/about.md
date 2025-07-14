@@ -39,11 +39,11 @@ Feel free to email me if you are interested in **collaborating or discussing res
 <span class='anchor' id='-news'></span>
 
 # 🔥 News
+- *2025.06*: &nbsp;🎉🎉 One paper ["CrossWordBench: Evaluating the Reasoning Capabilities of LLMs and LVLMs with Controllable Puzzle Generation"](https://arxiv.org/abs/2504.00043) is accepted by COLM 2025.
 - *2025.06*: &nbsp;🎉🎉 New preprints ["Semi-structured LLM Reasoners Can Be Rigorously Audited"](https://arxiv.org/abs/2505.24217) and ["PosS:Position Specialist Generates Better Draft for Speculative Decoding"](https://arxiv.org/abs/2506.03566) is out on arxiv. Code is also released.
 - *2025.05*: &nbsp;🎓🎓 I will join Google Research as a Student Researcher for summer 2025.
 - *2025.04*: &nbsp;🎉🎉 New preprint ["CrossWordBench: Evaluating the Reasoning Capabilities of LLMs and LVLMs with Controllable Puzzle Generation"](https://arxiv.org/abs/2504.00043) is out on arxiv. Dataset and Code are also released.
 - *2025.02*: &nbsp;🎉🎉 One paper ["Taming Overconfidence in LLMs: Reward Calibration in RLHF"](https://arxiv.org/abs/2410.09724) is accepted by ICLR 2025 (poster).
-- *2024.10*: &nbsp;🎉🎉 New preprint: ["Taming Overconfidence in LLMs: Reward Calibration in RLHF"](https://arxiv.org/abs/2410.09724) is out on arxiv. Code is also released.
 - *2024.09*: &nbsp;🎉🎉 One paper ["S<sup>2</sup>FT: Efficient, Scalable and Generalizable LLM Fine-tuning by Structured Sparsity"](https://openreview.net/forum?id=lEUle8S4xQ&referrer=%5Bthe%20profile%20of%20Xinyu%20Yang%5D) is accepted by NIPS 2024 (poster).
 - *2024.08*: &nbsp;📚📚 I will start my Master in Machine Learning at Carnegie Mellon University.
 
