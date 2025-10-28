@@ -6,12 +6,20 @@
       <div class="paper-box-text" style="width: 100%; display: block;">
         <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">{{entry.title}}</div>
 
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
+        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
           {% assign coauthors = entry.coauthors | split: ', ' %}
+          {% assign total_authors = entry.author_array | size %}
+          {% assign author_limit = entry.author_limit | default: 8 %}
+          {% assign force_hidden = entry.fullauthorshidden | default: false %}
+          {% assign truncated = false %}
+          {% if total_authors > author_limit %}
+            {% assign truncated = true %}
+          {% endif %}
+
           {% for author in entry.author_array %}
             {% assign author_is_self = false %}
             {% assign author_is_coauthor = false %}
-            
+
             {% if author.last == site.scholar.last_name %}
               {% if site.scholar.first_name contains author.first %}
                 {% assign author_is_self = true %}
@@ -40,36 +48,68 @@
               {% endfor %}
             {% endif %}
 
-            {% if forloop.length == 1 %}
-              {% if author_is_self %}
-                <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+            {% if forloop.index0 < author_limit %}
+              {% if total_authors == 1 %}
+                {% if author_is_self %}
+                  <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+                {% else %}
+                  <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+                {% endif %}
               {% else %}
-                <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+                {% unless forloop.index0 == author_limit or (forloop.index0 == total_authors-1 and total_authors <= author_limit) %}
+                  {% if author_is_self %}
+                    <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %},
+                  {% else %}
+                    {% if coauthor_url %}
+                      <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>,
+                    {% else %}
+                      {{author.first}} {{author.last}}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %},
+                    {% endif %}
+                  {% endif %}
+                {% endunless %}
               {% endif %}
-            {% else %}
-              {% unless forloop.last %}
-                {% if author_is_self %}
-                  <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %},
-                {% else %}
-                  {% if coauthor_url %}
-                    <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>,
-                  {% else %}
-                    {{author.first}} {{author.last}}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %},
-                  {% endif %}
-                {% endif %}
-              {% else %}
-                {% if author_is_self %}
-                  and <em><b>{{author.first}} {{author.last}}#</b></em>
-                {% else %}
-                  {% if coauthor_url %}
-                    and <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>
-                  {% else %}
-                    and {{author.first}} {{author.last}}
-                  {% endif %}
-                {% endif %}
-              {% endunless %}
             {% endif %}
           {% endfor %}
+
+          {% if truncated or force_hidden %}
+            {% assign hidden_count = total_authors | minus: author_limit %}
+            <details style="display:inline;">
+              <summary style="display:inline; cursor:pointer;">&nbsp;+ {{ hidden_count }} more</summary>
+              <span>
+                {% assign first_hidden = true %}
+                {% for author in entry.author_array %}
+                  {% if forloop.index0 >= author_limit %}
+                    {% if first_hidden == false %}, {% endif %}
+                    {% assign author_is_self = false %}
+                    {% if author.last == site.scholar.last_name and site.scholar.first_name contains author.first %}
+                      {% assign author_is_self = true %}
+                    {% endif %}
+                    {% assign coauthor_url = nil %}
+                    {% if site.data.coauthors[author.last] %}
+                      {% for co in site.data.coauthors[author.last] %}
+                        {% if co.firstname contains author.first %}
+                          {% assign coauthor_url = co.url %}
+                          {% break %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+
+                    {% if coauthor_url %}
+                      <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>
+                    {% else %}
+                      {% if author_is_self %}
+                        <em><b>{{author.first}} {{author.last}}</b></em>
+                      {% else %}
+                        {{author.first}} {{author.last}}
+                      {% endif %}
+                    {% endif %}
+                    {% assign first_hidden = false %}
+                  {% endif %}
+                {% endfor %}
+              </span>
+            </details>
+            <span class="author-badge" style="font-size: 0.85em; opacity: 0.8;">(full list hidden)</span>
+          {% endif %}
         </div>
 
         <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">

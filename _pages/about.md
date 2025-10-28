@@ -22,7 +22,7 @@ years: [2025, 2024]
 
 <span class='anchor' id='about-me'></span>
 
-I am currently a first-year MSML student at Carnegie Mellon University advised by [Prof. William W. Cohen](https://www.cs.cmu.edu/~wcohen/). Previously, I completed my undergraduate studies in Computer Science at University of Rochester, where I had the privilege of being advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/#Prospective). I have also collaborated with [Prof. Haohan Wang](https://haohanwang.github.io/) at UIUC [DREAM Lab](https://dreamlabuiuc.github.io/).
+I am currently a second-year MSML student at Carnegie Mellon University advised by [Prof. William W. Cohen](https://www.cs.cmu.edu/~wcohen/). Previously, I completed my undergraduate studies in Computer Science at University of Rochester, where I had the privilege of being advised by [Prof. Jiebo Luo](https://www.cs.rochester.edu/u/jluo/#Prospective). I have also collaborated with [Prof. Haohan Wang](https://haohanwang.github.io/) at UIUC [DREAM Lab](https://dreamlabuiuc.github.io/).
 
 In the summer of 2024, I was a visiting researcher at Washington University in St. Louis with [Prof. Jiaxin Huang](https://teapot123.github.io/). Currently, for summer 2025, I am a Student Researcher at Google Research advised by [Dr. Si Si](https://research.google/people/105487/).
 
@@ -77,6 +77,7 @@ Feel free to email me if you are interested in **collaborating or discussing res
 <span class='anchor' id='-service'></span>
 
 # 📝 Service
+- *2025.09 - Present*, ICLR reviewer.
 - *2024.10 - Present*, TMLR reviewer.
 - *2022.01 - 2023.05*, Teaching Assistant for CSC261/461: Database System, University of Rochester.
 
