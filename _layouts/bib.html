@@ -17,59 +17,59 @@
           {% endif %}
 
           {% for author in entry.author_array %}
-            {% assign author_is_self = false %}
-            {% assign author_is_coauthor = false %}
+  {% assign author_is_self = false %}
+  {% assign author_is_coauthor = false %}
 
-            {% if author.last == site.scholar.last_name %}
-              {% if site.scholar.first_name contains author.first %}
-                {% assign author_is_self = true %}
-              {% endif %}
-            {% endif %}
+  {% if author.last == site.scholar.last_name %}
+    {% if site.scholar.first_name contains author.first %}
+      {% assign author_is_self = true %}
+    {% endif %}
+  {% endif %}
 
-            {% for coauthor in coauthors %}
-              {% assign coauthor_parts = coauthor | split: ' ' %}
-              {% if coauthor_parts.size > 1 %}
-                {% assign coauthor_first = coauthor_parts.first %}
-                {% assign coauthor_last = coauthor_parts.last %}
-                {% if author.first == coauthor_first and author.last == coauthor_last %}
-                  {% assign author_is_coauthor = true %}
-                  {% break %}
-                {% endif %}
-              {% endif %}
-            {% endfor %}
+  {% for coauthor in coauthors %}
+    {% assign coauthor_parts = coauthor | split: ' ' %}
+    {% if coauthor_parts.size > 1 %}
+      {% assign coauthor_first = coauthor_parts.first %}
+      {% assign coauthor_last = coauthor_parts.last %}
+      {% if author.first == coauthor_first and author.last == coauthor_last %}
+        {% assign author_is_coauthor = true %}
+        {% break %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
 
-            {% assign coauthor_url = nil %}
-            {% if site.data.coauthors[author.last] %}
-              {% for co in site.data.coauthors[author.last] %}
-                {% if co.firstname contains author.first %}
-                  {% assign coauthor_url = co.url %}
-                  {% break %}
-                {% endif %}
-              {% endfor %}
-            {% endif %}
+  {% assign coauthor_url = nil %}
+  {% if site.data.coauthors[author.last] %}
+    {% for co in site.data.coauthors[author.last] %}
+      {% if co.firstname contains author.first %}
+        {% assign coauthor_url = co.url %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 
-            {% if forloop.index0 < author_limit %}
-              {% if total_authors == 1 %}
-                {% if author_is_self %}
-                  <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
-                {% else %}
-                  <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
-                {% endif %}
-              {% else %}
-                {% unless forloop.index0 == author_limit or (forloop.index0 == total_authors-1 and total_authors <= author_limit) %}
-                  {% if author_is_self %}
-                    <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %},
-                  {% else %}
-                    {% if coauthor_url %}
-                      <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>,
-                    {% else %}
-                      {{author.first}} {{author.last}}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %},
-                    {% endif %}
-                  {% endif %}
-                {% endunless %}
-              {% endif %}
-            {% endif %}
-          {% endfor %}
+  {% if forloop.index0 < author_limit %}
+    {% if total_authors == 1 %}
+      {% if author_is_self %}
+        <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+      {% else %}
+        <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+      {% endif %}
+    {% else %}
+      {% if author_is_self %}
+        <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+      {% else %}
+        {% if coauthor_url %}
+          <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>
+        {% else %}
+          {{author.first}} {{author.last}}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+        {% endif %}
+      {% endif %}
+      {% assign next_index = forloop.index0 | plus: 1 %}
+      {% if next_index < author_limit and next_index < total_authors %},{% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
 
           {% if truncated or force_hidden %}
             {% assign hidden_count = total_authors | minus: author_limit %}
