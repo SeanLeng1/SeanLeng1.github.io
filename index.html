@@ -49,22 +49,20 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 
 <meta http-equiv="cleartype" content="on">
-<head>
-  <base target="_blank">
-</head>
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="manifest" href="images/site.webmanifest">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="manifest" href="/images/site.webmanifest">
 
 <meta name="msapplication-TileColor" content="#000000">
 <meta name="msapplication-TileImage" content="images/mstile-144x144.png?v=M44lzPylqQ">
 <meta name="msapplication-config" content="images/browserconfig.xml?v=M44lzPylqQ">
 <meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="assets/css/academicons.css"/>
+<link rel="stylesheet" href="/assets/css/academicons.css"/>
 
 <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
 <script type="text/x-mathjax-config">
@@ -135,211 +133,28 @@
       }
   });
   </script>
+
   </head>
 
-  <body>
+  <body class="homepage">
+
+    <div id="page-loader" aria-live="polite" aria-label="Page loading">
+      <span class="loader-progress" id="page-loader-progress">0 %</span>
+    </div>
 
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
-    <div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
-        <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="#about-me">Homepage</a></li>
-          
-            
-              <li class="masthead__menu-item"><a href="/#about-me">About Me</a></li>
-            
-          
-            
-              <li class="masthead__menu-item"><a href="/#-news">News</a></li>
-            
-          
-            
-              <li class="masthead__menu-item"><a href="/#-education">Education</a></li>
-            
-          
-            
-              <li class="masthead__menu-item"><a href="/#-publications">Publications</a></li>
-            
-          
-            
-              <li class="masthead__menu-item"><a href="/#-research">Research Experience</a></li>
-            
-          
-            
-              <li class="masthead__menu-item"><a href="/#-service">Service</a></li>
-            
-          
-            
-              <li class="masthead__menu-item"><a href="javascript:void(0);" onclick="openDeadlinesModal(); return false;" class="deadlines-trigger">Deadlines</a></li>
-            
-          
-        </ul>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
-  </div>
-</div>
+    
 
     <div id="main" role="main">
       
-  <div class="sidebar sticky">
-  
-
-<div itemscope itemtype="http://schema.org/Person" class="profile_box">
-
-  <div class="author__avatar">
-    <img src="images/dog.png" class="author__avatar" alt="Jixuan Leng">
-  </div>
-
-  <div class="author__content">
-    <h3 class="author__name">Jixuan Leng</h3>
-    <p class="author__bio">Carnegie Mellon University</p>
-  </div>
-
-  <div class="author__urls-wrapper">
-    <!-- <button class="btn btn--inverse">More Info & Contact</button> -->
-    <ul class="author__urls social-icons">
-      
-        <li><div style="white-space: normal; margin-bottom: 1em;">Master of Science in Machine Learning</div></li>
-      
-      
-        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Pittsburgh, USA</li>
-      
-      
-      
-      
-        <li><a href="mailto:jixuanl@cs.cmu.edu"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Email</a></li>
-      
-      
-       
-      
-        <li><a href="https://twitter.com/JixuanLeng"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-      
-      
-      
-      
-        <li><a href="https://www.linkedin.com/in/jixuan-leng-2862b2227"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
-      
-      
-        <li class="hide-on-mobile"><a href="https://dblp.org/pid/261/6970.html"><i class="ai ai-dblp ai-fw" aria-hidden="true"></i> DBLP</a></li>
-      
-      
-      
-      
-      
-      
-        <li><a href="https://github.com/SeanLeng1"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-        <li><a href="https://scholar.google.com/citations?user=Jyqbex4AAAAJ"><i class="fas fa-fw fa-graduation-cap"></i> Google Scholar</a></li>
-      
-      
-      
-      
-      
-      
-        <li>
-          <a href="javascript:void(0);" onclick="handleWeChatClick(event)" style="cursor: pointer;">
-            <i class="fab fa-weixin" aria-hidden="true"></i> WeChat
-          </a>
-        </li>
-      
-    </ul>
-      <div class="author__urls_sm">
-      
-      
-        <a href="mailto:jixuanl@cs.cmu.edu"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i></a>
-      
-      
-       
-      
-        <a href="https://twitter.com/JixuanLeng"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i></a>
-      
-      
-      
-      
-        <a href="https://www.linkedin.com/in/jixuan-leng-2862b2227"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i></a>
-      
-      
-      <li class="hide-on-mobile">
-        <a href="https://dblp.org/pid/261/6970.html"><i class="ai ai-dblp ai-fw" aria-hidden="true"></i></a>
-      </li>
-      
-      
-      
-      
-      
-      
-        <a href="https://github.com/SeanLeng1"><i class="fab fa-fw fa-github" aria-hidden="true"></i></a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-        <a href="https://scholar.google.com/citations?user=Jyqbex4AAAAJ"><i class="fas fa-fw fa-graduation-cap"></i></a>
-      
-      
-      
-      
-      
-      
-      <a href="javascript:void(0);" onclick="handleWeChatClick(event)" style="cursor: pointer;">
-        <i class="fab fa-weixin" aria-hidden="true"></i>
-      </a>
-      
-    </div>
-  </div>
-  <div class="oreo-container">
-    <div class="frame-container">
-      <img src="/images/oreo.jpg" alt="Decorative image" class="oreo-image">
-    </div>
-  </div>
-</div>
-
-
-<!-- <div id="wechat-qr-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); z-index: 99999;">
-  <div id="wechat-qr" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 30px; border-radius: 12px; z-index: 100000;">
-    <img src="/images/wechat_public_account.jpg" alt="WeChat QR Code" style="width: 300px; height: 300px; object-fit: contain;">
-    <button onclick="toggleWeChatQR()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
-  </div>
-</div> -->
-  
-  </div>
-
     
       <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
         <meta itemprop="headline" content="">
         <div class="page__inner-wrap">
           <section class="page__content" itemprop="text">
-            <!-- https://github.com/erikthedeveloper/code-review-emoji-guide -->
-
-<!-- Include the modal component -->
+            
 <!-- Mobile-friendly modal container -->
 <style>
   @keyframes modalFadeIn {
@@ -500,51 +315,478 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
 
-<p><span class="anchor" id="about-me"></span></p>
+<link rel="stylesheet" href="/assets/css/contact-form.css" />
 
-<p>I am currently a second-year MSML student at Carnegie Mellon University advised by <a href="https://www.cs.cmu.edu/~wcohen/">Prof. William W. Cohen</a>. Previously, I completed my undergraduate studies in Computer Science at University of Rochester, where I had the privilege of being advised by <a href="https://www.cs.rochester.edu/u/jluo/#Prospective">Prof. Jiebo Luo</a>. I have also collaborated with <a href="https://haohanwang.github.io/">Prof. Haohan Wang</a> at UIUC <a href="https://dreamlabuiuc.github.io/">DREAM Lab</a>.</p>
+<svg style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <!-- Noise texture for glass displacement -->
+    <filter id="glass-noise" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="4" result="turbulence">
+        <animate attributeName="baseFrequency" values="0.01;0.02;0.01" dur="8s" repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="15" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
 
-<p>In the summer of 2024, I was a visiting researcher at Washington University in St. Louis with <a href="https://teapot123.github.io/">Prof. Jiaxin Huang</a>. Currently, for summer 2025, I am a Student Researcher at Google Research advised by <a href="https://research.google/people/105487/">Dr. Si Si</a>.</p>
+    <!-- Main displacement filter -->
+    <filter id="orb-displacement" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" seed="2">
+        <animate attributeName="baseFrequency" values="0.02;0.04;0.02" dur="12s" repeatCount="indefinite" />
+      </feTurbulence>
+      <feComponentTransfer in="noise" result="normalizedNoise">
+        <feFuncR type="table" tableValues="0 1" />
+        <feFuncG type="table" tableValues="0 1" />
+      </feComponentTransfer>
+      <feDisplacementMap in="SourceGraphic" in2="normalizedNoise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+      <feGaussianBlur stdDeviation="0.5" />
+    </filter>
 
-<p>My research interests lie in improving training and inference efficiency as well as model alignment of both <span style="color:rgb(144, 174, 200)"><strong>LLMs</strong></span> and <span style="color:lightpink"><strong>VLMs</strong></span>.</p>
+    <!-- Animated gradient patterns -->
+    <linearGradient id="orb-grad-1">
+      <stop offset="0%" stop-color="#ffc9e5">
+        <animate attributeName="stop-color" values="#ffc9e5;#c9d5ff;#ffe5c9;#ffc9e5" dur="6s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="50%" stop-color="#d5c9ff">
+        <animate attributeName="stop-color" values="#d5c9ff;#ffe5c9;#c9d5ff;#d5c9ff" dur="6s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="100%" stop-color="#c9fff0">
+        <animate attributeName="stop-color" values="#c9fff0;#ffc9e5;#d5c9ff;#c9fff0" dur="6s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
 
-<p>Feel free to email me if you are interested in <strong>collaborating or discussing research ideas</strong>.</p>
+    <!-- Glow filter -->
+    <filter id="orb-glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
 
-<!-- My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=Jyqbex4AAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a>  -->
+<style>
+  body.homepage {
+    background-color: #f7f8fb;
+  }
+  .home-page {
+    min-height: 100vh;
+    padding: 3rem 1.5rem 0;
+    background-color: #f7f8fb;
+    background-image:
+      radial-gradient(circle at 20% -10%, rgba(253, 253, 253, 0.95), rgba(241, 241, 243, 0.9) 45%, rgba(226, 229, 234, 0.85) 100%),
+      radial-gradient(circle, rgba(99, 102, 241, 0.3) 1.5px, transparent 1.5px),
+      radial-gradient(circle, rgba(139, 92, 246, 0.25) 1.5px, transparent 1.5px);
+    background-size: 100% 100%, 24px 24px, 40px 40px;
+    background-position: 0 0, 0 0, 12px 12px;
+  }
+  .home-shell {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 28px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 25px 45px rgba(15, 15, 40, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    max-width: 1260px;
+    margin: 0 auto;
+  }
+  .home-grid {
+    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2rem;
+  }
+  @media (max-width: 1080px) {
+    .home-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .home-card--wide {
+      grid-column: span 2;
+    }
+  }
+  @media (max-width: 900px) {
+    .home-page {
+      padding: 2rem 1rem 0 !important;
+    }
+    .home-shell {
+      padding: 2rem 1.5rem !important;
+    }
+    .home-grid {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      grid-template-areas: none !important;
+      gap: 1rem !important;
+    }
+    .home-card,
+    .home-card--wide {
+      grid-column: 1 / -1 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+    }
+  }
+  @media (max-width: 600px) {
+    .home-page {
+      padding: 1.5rem 0.75rem 0 !important;
+    }
+    .home-shell {
+      padding: 1.5rem 1rem !important;
+      border-radius: 20px;
+    }
+    .home-grid {
+      gap: 0.8rem !important;
+    }
+    .glass-btn {
+      font-size: 0.85rem;
+      padding: 0.55rem 1rem;
+    }
+    .glass-btn span {
+      font-size: 0.85rem;
+    }
+  }
+  .home-card {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    padding: 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f7f5ff 60%, #f2f2ff 100%);
+    border-radius: 20px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 18px 35px rgba(15, 15, 40, 0.07);
+  }
+  .home-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.5), transparent 60%);
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  .home-card--wide {
+    grid-column: span 3;
+  }
+  .home-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(10, 10, 30, 0.12);
+  }
+  .home-card__header {
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem;
+  }
+  .home-card__header h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.4rem;
+  }
+  .home-card__header a.home-chip {
+    margin-top: 0.35rem;
+  }
+  .home-list {
+    position: relative;
+    z-index: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0 1.5rem 1.5rem;
+  }
+  .home-list li {
+    padding-bottom: 0.6rem;
+    border-bottom: 1px dashed rgba(15, 15, 40, 0.08);
+    margin-bottom: 0.6rem;
+  }
+  .home-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  .home-list__date {
+    font-weight: 600;
+    color: rgba(15, 15, 40, 0.7);
+    margin-right: 0.35rem;
+  }
+  .home-pubs-list h3 {
+    margin: 1.4rem 0 0.35rem 1.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    color: #343b52;
+    font-weight: 600;
+  }
+  .home-hero__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+  }
+  @keyframes liquidPulse {
+    0% {
+      transform: translateY(0) scale(1);
+      box-shadow: 0 18px 30px rgba(15, 15, 40, 0.12);
+    }
+    50% {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 25px 45px rgba(15, 15, 40, 0.2);
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      box-shadow: 0 18px 30px rgba(15, 15, 40, 0.12);
+    }
+  }
+  .home-hero__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+  }
 
-<!-- (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=Jyqbex4AAAAJ'><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSeanLeng1%2FSeanLeng1.github.io%40google-scholar-stats%2Fgs_data_shieldsio.json&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). -->
+  /* Glass Button */
+  .glass-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border: none;
+    background: transparent;
+  }
 
-<!-- <span style="color:red">🔈**I am actively seeking for 2025 Summer HCI Research Internship, please don’t hesitate to contact me if you think I might be a good fit!**</span> -->
+  .glass-btn span {
+    position: relative;
+    z-index: 10;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0f0f28;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+  }
 
-<p><span class="anchor" id="-news"></span></p>
+  .glass-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  }
 
-<h1 id="-news">🔥 News</h1>
-<ul>
-  <li><em>2025.09</em>:  🎉🎉 Our Survey Paper on <a href="https://openreview.net/pdf?id=nLJZh4M6S5">“Reliable and Responsible Foundation Models”</a> is out and accepted by TMLR.</li>
-  <li><em>2025.06</em>:  🎉🎉 One paper <a href="https://arxiv.org/abs/2504.00043">“CrossWordBench: Evaluating the Reasoning Capabilities of LLMs and LVLMs with Controllable Puzzle Generation”</a> is accepted by COLM 2025.</li>
-  <li><em>2025.06</em>:  🎉🎉 New preprints <a href="https://arxiv.org/abs/2505.24217">“Semi-structured LLM Reasoners Can Be Rigorously Audited”</a> and <a href="https://arxiv.org/abs/2506.03566">“PosS:Position Specialist Generates Better Draft for Speculative Decoding”</a> is out on arxiv. Code is also released.</li>
-  <li><em>2025.05</em>:  🎓🎓 I will join Google Research as a Student Researcher for summer 2025.</li>
-  <li><em>2025.02</em>:  🎉🎉 One paper <a href="https://arxiv.org/abs/2410.09724">“Taming Overconfidence in LLMs: Reward Calibration in RLHF”</a> is accepted by ICLR 2025 (poster).</li>
-  <li><em>2024.09</em>:  🎉🎉 One paper <a href="https://openreview.net/forum?id=lEUle8S4xQ&amp;referrer=%5Bthe%20profile%20of%20Xinyu%20Yang%5D">“S<sup>2</sup>FT: Efficient, Scalable and Generalizable LLM Fine-tuning by Structured Sparsity”</a> is accepted by NIPS 2024 (poster).</li>
-  <li><em>2024.08</em>:  📚📚 I will start my Master in Machine Learning at Carnegie Mellon University.</li>
-</ul>
+  .glass-btn:active {
+    transform: translateY(-1px) scale(1.01);
+  }
+  .home-contact {
+    margin-top: 2rem;
+    border-radius: 20px;
+    padding: 2rem;
+    background: radial-gradient(circle at top right, rgba(194, 12, 12, 0.12), transparent 55%);
+    border: 1px solid rgba(194, 12, 12, 0.2);
+    box-shadow: 0 20px 40px rgba(15, 15, 40, 0.08);
+  }
+  .home-contact__header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .home-contact__header h3 {
+    margin: 0;
+  }
+  .home-contact__text {
+    margin-bottom: 1.5rem;
+  }
+</style>
 
-<p><span class="anchor" id="-education"></span></p>
+<div class="home-page">
+  <div class="home-shell">
+    <section class="home-hero">
+      <div class="home-hero__text">
+        <p class="home-hero__eyebrow">Jixuan Leng - MSML @ Carnegie Mellon University</p>
+        <h1>Jixuan Leng</h1>
+        <p class="home-hero__lede">
+          I am a second-year MSML student at Carnegie Mellon University advised by <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>. I completed my B.S. in Computer Science at University of Rochester with <a href="https://www.cs.rochester.edu/u/jluo/#Prospective" target="_blank" rel="noopener">Prof. Jiebo Luo</a> and collaborated with <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a> (UIUC DREAM Lab) and <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a> (WashU).
+        </p>
+        <p class="home-hero__lede">
+          My research interests focus on efficient training and inference, and model alignment for both LLMs and VLMs. I am currently a Student Researcher at Google Research advised by <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>.
+        </p>
+        <div class="home-hero__cta">
+          <a class="home-cta-link" href="mailto:jixuanl at cs.cmu.edu">Email: jixuanl at cs.cmu.edu</a>
+        </div>
+        <div class="home-hero__social">
+          <a class="glass-btn" href="https://scholar.google.com/citations?user=Jyqbex4AAAAJ" target="_blank" rel="noopener"><span>Google Scholar</span></a>
+          <a class="glass-btn" href="https://dblp.org/pid/261/6970.html" target="_blank" rel="noopener"><span>DBLP</span></a>
+          <a class="glass-btn" href="https://github.com/SeanLeng1" target="_blank" rel="noopener"><span>GitHub</span></a>
+          <a class="glass-btn" href="https://twitter.com/JixuanLeng" target="_blank" rel="noopener"><span>X (Twitter)</span></a>
+          <a class="glass-btn" href="javascript:void(0)" data-wechat-trigger=""><span>WeChat</span></a>
+          <a class="glass-btn" href="/publications/"><span>Full Publication list</span></a>
+        </div>
+      </div>
+      <div class="home-hero__card">
+        <div class="home-hero__avatar">
+          <img src="/images/dog.png" alt="Jixuan Leng" />
+        </div>
+        <div class="home-hero__meta">
+          <div class="home-hero__name">Jixuan Leng</div>
+          <div class="home-hero__role">Carnegie Mellon University - Pittsburgh, USA</div>
+          <div class="home-hero__chips">
+            <span class="chip">LLMs</span>
+            <span class="chip">VLMs</span>
+            <span class="chip">Efficiency</span>
+            <span class="chip">Reasoning</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h1 id="-educations">📖 Educations</h1>
-<ul>
-  <li><em>2024.08 - Present</em>, M.S. in Machine Learning, Carnegie Mellon University, USA</li>
-  <li><em>2020.08 - 2024.05</em>, B.S. in Computer Science, University of Rochester, USA</li>
-</ul>
+    <section class="home-grid">
+      
+        <article class="home-card home-card--wide" id="news">
+          <div class="home-card__header">
+            <p class="home-card__eyebrow">News</p>
+            <h3>Recent highlights</h3>
+            
+          </div>
+          
+            <ul class="home-list">
+              
+                <li>
+                  <span class="home-list__date">2025.09</span>
+                  <span class="home-list__text">Survey paper on <a href="https://openreview.net/pdf?id=nLJZh4M6S5" target="_blank" rel="noopener">Reliable and Responsible Foundation Models</a> accepted by TMLR.</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2025.06</span>
+                  <span class="home-list__text"><a href="https://arxiv.org/abs/2504.00043" target="_blank" rel="noopener">CrossWordBench</a> accepted by COLM 2025.</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2025.06</span>
+                  <span class="home-list__text">New preprints on <a href="https://arxiv.org/abs/2505.24217" target="_blank" rel="noopener">semi-structured LLM auditing</a> and <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">speculative decoding</a>.</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2025.05</span>
+                  <span class="home-list__text">Joining Google Research as a Student Researcher for summer 2025.</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2025.02</span>
+                  <span class="home-list__text"><a href="https://arxiv.org/abs/2410.09724" target="_blank" rel="noopener">Taming Overconfidence in LLMs</a> accepted by ICLR 2025 (poster).</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2024.09</span>
+                  <span class="home-list__text"><a href="https://openreview.net/forum?id=lEUle8S4xQ" target="_blank" rel="noopener">S<sup>2</sup>FT</a> accepted by NeurIPS 2024 (poster).</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2024.08</span>
+                  <span class="home-list__text">Started M.S. in Machine Learning at Carnegie Mellon University.</span>
+                </li>
+              
+            </ul>
+          
+        </article>
+      
+        <article class="home-card" id="education">
+          <div class="home-card__header">
+            <p class="home-card__eyebrow">Education</p>
+            <h3>Academic path</h3>
+            
+          </div>
+          
+            <ul class="home-list">
+              
+                <li>
+                  <span class="home-list__date">2024 - Now</span>
+                  <span class="home-list__text">M.S. in Machine Learning, Carnegie Mellon University, USA.</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2020 - 2024</span>
+                  <span class="home-list__text">B.S. in Computer Science, University of Rochester, USA.</span>
+                </li>
+              
+            </ul>
+          
+        </article>
+      
+        <article class="home-card" id="research">
+          <div class="home-card__header">
+            <p class="home-card__eyebrow">Research</p>
+            <h3>Experience</h3>
+            
+          </div>
+          
+            <ul class="home-list">
+              
+                <li>
+                  <span class="home-list__date">2025.06 - Now</span>
+                  <span class="home-list__text">Student Researcher, Google Research (advisor: <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>).</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2025.01 - 2025.05</span>
+                  <span class="home-list__text">Independent Study, Carnegie Mellon University (advisor: <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>).</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2024.06 - Now</span>
+                  <span class="home-list__text">Visiting Researcher, Washington University in St. Louis (advisor: <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a>).</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2023.12 - 2024.05</span>
+                  <span class="home-list__text">Honor Independent Study, VIStA Lab, University of Rochester (advisors: <a href="https://www.cs.rochester.edu/u/jluo/" target="_blank" rel="noopener">Prof. Jiebo Luo</a> and <a href="https://www.urmc.rochester.edu/people/112361798-rajat-k-jain" target="_blank" rel="noopener">Dr. Rajat K. Jain</a>).</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2022.12 - 2024.05</span>
+                  <span class="home-list__text">Research Intern, DREAM Lab (advisor: <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>).</span>
+                </li>
+              
+            </ul>
+          
+        </article>
+      
+        <article class="home-card" id="service">
+          <div class="home-card__header">
+            <p class="home-card__eyebrow">Service</p>
+            <h3>Community</h3>
+            
+          </div>
+          
+            <ul class="home-list">
+              
+                <li>
+                  <span class="home-list__date">2025 - Now</span>
+                  <span class="home-list__text">Reviewer, ICLR.</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2024 - Now</span>
+                  <span class="home-list__text">Reviewer, TMLR.</span>
+                </li>
+              
+                <li>
+                  <span class="home-list__date">2022 - 2023</span>
+                  <span class="home-list__text">Teaching Assistant, CSC261/461: Database System, University of Rochester.</span>
+                </li>
+              
+            </ul>
+          
+        </article>
+      
 
-<p><span class="anchor" id="-publications"></span></p>
-
-<h1 id="publications">📝 Publications (* denotes equal contribution)</h1>
-
-<div class="publications">
-  
-    <div>2025</div>
-    <ol class="bibliography"><li><div class="publication-container" style="max-width: 100%; display: block;">
+      <article class="home-card home-card--wide">
+        <div class="home-card__header">
+          <div>
+            <p class="home-card__eyebrow">Papers</p>
+            <h3>Selected publications</h3>
+          </div>
+          <a class="home-chip" href="/publications/">View all</a>
+        </div>
+        <div class="home-pubs-list">
+          
+            <h3 style="margin-bottom: 0.2em; margin-top: 0.8em;">2025</h3>
+            <ol class="bibliography"><li><div class="publication-container" style="max-width: 100%; display: block;">
   
     <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
       <div class="paper-box-text" style="width: 100%; display: block;">
@@ -1962,7 +2204,7 @@ document.addEventListener('keydown', function(e) {
           
 
           | [
-          
+          <a href="/images/paper_preview/4644_Reliable_and_Responsible_.pdf">arXiv</a>
           
           
           
@@ -2850,9 +3092,9 @@ document.addEventListener('keydown', function(e) {
 
 
 </li></ol>
-  
-    <div>2024</div>
-    <ol class="bibliography"><li><div class="publication-container" style="max-width: 100%; display: block;">
+          
+            <h3 style="margin-bottom: 0.2em; margin-top: 0.8em;">2024</h3>
+            <ol class="bibliography"><li><div class="publication-container" style="max-width: 100%; display: block;">
   
     <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
       <div class="paper-box-text" style="width: 100%; display: block;">
@@ -3265,7 +3507,7 @@ document.addEventListener('keydown', function(e) {
           
 
           | [
-          
+          <a href="/images/paper_preview/leng-et-al-2024-development-of-urosam-a-machine-learning-model-to-automatically-identify-kidney-stone-composition-from.pdf">arXiv</a>
           
           
           
@@ -3417,129 +3659,247 @@ document.addEventListener('keydown', function(e) {
 
 
 </li></ol>
-  
-</div>
+          
+        </div>
+      </article>
 
-<p><span class="anchor" id="-research"></span></p>
+    </section>
 
-<h1 id="-research-experience">🔬 Research Experience</h1>
-<ul>
-  <li><em>2025.06 - Present</em>, Student Researcher, Google Research, advised by <a href="https://research.google/people/105487/">Dr. Si Si</a>.</li>
-  <li><em>2025.01 - 2025.05</em>, Independent Study, Carnegie Mellon University, advised by <a href="https://www.cs.cmu.edu/~wcohen/">Prof. William W. Cohen</a>.</li>
-  <li><em>2024.06 - Present</em>, Visiting Researcher (Onsite during summer), Washington University in St. Louis, advised by <a href="https://teapot123.github.io/">Prof. Jiaxin Huang</a>.</li>
-  <li><em>2023.12 - 2024.05</em>, Honor Independent Study, <a href="https://www.cs.rochester.edu/u/jluo/\#VISTA">VIStA (Visual Intelligence &amp; Social Multimedia Analytics)</a>, advised by <a href="https://www.cs.rochester.edu/u/jluo/">Prof. Jiebo Luo</a> and <a href="https://www.urmc.rochester.edu/people/112361798-rajat-k-jain">Dr. Rajat K. Jain</a>.</li>
-  <li><em>2022.12 - 2024.05</em>, Research Internship (Remote), <a href="https://dreamlabuiuc.github.io/\#intro">Dream Lab iSchool UIUC</a>, advised by <a href="https://haohanwang.github.io/">Prof. Haohan Wang</a></li>
-</ul>
-
-<p><span class="anchor" id="-service"></span></p>
-
-<h1 id="-service">📝 Service</h1>
-<ul>
-  <li><em>2025.09 - Present</em>, ICLR reviewer.</li>
-  <li><em>2024.10 - Present</em>, TMLR reviewer.</li>
-  <li><em>2022.01 - 2023.05</em>, Teaching Assistant for CSC261/461: Database System, University of Rochester.</li>
-</ul>
-
-<!-- 🛠️ Skills -->
-
-<!-- Contact -->
-<link rel="stylesheet" href="/assets/css/contact-form.css" />
-
-<!-- Contact Button -->
+    <section class="home-contact">
+      <div class="home-contact__header">
+        <p class="home-card__eyebrow">Get in touch</p>
+        <h3>Let's collaborate</h3>
+      </div>
+      <p class="home-contact__text">Feel free to reach out if you would like to chat about research or collaboration.</p>
+      <!-- Contact Button -->
 <div style="text-align: center; margin: 40px 0;">
-  <button onclick="handleContactClick(event)" class="contact-button">Get in Touch</button>
+  <button type="button" class="contact-button" data-contact="open">Get in Touch</button>
 </div>
 
-<div id="contact-modal" class="modal-overlay">
-  <div class="modal-content">
-    <button onclick="handleCloseClick(event)" class="close-button">&times;</button>
-    
-    <div id="warning-message" class="warning-message">
-      <h3>Contact Information</h3>
-      <p>Please note that this contact form is for informal inquiries. I might not be able to respond to all messages.</p>
-      <button onclick="handleContinueClick(event)" class="contact-button">Continue</button>
-    </div>
-    
-    <div id="contact-form" class="contact-form">
-      <h3>Send Message</h3>
-      <form action="https://formspree.io/f/xrbbwwdj" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" class="form-control" required="" />
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="_replyto" class="form-control" required="" />
-        </div>
-        
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="_subject" class="form-control" required="" />
-        </div>
-        
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" class="form-control" required=""></textarea>
-        </div>
-        
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
-    </div>
+    </section>
   </div>
 </div>
+
 <script src="/assets/js/contact-form.js"></script>
 
-<!-- Music -->
-<!-- NetEase Music Player Component -->
+<script>
+  // Global function to initialize glass buttons
+  window.initGlassButtons = function() {
+    const colors = [
+      ['#ffc9e5', '#d5c9ff', '#c9fff0'],
+      ['#c9d5ff', '#ffe5c9', '#ffc9e5'],
+      ['#ffe5c9', '#c9fff0', '#d5c9ff'],
+      ['#c9fff0', '#ffc9e5', '#ffe5c9'],
+      ['#d5c9ff', '#c9fff0', '#ffc9e5'],
+      ['#ffc9e5', '#ffe5c9', '#c9d5ff']
+    ];
 
-<!-- Preconnect to CDNs -->
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    document.querySelectorAll('.glass-btn').forEach((btn, index) => {
+      // Remove existing SVG if any
+      const existingSvg = btn.querySelector('svg');
+      if (existingSvg) {
+        existingSvg.remove();
+      }
 
-<!-- Defer CSS loading until needed -->
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+      const colorSet = colors[index % colors.length];
+      const svg = createGlassBtnSVG(colorSet, index);
+      btn.insertBefore(svg, btn.firstChild);
+    });
+  };
 
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" /></noscript>
+  function createGlassBtnSVG(colors, seed) {
+      const svgNS = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(svgNS, 'svg');
+      svg.style.position = 'absolute';
+      svg.style.inset = '-1px';
+      svg.style.width = 'calc(100% + 2px)';
+      svg.style.height = 'calc(100% + 2px)';
+      svg.style.pointerEvents = 'none';
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('preserveAspectRatio', 'none');
 
-<style>
-  /* outer container: fixed position, right side, circular shape */
-  #music-floating {
-    position: fixed;
-    top: calc(50% - 30px);
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: #f0f0f0;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(250, 1, 1, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    will-change: top, width, height, border-radius, opacity;
-    opacity: 0.7;
-    z-index: 100;
-    touch-action: none; /* Prevent browser handling of touch events */
+      const gradId = `btn-grad-${seed}`;
+      const defs = document.createElementNS(svgNS, 'defs');
+
+      // Animated gradient
+      const grad = document.createElementNS(svgNS, 'linearGradient');
+      grad.setAttribute('id', gradId);
+      grad.setAttribute('x1', '0%');
+      grad.setAttribute('y1', '0%');
+      grad.setAttribute('x2', '100%');
+      grad.setAttribute('y2', '100%');
+
+      colors.forEach((color, i) => {
+        const stop = document.createElementNS(svgNS, 'stop');
+        stop.setAttribute('offset', `${(i / (colors.length - 1)) * 100}%`);
+        stop.setAttribute('stop-color', color);
+        stop.setAttribute('stop-opacity', '0.6');
+
+        const anim = document.createElementNS(svgNS, 'animate');
+        anim.setAttribute('attributeName', 'stop-color');
+        anim.setAttribute('values', colors.join(';') + ';' + colors[0]);
+        anim.setAttribute('dur', `${5 + seed * 0.5}s`);
+        anim.setAttribute('repeatCount', 'indefinite');
+
+        stop.appendChild(anim);
+        grad.appendChild(stop);
+      });
+
+      // Rotate animation
+      const gradTransform = document.createElementNS(svgNS, 'animateTransform');
+      gradTransform.setAttribute('attributeName', 'gradientTransform');
+      gradTransform.setAttribute('type', 'rotate');
+      gradTransform.setAttribute('from', '0 0.5 0.5');
+      gradTransform.setAttribute('to', '360 0.5 0.5');
+      gradTransform.setAttribute('dur', '10s');
+      gradTransform.setAttribute('repeatCount', 'indefinite');
+      grad.appendChild(gradTransform);
+
+      defs.appendChild(grad);
+      svg.appendChild(defs);
+
+      // Background rect
+      const rect = document.createElementNS(svgNS, 'rect');
+      rect.setAttribute('x', '0');
+      rect.setAttribute('y', '0');
+      rect.setAttribute('width', '100');
+      rect.setAttribute('height', '100');
+      rect.setAttribute('fill', `url(#${gradId})`);
+      rect.setAttribute('rx', '20');
+      rect.style.filter = 'url(#orb-displacement)';
+      svg.appendChild(rect);
+
+      // Top highlight
+      const highlight = document.createElementNS(svgNS, 'ellipse');
+      highlight.setAttribute('cx', '50%');
+      highlight.setAttribute('cy', '30%');
+      highlight.setAttribute('rx', '40%');
+      highlight.setAttribute('ry', '25%');
+      highlight.setAttribute('fill', 'white');
+      highlight.setAttribute('opacity', '0.4');
+      highlight.style.filter = 'blur(8px)';
+      svg.appendChild(highlight);
+
+      return svg;
   }
-  
-  /* Add a dragging class for when the component is being dragged */
-  #music-floating.dragging {
-    transition: none; /* Disable transitions during drag for smoother movement */
-    opacity: 0.9;
-  }
 
-  /* larger size for desktop, smaller for mobile */
-  @media only screen and (min-width: 769px) {
-    #music-floating {
-      /* Must use absolute position for desktop due to volume control issues */
-      /* See: https://github.com/DIYgod/APlayer/issues/797 and https://github.com/DIYgod/APlayer/issues/791 */
-      position: absolute;
-      width: 90px;
-      height: 90px;
-      /* Position properly at the top */
-      top: 80px;
+  // Global initialization function for homepage elements
+  window.initHomePageElements = function() {
+    console.log('🏠 Initializing homepage elements...');
+
+    // Initialize WeChat trigger
+    var trigger = document.querySelector('[data-wechat-trigger]');
+    if (trigger && typeof handleWeChatClick === 'function') {
+      console.log('   ✓ Binding WeChat trigger');
+      // Remove any existing listener to avoid duplicates
+      trigger.replaceWith(trigger.cloneNode(true));
+      trigger = document.querySelector('[data-wechat-trigger]');
+      trigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        handleWeChatClick(event);
+      });
+    }
+
+    // Initialize glass buttons
+    var buttons = document.querySelectorAll('.glass-btn');
+    if (buttons.length > 0) {
+      console.log('   ✓ Initializing glass buttons');
+      initGlassButtons();
+    }
+
+    console.log('✅ Homepage elements initialized');
+  };
+
+  // Initialize on first page load
+  window.addEventListener('load', function() {
+    initHomePageElements();
+  });
+
+  // Also try on DOMContentLoaded as fallback for first load
+  document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.glass-btn') && !document.querySelector('.glass-btn svg')) {
+      console.log('Initializing from DOMContentLoaded (first load)');
+      initHomePageElements();
+    }
+  });
+
+  // Make all publication links open in new tab (except preview buttons)
+  function makePublicationLinksExternal() {
+    var pubsSection = document.querySelector('.home-pubs-list');
+    if (pubsSection) {
+      var links = pubsSection.querySelectorAll('a:not(.preview-button)');
+      links.forEach(function(link) {
+        // Skip if it's a relative link (internal navigation)
+        if (!link.href.startsWith('http://') && !link.href.startsWith('https://') && !link.href.startsWith('#')) {
+          return;
+        }
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      });
+      console.log('✓ Made', links.length, 'publication links open in new tab');
     }
   }
 
-  /* inside content area: 100% width and height, rounded corners */
+  // Run on load
+  window.addEventListener('load', makePublicationLinksExternal);
+
+  // Also run after SPA navigation
+  window.addEventListener('spa:navigate', function() {
+    setTimeout(makePublicationLinksExternal, 100);
+  });
+</script>
+
+
+          </section>
+        </div>
+      </article>
+    </div>
+
+    <!-- Music Player (outside of SPA content area) -->
+    <!-- NetEase Music Player Component -->
+
+<!-- Preconnect to CDNs -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Defer CSS loading until needed -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css"></noscript>
+
+<style>
+  /* Floating Music Player */
+  #music-floating {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: width, height, border-radius, opacity, transform;
+    opacity: 0.95;
+    z-index: 100;
+    touch-action: none;
+    overflow: hidden;
+  }
+
+  #music-floating:hover {
+    opacity: 1;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(0, 0, 0, 0.08);
+    transform: scale(1.05);
+  }
+
+  #music-floating.dragging {
+    transition: none;
+    opacity: 1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
   #music-floating .content {
     width: 100%;
     height: 100%;
@@ -3547,59 +3907,47 @@ document.addEventListener('keydown', function(e) {
     overflow: hidden;
     position: relative;
   }
-  
-  /* Prevent the content from jumping during transitions */
+
   #music-floating.expand-left .content {
-    transform-origin: left center;
-  }
-  
-  #music-floating.expand-right .content {
     transform-origin: right center;
   }
-  
-  /* Base expanded state shared by both mobile and desktop */
+
+  #music-floating.expand-right .content {
+    transform-origin: left center;
+  }
+
   #music-floating.expanded {
-    width: 500px;
-    height: 300px;
-    border-radius: 10px;
+    width: min(540px, 92vw);
+    height: 360px;
+    border-radius: 20px;
     opacity: 1;
-  }
-  
-  /* For debugging - adds a colored border based on expansion direction
-  #music-floating.expand-right.expanded {
-    border: 2px solid blue;
-  }
-  
-  #music-floating.expand-left.expanded {
-    border: 2px solid red;
-  } */
-
-  /* Desktop-specific expanded state settings */
-  @media only screen and (min-width: 769px) {
-    #music-floating.expanded {
-      /* Keep absolute positioning for desktop expanded state */
-      position: absolute;
-      /* Fix the expanded position to appear in viewport properly */
-      top: 80px;
-      right: 20px;
-    }
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(0, 0, 0, 0.1);
   }
 
+  #music-floating.expanded:hover {
+    transform: none;
+  }
+
+  /* APlayer Container Styling */
   #music-player {
     display: none;
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 16px;
     box-sizing: border-box;
+    background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
   }
-  
+
   #music-floating.expanded #music-player {
     display: block;
   }
+
   #music-floating.expanded #music-icon {
     display: none;
   }
 
+  /* Icon Styling */
   #music-icon {
     text-align: center;
     font-size: 14px;
@@ -3607,242 +3955,465 @@ document.addEventListener('keydown', function(e) {
     line-height: 60px;
     height: 100%;
     width: 100%;
+    position: relative;
   }
+
   #music-icon img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
   }
-  
+
+  #music-floating:hover #music-icon img {
+    transform: rotate(5deg) scale(1.1);
+  }
+
+  /* Now Playing Ticker */
+  #music-nowplaying {
+    display: none;
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: #666;
+    white-space: nowrap;
+    max-width: 260px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 4px 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #music-nowplaying span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker 15s linear infinite;
+  }
+
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Loading Animation - Rotate the icon */
+  #music-floating.loading #music-icon img {
+    animation: spin-icon 5s linear infinite;
+  }
+
+  @keyframes spin-icon {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* APlayer Custom Styling */
   .aplayer {
     box-shadow: none !important;
     margin: 0 !important;
     height: 100% !important;
+    background: transparent !important;
+    border-radius: 12px !important;
   }
-  
-  /* Loading indicator */
-  .loading-indicator {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #C20C0C;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+
+  .aplayer .aplayer-body {
+    background: transparent !important;
   }
-  
-  @keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+
+  .aplayer .aplayer-list {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border-radius: 8px !important;
+    margin-top: 8px !important;
   }
-  
-  #music-floating.loading .loading-indicator {
-    display: block;
+
+  .aplayer .aplayer-list ol li {
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
   }
-  
-  /* Mobile styles: click to expand, show player */
+
+  .aplayer .aplayer-list ol li:hover {
+    background: rgba(194, 12, 12, 0.05) !important;
+  }
+
+  .aplayer .aplayer-list ol li.aplayer-list-light {
+    background: rgba(194, 12, 12, 0.1) !important;
+  }
+
+  /* Mobile Responsive */
   @media only screen and (max-width: 768px) {
     #music-floating.expanded {
-      /* Use percentage of viewport width for mobile */
-      width: 90vw;
-      height: 300px; 
-      /* Mobile must use fixed positioning */
+      width: 92vw;
+      height: 340px;
       position: fixed;
     }
-    
-    /* Right-side expansion on mobile */
-    #music-floating.expand-right.expanded {
-      left: auto;
-      right: 20px;
+
+    #music-player {
+      padding: 12px;
     }
-    
-    /* Left-side expansion on mobile */
-    #music-floating.expand-left.expanded {
-      right: auto;
-      left: 20px;
+
+    #music-nowplaying {
+      max-width: 200px;
+      font-size: 10px;
     }
   }
 </style>
 
-<div id="music-floating">
-  <div class="content">
-    <div id="music-icon">
-      <img src="/images/NetEase_Music-Logo.png" alt="音乐" />
-    </div>
-    <div id="music-player">
-      <div id="aplayer"></div>
-    </div>
-    <div class="loading-indicator"></div>
-  </div>
-</div>
+<!-- Floating Music Player -->
+<div id="music-floating-container"></div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const musicFloating = document.getElementById('music-floating');
-    let playerInitialized = false;
-    let scriptsLoaded = false;
-    
-    // Set initial expansion direction class
-    musicFloating.classList.add('expand-right');
-    
-    // Restore position from localStorage if available
-    function restorePosition() {
-      const savedPos = localStorage.getItem('musicPlayerPosition');
-      if (savedPos) {
-        try {
-          const pos = JSON.parse(savedPos);
-          musicFloating.style.top = pos.top;
-          musicFloating.style.right = pos.right;
-          musicFloating.style.bottom = pos.bottom;
-          musicFloating.style.left = pos.left;
-        } catch (e) {
-          console.error('Error restoring position:', e);
-        }
-      }
+  (function() {
+    // Prevent multiple initializations (important for SPA)
+    if (window.musicPlayerInitialized) {
+      console.log('Music player already initialized, skipping...');
+      return;
     }
-    
-    // Try to restore saved position
-    restorePosition();
-    
-    // Function to load scripts dynamically
+    window.musicPlayerInitialized = true;
+
+    // Create the player HTML dynamically (only once)
+    const container = document.getElementById('music-floating-container');
+    if (!container) {
+      console.error('Music player container not found');
+      return;
+    }
+
+    container.innerHTML = `
+      <div id="music-floating">
+        <div class="content">
+          <div id="music-icon">
+            <img src="/images/Isla.png" alt="Music Player">
+          </div>
+          <div id="music-player">
+            <div id="aplayer"></div>
+          </div>
+          <div id="music-nowplaying"><span></span></div>
+        </div>
+      </div>
+    `;
+
+    const musicFloating = document.getElementById('music-floating');
+    const nowPlaying = document.getElementById('music-nowplaying');
+
+    // Store state globally to persist across SPA navigation
+    window.musicPlayerState = window.musicPlayerState || {
+      playerInitialized: false,
+      scriptsLoaded: false,
+      savedPosition: { top: '20px', right: '20px', bottom: '', left: '' },
+      currentLimit: 10,  // Start with fewer songs for faster initial load
+      maxLimit: 200,
+      aplayerInstance: null
+    };
+
+    // Shorthand references
+    let playerInitialized = window.musicPlayerState.playerInitialized;
+    let scriptsLoaded = window.musicPlayerState.scriptsLoaded;
+    let savedPosition = window.musicPlayerState.savedPosition;
+    let currentLimit = window.musicPlayerState.currentLimit;
+    let maxLimit = window.musicPlayerState.maxLimit;
+    let aplayerInstance = window.musicPlayerState.aplayerInstance;
+
     function loadScripts(callback) {
       if (scriptsLoaded) {
         callback();
         return;
       }
-      
       const aplayerScript = document.createElement('script');
       aplayerScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js';
       aplayerScript.async = true;
-      
+
       const metingScript = document.createElement('script');
       metingScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/meting/2.0.1/Meting.min.js';
       metingScript.async = true;
-      
+
       aplayerScript.onload = function() {
         document.body.appendChild(metingScript);
       };
-      
       metingScript.onload = function() {
-        scriptsLoaded = true;
+        scriptsLoaded = window.musicPlayerState.scriptsLoaded = true;
         callback();
       };
-      
+
       document.body.appendChild(aplayerScript);
     }
-    
-    // Function to initialize the player
+
     function initializePlayer() {
       if (playerInitialized) return;
-      
       musicFloating.classList.add('loading');
-      
       loadScripts(function() {
         const metingElement = document.createElement('meting-js');
         metingElement.setAttribute('server', 'netease');
         metingElement.setAttribute('type', 'playlist');
-        metingElement.setAttribute('id', '13558690545');
+        metingElement.setAttribute('id', '602810440');
         metingElement.setAttribute('autoplay', 'false');
         metingElement.setAttribute('theme', '#C20C0C');
-        metingElement.setAttribute('limit', '100');
+        metingElement.setAttribute('limit', currentLimit.toString());
         metingElement.setAttribute('volume', '0.1');
-        
         document.getElementById('aplayer').appendChild(metingElement);
-        
-        // Fix for volume control issues
+
         setTimeout(function() {
-          const aplayerInstance = document.querySelector('.aplayer-controller');
-          if (aplayerInstance) {
-            playerInitialized = true;
-            musicFloating.classList.remove('loading');
-          }
-        }, 1000);
+          const checkAPlayer = setInterval(function() {
+            if (window.aplayer && window.aplayer.audio) {
+              clearInterval(checkAPlayer);
+              aplayerInstance = window.musicPlayerState.aplayerInstance = window.aplayer;
+              playerInitialized = window.musicPlayerState.playerInitialized = true;
+              musicFloating.classList.remove('loading');
+              if (nowPlaying) nowPlaying.style.display = 'block';
+
+              console.log('🎵 Music player ready with', currentLimit, 'songs');
+              setupAPlayerEvents();
+              setupLazyLoad();
+            }
+          }, 100);  // Check more frequently (was 200ms)
+        }, 500);  // Start checking sooner (was 1000ms)
       });
     }
-    
-    // Event handler for expanding/collapsing the player
+
+    function setupLazyLoad() {
+      const { scrollContainer, playlistList } = getPlaylistElements();
+      if (!scrollContainer || !playlistList) {
+        console.log('⏳ Waiting for playlist element...');
+        setTimeout(setupLazyLoad, 500);
+        return;
+      }
+
+      console.log('✅ Lazy load enabled - scroll to bottom to load more songs');
+
+      if (lazyLoadScrollContainer && lazyLoadScrollHandler) {
+        lazyLoadScrollContainer.removeEventListener('scroll', lazyLoadScrollHandler);
+      }
+
+      const containerToUse = scrollContainer;
+      lazyLoadScrollContainer = containerToUse;
+      lazyLoadScrollHandler = function() {
+        const scrollTop = containerToUse.scrollTop;
+        const scrollHeight = containerToUse.scrollHeight;
+        const clientHeight = containerToUse.clientHeight;
+        const scrollBottom = scrollHeight - scrollTop - clientHeight;
+
+        // Debug: log when close to bottom
+        if (scrollBottom < 150 && scrollBottom > 50) {
+          console.log('📜 Scroll position:', scrollBottom, 'px from bottom');
+        }
+
+        if (scrollBottom < 100) {
+          loadMoreSongs();
+        }
+      };
+
+      containerToUse.addEventListener('scroll', lazyLoadScrollHandler);
+    }
+
+    let isLoadingMore = false;
+    let lazyLoadScrollContainer = null;
+    let lazyLoadScrollHandler = null;
+
+    function getPlaylistElements() {
+      const playlistWrapper = document.querySelector('.aplayer-list');
+      if (!playlistWrapper) {
+        return { scrollContainer: null, playlistList: null };
+      }
+      const scrollContainer = playlistWrapper.querySelector('.aplayer-list-body') ||
+        playlistWrapper.querySelector('.aplayer-list-main') ||
+        playlistWrapper;
+      const playlistList = playlistWrapper.querySelector('ol') ||
+        playlistWrapper.querySelector('ul');
+      return { scrollContainer, playlistList };
+    }
+
+    function loadMoreSongs() {
+      if (currentLimit >= maxLimit || isLoadingMore) return;
+
+      const newLimit = Math.min(currentLimit + 10, maxLimit);  // Load 10 at a time instead of 20
+      if (newLimit === currentLimit) return;
+
+      isLoadingMore = true;
+      console.log('📥 Loading more songs:', currentLimit, '→', newLimit);
+
+      // Show loading indicator
+      const { playlistList } = getPlaylistElements();
+      if (playlistList) {
+        const loadingItem = document.createElement('li');
+        loadingItem.className = 'lazy-loading-indicator';
+        loadingItem.innerHTML = '<span style="padding: 10px; color: #999;">Loading more songs...</span>';
+        playlistList.appendChild(loadingItem);
+      }
+
+      currentLimit = window.musicPlayerState.currentLimit = newLimit;
+
+      const aplayerContainer = document.getElementById('aplayer');
+      const metingElement = aplayerContainer.querySelector('meting-js');
+      if (metingElement) {
+        metingElement.setAttribute('limit', currentLimit.toString());
+        const parent = metingElement.parentNode;
+        const clone = metingElement.cloneNode(true);
+        parent.removeChild(metingElement);
+        setTimeout(function() {
+          parent.appendChild(clone);
+          setTimeout(function() {
+            // Remove loading indicator
+            const loadingIndicator = document.querySelector('.lazy-loading-indicator');
+            if (loadingIndicator) loadingIndicator.remove();
+
+            setupLazyLoad();
+            isLoadingMore = false;
+            console.log('✅ Loaded', newLimit, 'songs');
+          }, 1000);  // Reduced from 1500ms to 1000ms
+        }, 50);  // Reduced from 100ms to 50ms
+      }
+    }
+
+    function setupAPlayerEvents() {
+      if (!aplayerInstance) {
+        console.error('APlayer instance not found');
+        return;
+      }
+
+      console.log('Setting up APlayer event listeners');
+
+      aplayerInstance.on('play', function() {
+        console.log('APlayer: play event fired');
+        updateNowPlaying();
+      });
+
+      aplayerInstance.on('pause', function() {
+        console.log('APlayer: pause event fired');
+      });
+
+      aplayerInstance.on('ended', function() {
+        console.log('APlayer: ended event fired');
+      });
+
+      aplayerInstance.on('loadeddata', function() {
+        console.log('APlayer: loadeddata event fired');
+        updateNowPlaying();
+      });
+
+      aplayerInstance.on('listswitch', function(index) {
+        console.log('APlayer: listswitch event fired, index:', index);
+        setTimeout(() => {
+          updateNowPlaying();
+        }, 400);
+      });
+
+      updateNowPlaying();
+    }
+
     function handlePlayerToggle() {
       if (!musicFloating.classList.contains('expanded')) {
-        // Before expanding, determine which direction to expand based on position
-        determineExpandDirection();
-        
-        // Force reflow to ensure styles are applied
-        void musicFloating.offsetWidth;
-        
+        const isMobile = window.innerWidth < 769;
+        const targetWidth = isMobile ? Math.min(window.innerWidth - 24, 540) : 540;
+        const targetHeight = isMobile ? 340 : 360;
+        const padding = 12;
+        const rect = musicFloating.getBoundingClientRect();
+
+        const spaceLeft = rect.left;
+        const spaceRight = window.innerWidth - rect.right;
+        const spaceAbove = rect.top;
+        const spaceBelow = window.innerHeight - rect.bottom;
+
+        const expandLeft = spaceLeft > spaceRight;
+        musicFloating.classList.remove('expand-left', 'expand-right');
+        musicFloating.classList.add(expandLeft ? 'expand-left' : 'expand-right');
+
+        let topPos;
+        if (spaceBelow >= targetHeight + padding) {
+          topPos = rect.top;
+        } else if (spaceAbove >= targetHeight + padding) {
+          topPos = rect.bottom - targetHeight;
+        } else {
+          topPos = Math.max(padding, Math.min(rect.top, window.innerHeight - targetHeight - padding));
+        }
+
+        let leftPos;
+        if (expandLeft) {
+          leftPos = rect.right - targetWidth;
+          leftPos = Math.max(padding, leftPos);
+        } else {
+          leftPos = rect.left;
+          leftPos = Math.min(leftPos, window.innerWidth - targetWidth - padding);
+        }
+
+        musicFloating.style.top = `${topPos}px`;
+        musicFloating.style.left = `${leftPos}px`;
+        musicFloating.style.right = 'auto';
+        musicFloating.style.bottom = 'auto';
+
+        musicFloating.style.width = `${targetWidth}px`;
+        musicFloating.style.height = `${targetHeight}px`;
         musicFloating.classList.add('expanded');
-        if (!playerInitialized) {
-          initializePlayer();
-        }
+        if (!playerInitialized) initializePlayer();
       } else {
-        musicFloating.classList.remove('expanded');
+        collapsePlayer();
       }
     }
-    
-    // Determine whether to expand left or right based on current position
-    function determineExpandDirection() {
-      const windowWidth = window.innerWidth;
-      const rect = musicFloating.getBoundingClientRect();
-      const centerX = rect.left + (rect.width / 2);
-      
-      // 记录当前为未展开状态时的位置信息
-      const currentLeft = rect.left;
-      const currentRight = windowWidth - rect.right;
-      
-      console.log("Position - Left: " + currentLeft + "px, Right: " + currentRight + "px, Center: " + centerX + "px, Window: " + windowWidth + "px");
-      
-      // If center is in the right half of the screen, expand left
-      // Otherwise, expand right
-      if (centerX > windowWidth / 2) {
-        console.log("Expanding LEFT"); 
-        musicFloating.classList.remove('expand-right');
-        musicFloating.classList.add('expand-left');
-        
-        if (musicFloating.style.right) {
-          musicFloating.style.left = 'auto';
-        }
-      } else {
-        console.log("Expanding RIGHT");
-        musicFloating.classList.remove('expand-left');
-        musicFloating.classList.add('expand-right');
-        
-        if (musicFloating.style.left) {
-          musicFloating.style.right = 'auto';
+
+    function collapsePlayer() {
+      musicFloating.classList.remove('expanded');
+      musicFloating.style.width = '';
+      musicFloating.style.height = '';
+      musicFloating.style.top = savedPosition.top;
+      musicFloating.style.bottom = savedPosition.bottom;
+      musicFloating.style.left = savedPosition.left;
+      musicFloating.style.right = savedPosition.right;
+    }
+
+    function updateNowPlaying() {
+      let title = '';
+      let artist = '';
+
+      if (aplayerInstance && aplayerInstance.list && aplayerInstance.list.audios) {
+        const currentIndex = aplayerInstance.list.index;
+        const currentAudio = aplayerInstance.list.audios[currentIndex];
+
+        if (currentAudio) {
+          title = currentAudio.name || currentAudio.title || '';
+          artist = currentAudio.artist || '';
+          console.log('Got song info from APlayer instance:', { title, artist, index: currentIndex });
         }
       }
+
+      if (!title) {
+        const titleEl = document.querySelector('.aplayer-title');
+        const artistEl = document.querySelector('.aplayer-author');
+
+        if (titleEl && titleEl.textContent) {
+          title = titleEl.textContent.trim();
+        }
+
+        if (artistEl && artistEl.textContent) {
+          artist = artistEl.textContent.trim();
+        }
+
+        if (title || artist) {
+          console.log('Got song info from DOM:', { title, artist });
+        }
+      }
+
+      if (nowPlaying) {
+        const text = title ? `${title}${artist ? ' — ' + artist : ''}` : '';
+        nowPlaying.querySelector('span').textContent = text;
+      }
     }
-    
-    // Draggable functionality for mobile devices
+
+    // Dragging functionality
     let isDragging = false;
     let startX, startY, startRight, startBottom, startTop, startLeft;
-    let usingRightBottom = true; // Track which side we're using (right/bottom or left/top)
-    
+
     function handleDragStart(e) {
-      // If the player is expanded, handle clicks within the content differently
       if (musicFloating.classList.contains('expanded')) {
-        // Only allow clicks in the icon area when expanded
         if (e.target.closest('#music-icon')) {
           handlePlayerToggle();
         }
         return;
       }
-      
-      // Set a flag to track that we started a potential drag operation
       isDragging = true;
       musicFloating.classList.add('dragging');
-      
-      // Get current position styles
       const style = window.getComputedStyle(musicFloating);
-      
-      // Detect which positioning we're using
       const hasRight = style.right !== 'auto';
       const hasBottom = style.bottom !== 'auto';
-      
-      // Store initial positions
+
       if (hasRight) {
         startRight = parseInt(style.right);
         startLeft = null;
@@ -3850,7 +4421,6 @@ document.addEventListener('keydown', function(e) {
         startLeft = parseInt(style.left);
         startRight = null;
       }
-      
       if (hasBottom) {
         startBottom = parseInt(style.bottom);
         startTop = null;
@@ -3858,228 +4428,113 @@ document.addEventListener('keydown', function(e) {
         startTop = parseInt(style.top);
         startBottom = null;
       }
-      
-      usingRightBottom = hasRight && hasBottom;
-      
-      // Store initial cursor/touch position
+
       if (e.type === 'mousedown') {
         startX = e.clientX;
         startY = e.clientY;
-        // Add event listeners for mouse movement
         document.addEventListener('mousemove', handleDragMove);
         document.addEventListener('mouseup', handleDragEnd);
       } else if (e.type === 'touchstart') {
         startX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
-        // Add event listeners for touch movement
         document.addEventListener('touchmove', handleDragMove, { passive: false });
         document.addEventListener('touchend', handleDragEnd);
       }
-      
-      // Prevent default to avoid text selection, etc.
       e.preventDefault();
     }
-    
+
     function handleDragMove(e) {
       if (!isDragging) return;
-      
       let currentX, currentY;
-      
       if (e.type === 'mousemove') {
         currentX = e.clientX;
         currentY = e.clientY;
       } else if (e.type === 'touchmove') {
         currentX = e.touches[0].clientX;
         currentY = e.touches[0].clientY;
-        e.preventDefault(); // Prevent scrolling while dragging
+        e.preventDefault();
       }
-      
-      // Calculate the difference
       const diffX = currentX - startX;
       const diffY = currentY - startY;
-      
-      // Calculate new positions based on current positioning model
-      let newTop, newRight, newBottom, newLeft;
-      
-      // Update the position based on whether we're using right/bottom or left/top
+
       if (startRight !== null) {
-        newRight = Math.max(0, startRight - diffX) + 'px';
-        musicFloating.style.right = newRight;
+        musicFloating.style.right = Math.max(0, startRight - diffX) + 'px';
         musicFloating.style.left = 'auto';
       } else if (startLeft !== null) {
-        newLeft = Math.max(0, startLeft + diffX) + 'px';
-        musicFloating.style.left = newLeft;
+        musicFloating.style.left = Math.max(0, startLeft + diffX) + 'px';
         musicFloating.style.right = 'auto';
       }
-      
+
       if (startBottom !== null) {
-        newBottom = Math.max(0, startBottom - diffY) + 'px';
-        musicFloating.style.bottom = newBottom;
+        musicFloating.style.bottom = Math.max(0, startBottom - diffY) + 'px';
         musicFloating.style.top = 'auto';
       } else if (startTop !== null) {
-        newTop = Math.max(0, startTop + diffY) + 'px';
-        musicFloating.style.top = newTop;
+        musicFloating.style.top = Math.max(0, startTop + diffY) + 'px';
         musicFloating.style.bottom = 'auto';
       }
-      
-      // Update expansion direction during drag for better UX
-      if (isMobile) {
-        const windowWidth = window.innerWidth;
-        const rect = musicFloating.getBoundingClientRect();
-        const centerX = rect.left + (rect.width / 2);
-        
-        // Update expansion direction class
-        if (centerX > windowWidth / 2) {
-          if (!musicFloating.classList.contains('expand-left')) {
-            musicFloating.classList.remove('expand-right');
-            musicFloating.classList.add('expand-left');
-          }
-        } else {
-          if (!musicFloating.classList.contains('expand-right')) {
-            musicFloating.classList.remove('expand-left');
-            musicFloating.classList.add('expand-right');
-          }
-        }
-      }
     }
-    
+
     function handleDragEnd(e) {
       if (!isDragging) return;
-      
-      // Detect if this was just a tap (very little movement) or a drag
       let wasDragged = false;
-      
       if (e.type === 'mouseup') {
         const diffX = Math.abs(e.clientX - startX);
         const diffY = Math.abs(e.clientY - startY);
-        wasDragged = (diffX > 5 || diffY > 5); // Consider it a drag if moved more than 5px
+        wasDragged = (diffX > 5 || diffY > 5);
       } else if (e.type === 'touchend' && e.changedTouches && e.changedTouches.length > 0) {
         const diffX = Math.abs(e.changedTouches[0].clientX - startX);
         const diffY = Math.abs(e.changedTouches[0].clientY - startY);
-        wasDragged = (diffX > 5 || diffY > 5); // Consider it a drag if moved more than 5px
+        wasDragged = (diffX > 5 || diffY > 5);
       }
-      
+
       isDragging = false;
       musicFloating.classList.remove('dragging');
-      
-      // Remove event listeners
       document.removeEventListener('mousemove', handleDragMove);
       document.removeEventListener('mouseup', handleDragEnd);
       document.removeEventListener('touchmove', handleDragMove);
       document.removeEventListener('touchend', handleDragEnd);
-      
-      // Save position to localStorage
-      const style = window.getComputedStyle(musicFloating);
-      const position = {
-        top: style.top,
-        right: style.right,
-        bottom: style.bottom,
-        left: style.left
-      };
-      
-      localStorage.setItem('musicPlayerPosition', JSON.stringify(position));
-      
-      // If this was just a tap (not a drag), trigger the toggle
-      if (!wasDragged) {
-        // Small delay to ensure click event doesn't conflict
+
+      if (wasDragged) {
+        const style = window.getComputedStyle(musicFloating);
+        savedPosition = {
+          top: style.top !== 'auto' ? style.top : '',
+          right: style.right !== 'auto' ? style.right : '',
+          bottom: style.bottom !== 'auto' ? style.bottom : '',
+          left: style.left !== 'auto' ? style.left : ''
+        };
+      } else {
         setTimeout(function() {
           handlePlayerToggle();
         }, 10);
       }
     }
-    
-    // Set up drag event listeners for mobile
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (isMobile) {
-      musicFloating.addEventListener('mousedown', handleDragStart);
-      musicFloating.addEventListener('touchstart', handleDragStart, { passive: false });
-    }
-    
-    // Set up event listeners based on device type
-    if (window.matchMedia('(hover: hover)').matches) {
-      // Desktop: hover to expand
-      musicFloating.addEventListener('mouseenter', function() {
-        if (!isDragging) { // Don't expand if we're dragging
-          // Always expand right on desktop (as it's positioned absolutely)
-          musicFloating.classList.remove('expand-left');
-          musicFloating.classList.add('expand-right');
-          
-          musicFloating.classList.add('expanded');
-          if (!playerInitialized) {
-            initializePlayer();
-          }
-        }
-      });
-      
-      musicFloating.addEventListener('mouseleave', function() {
-        musicFloating.classList.remove('expanded');
+
+    musicFloating.addEventListener('mousedown', handleDragStart);
+    musicFloating.addEventListener('touchstart', handleDragStart, { passive: false });
+
+    document.addEventListener('click', function(e) {
+      if (!musicFloating.contains(e.target)) {
+        collapsePlayer();
+      }
+    });
+
+    document.getElementById('music-player').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    // Initialize immediately if DOM is already ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('Music player DOM ready');
       });
     } else {
-      // Mobile: For mobile, we'll handle click in the dragEnd function
-      // Instead of using click event which can conflict with drag
-      
-      document.addEventListener('click', function(e) {
-        if (!musicFloating.contains(e.target)) {
-          musicFloating.classList.remove('expanded');
-        }
-      });
-      
-      document.getElementById('music-player').addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
+      console.log('Music player initialized (DOM already ready)');
     }
-  });
-</script>
-
-<!-- <script src="/assets/js/webPet.min.js"></script> -->
-<!-- Initialize the WebPet -->
-<!-- <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const pet = new WebPet({
-      name: 'Kitty',
-      // Add any additional custom configurations here
-    });
-  });
-</script> -->
-
-          </section>
-        </div>
-      </article>
-    </div>
-
-    <script src="assets/js/main.min.js"></script>
-
-
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', "");
+  })();
 </script>
 
 
-<script>
-    $(document).ready(function () {
-        
-        var gsDataBaseUrl = 'https://cdn.jsdelivr.net/gh/SeanLeng1/SeanLeng1.github.io@'
-        
-        $.getJSON(gsDataBaseUrl + "google-scholar-stats/gs_data.json", function (data) {
-            var totalCitation = data['citedby']
-            document.getElementById('total_cit').innerHTML = totalCitation;
-            var citationEles = document.getElementsByClassName('show_paper_citations')
-            Array.prototype.forEach.call(citationEles, element => {
-                var paperId = element.getAttribute('data')
-                var numCitations = data['publications'][paperId]['num_citations']
-                element.innerHTML = '| Citations: ' + numCitations;
-            });
-        });
-    })
-</script>
-
+    <!-- Load modal scripts BEFORE SPA router so they can register handlers first -->
     <style>
   @keyframes fadeIn {
     from { opacity: 0; }
@@ -4166,57 +4621,70 @@ document.addEventListener('keydown', function(e) {
   </div>
   
   <script>
-  const overlay = document.getElementById('wechat-qr-overlay');
-  const qr = document.getElementById('wechat-qr');
-  let isClosing = false;
-
-  function handleWeChatClick(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    if (!isClosing) {
-      showOverlay();
+  (function() {
+    // Prevent multiple initializations
+    if (window.wechatModalInitialized) {
+      console.log('WeChat modal already initialized');
+      return;
     }
-  }
+    window.wechatModalInitialized = true;
 
-  function showOverlay() {
-    // Reset all states
-    isClosing = false;
-    overlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    // Force browser reflow
-    void overlay.offsetWidth;
-    void qr.offsetWidth;
-    
-    // Apply animations
-    overlay.style.animation = 'fadeIn 0.3s ease-out forwards';
-    qr.style.animation = 'scaleIn 0.3s ease-out forwards';
-  }
+    const overlay = document.getElementById('wechat-qr-overlay');
+    const qr = document.getElementById('wechat-qr');
+    let isClosing = false;
 
-  function closeOverlay() {
-    if (isClosing) return;
-    isClosing = true;
-    
-    document.body.style.overflow = '';
-    overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
-    qr.style.animation = 'scaleIn 0.3s ease-out reverse';
+    // Make function globally accessible for SPA router
+    window.handleWeChatClick = function handleWeChatClick(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation(); // Stop SPA router from intercepting
+      if (!isClosing) {
+        showOverlay();
+      }
+    };
 
-    setTimeout(() => {
-      overlay.style.display = 'none';
-      // Clear animation states
-      overlay.style.animation = '';
-      qr.style.animation = '';
+    function showOverlay() {
+      // Reset all states
       isClosing = false;
-    }, 300);
-  }
+      overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
 
-  // Close overlay when clicking outside
-  overlay.addEventListener('click', function(event) {
-    if (event.target === this && !isClosing) {
-      closeOverlay();
+      // Force browser reflow
+      void overlay.offsetWidth;
+      void qr.offsetWidth;
+
+      // Apply animations
+      overlay.style.animation = 'fadeIn 0.3s ease-out forwards';
+      qr.style.animation = 'scaleIn 0.3s ease-out forwards';
     }
-  });
-  </script>  
+
+    window.closeOverlay = function closeOverlay() {
+      if (isClosing) return;
+      isClosing = true;
+
+      document.body.style.overflow = '';
+      overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
+      qr.style.animation = 'scaleIn 0.3s ease-out reverse';
+
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        // Clear animation states
+        overlay.style.animation = '';
+        qr.style.animation = '';
+        isClosing = false;
+      }, 300);
+    };
+
+    // Close overlay when clicking outside
+    overlay.addEventListener('click', function(event) {
+      if (event.target === this && !isClosing) {
+        window.closeOverlay();
+      }
+    });
+
+    console.log('✓ WeChat modal initialized');
+  })();
+  </script>
     <!-- Paper Preview Modal -->
 <div id="previewModal" class="preview-modal">
   <div class="preview-content">
@@ -4268,20 +4736,20 @@ document.addEventListener('keydown', function(e) {
 }
 
 .preview-content {
-  position: relative;
-  margin: auto;
-  padding: 20px;
-  max-width: 800px;
-  max-height: 80vh;
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%) scale(0.95);
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  padding: 20px;
+  max-width: 90vw;
+  max-height: 90vh;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0;
 }
 
 .preview-modal.show .preview-content {
-  transform: translateY(-50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
 
@@ -4296,17 +4764,18 @@ document.addEventListener('keydown', function(e) {
 }
 
 .preview-close-button {  /* Changed class name here */
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #666;
-  font-size: 35px;
+  position: fixed;
+  right: 30px;
+  top: 20px;
+  color: #fff;
+  font-size: 40px;
   font-weight: bold;
   cursor: pointer;
   z-index: 1001;
   opacity: 0;
   transition: opacity 0.3s ease, color 0.2s ease;
   padding: 10px;
+  line-height: 1;
 }
 
 .preview-modal.show .preview-close-button {  /* Changed class name here */
@@ -4319,65 +4788,217 @@ document.addEventListener('keydown', function(e) {
 </style>
 
 <script>
-function initializeModal() {
-  const modal = document.getElementById('previewModal');
-  const modalImg = document.getElementById('previewImage');
-  const closeBtn = document.querySelector('.preview-close-button');  // Changed class name here
-  const previewButtons = document.querySelectorAll('.preview-button');
+(function() {
+  // Prevent multiple initializations
+  if (window.previewModalInitialized) {
+    console.log('Preview modal already initialized');
+    return;
+  }
+  window.previewModalInitialized = true;
 
-  function openModal() {
-    modal.style.display = "block";
-    requestAnimationFrame(() => {
-      modal.classList.add('show');
-    });
+  var modal = document.getElementById('previewModal');
+  var modalContent = modal ? modal.querySelector('.preview-content') : null;
+  var modalImg = document.getElementById('previewImage');
+  var closeBtn = modal ? modal.querySelector('.preview-close-button') : null;
+  if (!modal || !modalContent || !modalImg || !closeBtn) {
+    console.warn('Preview modal elements not found');
+    return;
+  }
+
+  var animationDuration = 300;
+  var isTransitioning = false;
+
+  function openModal(imageSrc) {
+    if (!imageSrc || isTransitioning) return;
+    isTransitioning = true;
+    modalImg.src = imageSrc;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    void modal.offsetWidth;
+    void modalContent.offsetWidth;
+
+    modal.style.animation = 'fadeIn 0.3s ease-out forwards';
+    modalContent.style.animation = 'slideIn 0.3s ease-out forwards';
+    modal.classList.add('show');
+
+    setTimeout(function() {
+      isTransitioning = false;
+    }, animationDuration);
   }
 
   function closeModal() {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = "none";
+    if (isTransitioning || modal.style.display !== 'block') return;
+    isTransitioning = true;
+
+    modal.style.animation = 'fadeOut 0.3s ease-out forwards';
+    modalContent.style.animation = 'slideOut 0.3s ease-out forwards';
+
+    setTimeout(function() {
+      modal.classList.remove('show');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
       modalImg.src = '';
-    }, 300);
+      modal.style.animation = '';
+      modalContent.style.animation = '';
+      isTransitioning = false;
+    }, animationDuration);
   }
 
-  // Open modal
-  previewButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      modalImg.src = this.getAttribute('data-preview');
-      openModal();
-    });
-  });
+  // Use event delegation on document with capture phase to intercept before SPA router
+  document.addEventListener('click', function(event) {
+    var button = event.target.closest('.preview-button');
+    if (!button) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation(); // Stop SPA router from intercepting
+    var previewSrc = button.getAttribute('data-preview');
+    openModal(previewSrc);
+  }, true); // Use capture phase
 
-  // Close button
-  closeBtn.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
+  closeBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     closeModal();
   });
 
-  // Close when clicking outside
-  modal.addEventListener('click', e => {
-    if (e.target === modal) {
+  modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
       closeModal();
     }
   });
 
-  // Handle ESC key
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
       closeModal();
     }
   });
-}
 
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeModal);
-} else {
-  initializeModal();
-}
+  console.log('✓ Preview modal initialized');
+})();
 </script>
+
+    <!-- Contact Form Modal (outside #main to persist across SPA navigation) -->
+<div id="contact-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button type="button" class="close-button" data-contact="close">&times;</button>
+
+    <div id="warning-message" class="warning-message">
+      <h3>Contact Information</h3>
+      <p>Please note that this contact form is for informal inquiries. I might not be able to respond to all messages.</p>
+      <button type="button" class="contact-button" data-contact="continue">Continue</button>
+    </div>
+
+    <div id="contact-form" class="contact-form">
+      <h3>Send Message</h3>
+      <form action="https://formspree.io/f/xrbbwwdj" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="_replyto" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="_subject" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" class="form-control" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Load main scripts -->
+<script src="/assets/js/main.min.js"></script>
+<script src="/assets/js/music-player-debug.js"></script>
+
+<!-- Load SPA router LAST so it doesn't interfere with modal handlers -->
+<!-- Modal handlers register with capture phase and stopImmediatePropagation -->
+<script src="/assets/js/spa-router-aggressive.js"></script>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', "");
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        
+        var gsDataBaseUrl = 'https://cdn.jsdelivr.net/gh/SeanLeng1/SeanLeng1.github.io@'
+        
+        $.getJSON(gsDataBaseUrl + "google-scholar-stats/gs_data.json", function (data) {
+            var totalCitation = data['citedby']
+            document.getElementById('total_cit').innerHTML = totalCitation;
+            var citationEles = document.getElementsByClassName('show_paper_citations')
+            Array.prototype.forEach.call(citationEles, element => {
+                var paperId = element.getAttribute('data')
+                var numCitations = data['publications'][paperId]['num_citations']
+                element.innerHTML = '| Citations: ' + numCitations;
+            });
+        });
+    })
+</script>
+
+
+    <script>
+      (function() {
+        var loader = document.getElementById('page-loader');
+        var progress = document.getElementById('page-loader-progress');
+        if (!loader || !progress) {
+          return;
+        }
+
+        loader.style.display = 'flex';
+
+        var value = 0;
+        var finished = false;
+        var intervalId = setInterval(function() {
+          if (finished) {
+            return;
+          }
+          value = Math.min(value + Math.random() * 12 + 5, 92);
+          progress.textContent = Math.round(value) + ' %';
+        }, 150);
+
+        var finish = function() {
+          if (finished) {
+            return;
+          }
+          finished = true;
+          clearInterval(intervalId);
+          progress.textContent = '100 %';
+          loader.classList.add('fade-out');
+          setTimeout(function() {
+            loader.remove();
+          }, 450);
+        };
+
+        window.addEventListener('load', finish);
+        setTimeout(function() {
+          if (document.readyState === 'complete') {
+            finish();
+          }
+        }, 1500);
+      })();
+    </script>
   </body>
 </html>
