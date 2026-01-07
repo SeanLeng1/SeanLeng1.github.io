@@ -9,13 +9,21 @@ layout: compress
     {% include head/custom.html %}
   </head>
 
-  <body>
+  <body class="{{ page.body_class }}">
+
+    <div id="page-loader" aria-live="polite" aria-label="Page loading">
+      <span class="loader-progress" id="page-loader-progress">0 %</span>
+    </div>
 
     {% include browser-upgrade.html %}
-    {% include masthead.html %}
+    {% unless page.hide_masthead %}
+      {% include masthead.html %}
+    {% endunless %}
 
     <div id="main" role="main">
-      {% include sidebar.html %}
+      {% unless page.hide_sidebar %}
+        {% include sidebar.html %}
+      {% endunless %}
     
       <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
         {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
@@ -27,8 +35,56 @@ layout: compress
       </article>
     </div>
 
-    {% include scripts.html %}
-    {% include wechat-modal.html %}  
+    <!-- Music Player (outside of SPA content area) -->
+    {% include netease.html %}
+
+    <!-- Load modal scripts BEFORE SPA router so they can register handlers first -->
+    {% include wechat-modal.html %}
     {% include preview-modal.html %}
+    {% include contact-modal.html %}
+
+    {% include scripts.html %}
+
+    <script>
+      (function() {
+        var loader = document.getElementById('page-loader');
+        var progress = document.getElementById('page-loader-progress');
+        if (!loader || !progress) {
+          return;
+        }
+
+        loader.style.display = 'flex';
+
+        var value = 0;
+        var finished = false;
+        var intervalId = setInterval(function() {
+          if (finished) {
+            return;
+          }
+          value = Math.min(value + Math.random() * 12 + 5, 92);
+          progress.textContent = Math.round(value) + ' %';
+        }, 150);
+
+        var finish = function() {
+          if (finished) {
+            return;
+          }
+          finished = true;
+          clearInterval(intervalId);
+          progress.textContent = '100 %';
+          loader.classList.add('fade-out');
+          setTimeout(function() {
+            loader.remove();
+          }, 450);
+        };
+
+        window.addEventListener('load', finish);
+        setTimeout(function() {
+          if (document.readyState === 'complete') {
+            finish();
+          }
+        }, 1500);
+      })();
+    </script>
   </body>
 </html>

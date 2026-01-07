@@ -1,0 +1,39 @@
+<!-- Contact Form Modal (outside #main to persist across SPA navigation) -->
+<div id="contact-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button type="button" class="close-button" data-contact="close">&times;</button>
+
+    <div id="warning-message" class="warning-message">
+      <h3>Contact Information</h3>
+      <p>Please note that this contact form is for informal inquiries. I might not be able to respond to all messages.</p>
+      <button type="button" class="contact-button" data-contact="continue">Continue</button>
+    </div>
+
+    <div id="contact-form" class="contact-form">
+      <h3>Send Message</h3>
+      <form action="https://formspree.io/f/xrbbwwdj" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="_replyto" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="_subject" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" class="form-control" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</div>

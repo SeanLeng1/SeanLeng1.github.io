@@ -53,7 +53,7 @@
       {% if author_is_self %}
         <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
       {% else %}
-        <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+        {{author.first}} {{author.last}}{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
       {% endif %}
     {% else %}
       {% if author_is_self %}

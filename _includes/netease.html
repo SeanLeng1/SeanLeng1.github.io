@@ -1,5 +1,5 @@
 <!-- NetEase Music Player Component -->
-  
+
 <!-- Preconnect to CDNs -->
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
@@ -8,44 +8,39 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css"></noscript>
 
 <style>
-  /* outer container: fixed position, right side, circular shape */
+  /* Floating Music Player */
   #music-floating {
     position: fixed;
-    top: calc(50% - 30px);
+    top: 20px;
     right: 20px;
-    width: 50px;
-    height: 50px;
-    background: #f0f0f0;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
     border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(250, 1, 1, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(0, 0, 0, 0.05);
     cursor: pointer;
-    transition: all 0.3s ease;
-    will-change: top, width, height, border-radius, opacity;
-    opacity: 0.7;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: width, height, border-radius, opacity, transform;
+    opacity: 0.95;
     z-index: 100;
-    touch-action: none; /* Prevent browser handling of touch events */
+    touch-action: none;
+    overflow: hidden;
   }
-  
-  /* Add a dragging class for when the component is being dragged */
+
+  #music-floating:hover {
+    opacity: 1;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(0, 0, 0, 0.08);
+    transform: scale(1.05);
+  }
+
   #music-floating.dragging {
-    transition: none; /* Disable transitions during drag for smoother movement */
-    opacity: 0.9;
+    transition: none;
+    opacity: 1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 
-  /* larger size for desktop, smaller for mobile */
-  @media only screen and (min-width: 769px) {
-    #music-floating {
-      /* Must use absolute position for desktop due to volume control issues */
-      /* See: https://github.com/DIYgod/APlayer/issues/797 and https://github.com/DIYgod/APlayer/issues/791 */
-      position: absolute;
-      width: 90px;
-      height: 90px;
-      /* Position properly at the top */
-      top: 80px;
-    }
-  }
-
-  /* inside content area: 100% width and height, rounded corners */
   #music-floating .content {
     width: 100%;
     height: 100%;
@@ -53,59 +48,47 @@
     overflow: hidden;
     position: relative;
   }
-  
-  /* Prevent the content from jumping during transitions */
+
   #music-floating.expand-left .content {
-    transform-origin: left center;
-  }
-  
-  #music-floating.expand-right .content {
     transform-origin: right center;
   }
-  
-  /* Base expanded state shared by both mobile and desktop */
+
+  #music-floating.expand-right .content {
+    transform-origin: left center;
+  }
+
   #music-floating.expanded {
-    width: 500px;
-    height: 300px;
-    border-radius: 10px;
+    width: min(540px, 92vw);
+    height: 360px;
+    border-radius: 20px;
     opacity: 1;
-  }
-  
-  /* For debugging - adds a colored border based on expansion direction
-  #music-floating.expand-right.expanded {
-    border: 2px solid blue;
-  }
-  
-  #music-floating.expand-left.expanded {
-    border: 2px solid red;
-  } */
-
-  /* Desktop-specific expanded state settings */
-  @media only screen and (min-width: 769px) {
-    #music-floating.expanded {
-      /* Keep absolute positioning for desktop expanded state */
-      position: absolute;
-      /* Fix the expanded position to appear in viewport properly */
-      top: 80px;
-      right: 20px;
-    }
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(0, 0, 0, 0.1);
   }
 
+  #music-floating.expanded:hover {
+    transform: none;
+  }
+
+  /* APlayer Container Styling */
   #music-player {
     display: none;
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 16px;
     box-sizing: border-box;
+    background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
   }
-  
+
   #music-floating.expanded #music-player {
     display: block;
   }
+
   #music-floating.expanded #music-icon {
     display: none;
   }
 
+  /* Icon Styling */
   #music-icon {
     text-align: center;
     font-size: 14px;
@@ -113,242 +96,465 @@
     line-height: 60px;
     height: 100%;
     width: 100%;
+    position: relative;
   }
+
   #music-icon img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
   }
-  
+
+  #music-floating:hover #music-icon img {
+    transform: rotate(5deg) scale(1.1);
+  }
+
+  /* Now Playing Ticker */
+  #music-nowplaying {
+    display: none;
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: #666;
+    white-space: nowrap;
+    max-width: 260px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 4px 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #music-nowplaying span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker 15s linear infinite;
+  }
+
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Loading Animation - Rotate the icon */
+  #music-floating.loading #music-icon img {
+    animation: spin-icon 5s linear infinite;
+  }
+
+  @keyframes spin-icon {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* APlayer Custom Styling */
   .aplayer {
     box-shadow: none !important;
     margin: 0 !important;
     height: 100% !important;
+    background: transparent !important;
+    border-radius: 12px !important;
   }
-  
-  /* Loading indicator */
-  .loading-indicator {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #C20C0C;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+
+  .aplayer .aplayer-body {
+    background: transparent !important;
   }
-  
-  @keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+
+  .aplayer .aplayer-list {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border-radius: 8px !important;
+    margin-top: 8px !important;
   }
-  
-  #music-floating.loading .loading-indicator {
-    display: block;
+
+  .aplayer .aplayer-list ol li {
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
   }
-  
-  /* Mobile styles: click to expand, show player */
+
+  .aplayer .aplayer-list ol li:hover {
+    background: rgba(194, 12, 12, 0.05) !important;
+  }
+
+  .aplayer .aplayer-list ol li.aplayer-list-light {
+    background: rgba(194, 12, 12, 0.1) !important;
+  }
+
+  /* Mobile Responsive */
   @media only screen and (max-width: 768px) {
     #music-floating.expanded {
-      /* Use percentage of viewport width for mobile */
-      width: 90vw;
-      height: 300px; 
-      /* Mobile must use fixed positioning */
+      width: 92vw;
+      height: 340px;
       position: fixed;
     }
-    
-    /* Right-side expansion on mobile */
-    #music-floating.expand-right.expanded {
-      left: auto;
-      right: 20px;
+
+    #music-player {
+      padding: 12px;
     }
-    
-    /* Left-side expansion on mobile */
-    #music-floating.expand-left.expanded {
-      right: auto;
-      left: 20px;
+
+    #music-nowplaying {
+      max-width: 200px;
+      font-size: 10px;
     }
   }
 </style>
 
-<div id="music-floating">
-  <div class="content">
-    <div id="music-icon">
-      <img src="{{ '/images/NetEase_Music-Logo.png' | relative_url }}" alt="音乐">
-    </div>
-    <div id="music-player">
-      <div id="aplayer"></div>
-    </div>
-    <div class="loading-indicator"></div>
-  </div>
-</div>
+<!-- Floating Music Player -->
+<div id="music-floating-container"></div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const musicFloating = document.getElementById('music-floating');
-    let playerInitialized = false;
-    let scriptsLoaded = false;
-    
-    // Set initial expansion direction class
-    musicFloating.classList.add('expand-right');
-    
-    // Restore position from localStorage if available
-    function restorePosition() {
-      const savedPos = localStorage.getItem('musicPlayerPosition');
-      if (savedPos) {
-        try {
-          const pos = JSON.parse(savedPos);
-          musicFloating.style.top = pos.top;
-          musicFloating.style.right = pos.right;
-          musicFloating.style.bottom = pos.bottom;
-          musicFloating.style.left = pos.left;
-        } catch (e) {
-          console.error('Error restoring position:', e);
-        }
-      }
+  (function() {
+    // Prevent multiple initializations (important for SPA)
+    if (window.musicPlayerInitialized) {
+      console.log('Music player already initialized, skipping...');
+      return;
     }
-    
-    // Try to restore saved position
-    restorePosition();
-    
-    // Function to load scripts dynamically
+    window.musicPlayerInitialized = true;
+
+    // Create the player HTML dynamically (only once)
+    const container = document.getElementById('music-floating-container');
+    if (!container) {
+      console.error('Music player container not found');
+      return;
+    }
+
+    container.innerHTML = `
+      <div id="music-floating">
+        <div class="content">
+          <div id="music-icon">
+            <img src="{{ '/images/Isla.png' | relative_url }}" alt="Music Player">
+          </div>
+          <div id="music-player">
+            <div id="aplayer"></div>
+          </div>
+          <div id="music-nowplaying"><span></span></div>
+        </div>
+      </div>
+    `;
+
+    const musicFloating = document.getElementById('music-floating');
+    const nowPlaying = document.getElementById('music-nowplaying');
+
+    // Store state globally to persist across SPA navigation
+    window.musicPlayerState = window.musicPlayerState || {
+      playerInitialized: false,
+      scriptsLoaded: false,
+      savedPosition: { top: '20px', right: '20px', bottom: '', left: '' },
+      currentLimit: 10,  // Start with fewer songs for faster initial load
+      maxLimit: 200,
+      aplayerInstance: null
+    };
+
+    // Shorthand references
+    let playerInitialized = window.musicPlayerState.playerInitialized;
+    let scriptsLoaded = window.musicPlayerState.scriptsLoaded;
+    let savedPosition = window.musicPlayerState.savedPosition;
+    let currentLimit = window.musicPlayerState.currentLimit;
+    let maxLimit = window.musicPlayerState.maxLimit;
+    let aplayerInstance = window.musicPlayerState.aplayerInstance;
+
     function loadScripts(callback) {
       if (scriptsLoaded) {
         callback();
         return;
       }
-      
       const aplayerScript = document.createElement('script');
       aplayerScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js';
       aplayerScript.async = true;
-      
+
       const metingScript = document.createElement('script');
       metingScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/meting/2.0.1/Meting.min.js';
       metingScript.async = true;
-      
+
       aplayerScript.onload = function() {
         document.body.appendChild(metingScript);
       };
-      
       metingScript.onload = function() {
-        scriptsLoaded = true;
+        scriptsLoaded = window.musicPlayerState.scriptsLoaded = true;
         callback();
       };
-      
+
       document.body.appendChild(aplayerScript);
     }
-    
-    // Function to initialize the player
+
     function initializePlayer() {
       if (playerInitialized) return;
-      
       musicFloating.classList.add('loading');
-      
       loadScripts(function() {
         const metingElement = document.createElement('meting-js');
         metingElement.setAttribute('server', 'netease');
         metingElement.setAttribute('type', 'playlist');
-        metingElement.setAttribute('id', '13558690545');
+        metingElement.setAttribute('id', '602810440');
         metingElement.setAttribute('autoplay', 'false');
         metingElement.setAttribute('theme', '#C20C0C');
-        metingElement.setAttribute('limit', '100');
+        metingElement.setAttribute('limit', currentLimit.toString());
         metingElement.setAttribute('volume', '0.1');
-        
         document.getElementById('aplayer').appendChild(metingElement);
-        
-        // Fix for volume control issues
+
         setTimeout(function() {
-          const aplayerInstance = document.querySelector('.aplayer-controller');
-          if (aplayerInstance) {
-            playerInitialized = true;
-            musicFloating.classList.remove('loading');
-          }
-        }, 1000);
+          const checkAPlayer = setInterval(function() {
+            if (window.aplayer && window.aplayer.audio) {
+              clearInterval(checkAPlayer);
+              aplayerInstance = window.musicPlayerState.aplayerInstance = window.aplayer;
+              playerInitialized = window.musicPlayerState.playerInitialized = true;
+              musicFloating.classList.remove('loading');
+              if (nowPlaying) nowPlaying.style.display = 'block';
+
+              console.log('🎵 Music player ready with', currentLimit, 'songs');
+              setupAPlayerEvents();
+              setupLazyLoad();
+            }
+          }, 100);  // Check more frequently (was 200ms)
+        }, 500);  // Start checking sooner (was 1000ms)
       });
     }
-    
-    // Event handler for expanding/collapsing the player
+
+    function setupLazyLoad() {
+      const { scrollContainer, playlistList } = getPlaylistElements();
+      if (!scrollContainer || !playlistList) {
+        console.log('⏳ Waiting for playlist element...');
+        setTimeout(setupLazyLoad, 500);
+        return;
+      }
+
+      console.log('✅ Lazy load enabled - scroll to bottom to load more songs');
+
+      if (lazyLoadScrollContainer && lazyLoadScrollHandler) {
+        lazyLoadScrollContainer.removeEventListener('scroll', lazyLoadScrollHandler);
+      }
+
+      const containerToUse = scrollContainer;
+      lazyLoadScrollContainer = containerToUse;
+      lazyLoadScrollHandler = function() {
+        const scrollTop = containerToUse.scrollTop;
+        const scrollHeight = containerToUse.scrollHeight;
+        const clientHeight = containerToUse.clientHeight;
+        const scrollBottom = scrollHeight - scrollTop - clientHeight;
+
+        // Debug: log when close to bottom
+        if (scrollBottom < 150 && scrollBottom > 50) {
+          console.log('📜 Scroll position:', scrollBottom, 'px from bottom');
+        }
+
+        if (scrollBottom < 100) {
+          loadMoreSongs();
+        }
+      };
+
+      containerToUse.addEventListener('scroll', lazyLoadScrollHandler);
+    }
+
+    let isLoadingMore = false;
+    let lazyLoadScrollContainer = null;
+    let lazyLoadScrollHandler = null;
+
+    function getPlaylistElements() {
+      const playlistWrapper = document.querySelector('.aplayer-list');
+      if (!playlistWrapper) {
+        return { scrollContainer: null, playlistList: null };
+      }
+      const scrollContainer = playlistWrapper.querySelector('.aplayer-list-body') ||
+        playlistWrapper.querySelector('.aplayer-list-main') ||
+        playlistWrapper;
+      const playlistList = playlistWrapper.querySelector('ol') ||
+        playlistWrapper.querySelector('ul');
+      return { scrollContainer, playlistList };
+    }
+
+    function loadMoreSongs() {
+      if (currentLimit >= maxLimit || isLoadingMore) return;
+
+      const newLimit = Math.min(currentLimit + 10, maxLimit);  // Load 10 at a time instead of 20
+      if (newLimit === currentLimit) return;
+
+      isLoadingMore = true;
+      console.log('📥 Loading more songs:', currentLimit, '→', newLimit);
+
+      // Show loading indicator
+      const { playlistList } = getPlaylistElements();
+      if (playlistList) {
+        const loadingItem = document.createElement('li');
+        loadingItem.className = 'lazy-loading-indicator';
+        loadingItem.innerHTML = '<span style="padding: 10px; color: #999;">Loading more songs...</span>';
+        playlistList.appendChild(loadingItem);
+      }
+
+      currentLimit = window.musicPlayerState.currentLimit = newLimit;
+
+      const aplayerContainer = document.getElementById('aplayer');
+      const metingElement = aplayerContainer.querySelector('meting-js');
+      if (metingElement) {
+        metingElement.setAttribute('limit', currentLimit.toString());
+        const parent = metingElement.parentNode;
+        const clone = metingElement.cloneNode(true);
+        parent.removeChild(metingElement);
+        setTimeout(function() {
+          parent.appendChild(clone);
+          setTimeout(function() {
+            // Remove loading indicator
+            const loadingIndicator = document.querySelector('.lazy-loading-indicator');
+            if (loadingIndicator) loadingIndicator.remove();
+
+            setupLazyLoad();
+            isLoadingMore = false;
+            console.log('✅ Loaded', newLimit, 'songs');
+          }, 1000);  // Reduced from 1500ms to 1000ms
+        }, 50);  // Reduced from 100ms to 50ms
+      }
+    }
+
+    function setupAPlayerEvents() {
+      if (!aplayerInstance) {
+        console.error('APlayer instance not found');
+        return;
+      }
+
+      console.log('Setting up APlayer event listeners');
+
+      aplayerInstance.on('play', function() {
+        console.log('APlayer: play event fired');
+        updateNowPlaying();
+      });
+
+      aplayerInstance.on('pause', function() {
+        console.log('APlayer: pause event fired');
+      });
+
+      aplayerInstance.on('ended', function() {
+        console.log('APlayer: ended event fired');
+      });
+
+      aplayerInstance.on('loadeddata', function() {
+        console.log('APlayer: loadeddata event fired');
+        updateNowPlaying();
+      });
+
+      aplayerInstance.on('listswitch', function(index) {
+        console.log('APlayer: listswitch event fired, index:', index);
+        setTimeout(() => {
+          updateNowPlaying();
+        }, 400);
+      });
+
+      updateNowPlaying();
+    }
+
     function handlePlayerToggle() {
       if (!musicFloating.classList.contains('expanded')) {
-        // Before expanding, determine which direction to expand based on position
-        determineExpandDirection();
-        
-        // Force reflow to ensure styles are applied
-        void musicFloating.offsetWidth;
-        
+        const isMobile = window.innerWidth < 769;
+        const targetWidth = isMobile ? Math.min(window.innerWidth - 24, 540) : 540;
+        const targetHeight = isMobile ? 340 : 360;
+        const padding = 12;
+        const rect = musicFloating.getBoundingClientRect();
+
+        const spaceLeft = rect.left;
+        const spaceRight = window.innerWidth - rect.right;
+        const spaceAbove = rect.top;
+        const spaceBelow = window.innerHeight - rect.bottom;
+
+        const expandLeft = spaceLeft > spaceRight;
+        musicFloating.classList.remove('expand-left', 'expand-right');
+        musicFloating.classList.add(expandLeft ? 'expand-left' : 'expand-right');
+
+        let topPos;
+        if (spaceBelow >= targetHeight + padding) {
+          topPos = rect.top;
+        } else if (spaceAbove >= targetHeight + padding) {
+          topPos = rect.bottom - targetHeight;
+        } else {
+          topPos = Math.max(padding, Math.min(rect.top, window.innerHeight - targetHeight - padding));
+        }
+
+        let leftPos;
+        if (expandLeft) {
+          leftPos = rect.right - targetWidth;
+          leftPos = Math.max(padding, leftPos);
+        } else {
+          leftPos = rect.left;
+          leftPos = Math.min(leftPos, window.innerWidth - targetWidth - padding);
+        }
+
+        musicFloating.style.top = `${topPos}px`;
+        musicFloating.style.left = `${leftPos}px`;
+        musicFloating.style.right = 'auto';
+        musicFloating.style.bottom = 'auto';
+
+        musicFloating.style.width = `${targetWidth}px`;
+        musicFloating.style.height = `${targetHeight}px`;
         musicFloating.classList.add('expanded');
-        if (!playerInitialized) {
-          initializePlayer();
-        }
+        if (!playerInitialized) initializePlayer();
       } else {
-        musicFloating.classList.remove('expanded');
+        collapsePlayer();
       }
     }
-    
-    // Determine whether to expand left or right based on current position
-    function determineExpandDirection() {
-      const windowWidth = window.innerWidth;
-      const rect = musicFloating.getBoundingClientRect();
-      const centerX = rect.left + (rect.width / 2);
-      
-      // 记录当前为未展开状态时的位置信息
-      const currentLeft = rect.left;
-      const currentRight = windowWidth - rect.right;
-      
-      console.log("Position - Left: " + currentLeft + "px, Right: " + currentRight + "px, Center: " + centerX + "px, Window: " + windowWidth + "px");
-      
-      // If center is in the right half of the screen, expand left
-      // Otherwise, expand right
-      if (centerX > windowWidth / 2) {
-        console.log("Expanding LEFT"); 
-        musicFloating.classList.remove('expand-right');
-        musicFloating.classList.add('expand-left');
-        
-        if (musicFloating.style.right) {
-          musicFloating.style.left = 'auto';
-        }
-      } else {
-        console.log("Expanding RIGHT");
-        musicFloating.classList.remove('expand-left');
-        musicFloating.classList.add('expand-right');
-        
-        if (musicFloating.style.left) {
-          musicFloating.style.right = 'auto';
+
+    function collapsePlayer() {
+      musicFloating.classList.remove('expanded');
+      musicFloating.style.width = '';
+      musicFloating.style.height = '';
+      musicFloating.style.top = savedPosition.top;
+      musicFloating.style.bottom = savedPosition.bottom;
+      musicFloating.style.left = savedPosition.left;
+      musicFloating.style.right = savedPosition.right;
+    }
+
+    function updateNowPlaying() {
+      let title = '';
+      let artist = '';
+
+      if (aplayerInstance && aplayerInstance.list && aplayerInstance.list.audios) {
+        const currentIndex = aplayerInstance.list.index;
+        const currentAudio = aplayerInstance.list.audios[currentIndex];
+
+        if (currentAudio) {
+          title = currentAudio.name || currentAudio.title || '';
+          artist = currentAudio.artist || '';
+          console.log('Got song info from APlayer instance:', { title, artist, index: currentIndex });
         }
       }
+
+      if (!title) {
+        const titleEl = document.querySelector('.aplayer-title');
+        const artistEl = document.querySelector('.aplayer-author');
+
+        if (titleEl && titleEl.textContent) {
+          title = titleEl.textContent.trim();
+        }
+
+        if (artistEl && artistEl.textContent) {
+          artist = artistEl.textContent.trim();
+        }
+
+        if (title || artist) {
+          console.log('Got song info from DOM:', { title, artist });
+        }
+      }
+
+      if (nowPlaying) {
+        const text = title ? `${title}${artist ? ' — ' + artist : ''}` : '';
+        nowPlaying.querySelector('span').textContent = text;
+      }
     }
-    
-    // Draggable functionality for mobile devices
+
+    // Dragging functionality
     let isDragging = false;
     let startX, startY, startRight, startBottom, startTop, startLeft;
-    let usingRightBottom = true; // Track which side we're using (right/bottom or left/top)
-    
+
     function handleDragStart(e) {
-      // If the player is expanded, handle clicks within the content differently
       if (musicFloating.classList.contains('expanded')) {
-        // Only allow clicks in the icon area when expanded
         if (e.target.closest('#music-icon')) {
           handlePlayerToggle();
         }
         return;
       }
-      
-      // Set a flag to track that we started a potential drag operation
       isDragging = true;
       musicFloating.classList.add('dragging');
-      
-      // Get current position styles
       const style = window.getComputedStyle(musicFloating);
-      
-      // Detect which positioning we're using
       const hasRight = style.right !== 'auto';
       const hasBottom = style.bottom !== 'auto';
-      
-      // Store initial positions
+
       if (hasRight) {
         startRight = parseInt(style.right);
         startLeft = null;
@@ -356,7 +562,6 @@
         startLeft = parseInt(style.left);
         startRight = null;
       }
-      
       if (hasBottom) {
         startBottom = parseInt(style.bottom);
         startTop = null;
@@ -364,175 +569,107 @@
         startTop = parseInt(style.top);
         startBottom = null;
       }
-      
-      usingRightBottom = hasRight && hasBottom;
-      
-      // Store initial cursor/touch position
+
       if (e.type === 'mousedown') {
         startX = e.clientX;
         startY = e.clientY;
-        // Add event listeners for mouse movement
         document.addEventListener('mousemove', handleDragMove);
         document.addEventListener('mouseup', handleDragEnd);
       } else if (e.type === 'touchstart') {
         startX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
-        // Add event listeners for touch movement
         document.addEventListener('touchmove', handleDragMove, { passive: false });
         document.addEventListener('touchend', handleDragEnd);
       }
-      
-      // Prevent default to avoid text selection, etc.
       e.preventDefault();
     }
-    
+
     function handleDragMove(e) {
       if (!isDragging) return;
-      
       let currentX, currentY;
-      
       if (e.type === 'mousemove') {
         currentX = e.clientX;
         currentY = e.clientY;
       } else if (e.type === 'touchmove') {
         currentX = e.touches[0].clientX;
         currentY = e.touches[0].clientY;
-        e.preventDefault(); // Prevent scrolling while dragging
+        e.preventDefault();
       }
-      
-      // Calculate the difference
       const diffX = currentX - startX;
       const diffY = currentY - startY;
-      
-      // Calculate new positions based on current positioning model
-      let newTop, newRight, newBottom, newLeft;
-      
-      // Update the position based on whether we're using right/bottom or left/top
+
       if (startRight !== null) {
-        newRight = Math.max(0, startRight - diffX) + 'px';
-        musicFloating.style.right = newRight;
+        musicFloating.style.right = Math.max(0, startRight - diffX) + 'px';
         musicFloating.style.left = 'auto';
       } else if (startLeft !== null) {
-        newLeft = Math.max(0, startLeft + diffX) + 'px';
-        musicFloating.style.left = newLeft;
+        musicFloating.style.left = Math.max(0, startLeft + diffX) + 'px';
         musicFloating.style.right = 'auto';
       }
-      
+
       if (startBottom !== null) {
-        newBottom = Math.max(0, startBottom - diffY) + 'px';
-        musicFloating.style.bottom = newBottom;
+        musicFloating.style.bottom = Math.max(0, startBottom - diffY) + 'px';
         musicFloating.style.top = 'auto';
       } else if (startTop !== null) {
-        newTop = Math.max(0, startTop + diffY) + 'px';
-        musicFloating.style.top = newTop;
+        musicFloating.style.top = Math.max(0, startTop + diffY) + 'px';
         musicFloating.style.bottom = 'auto';
       }
-      
-      // Update expansion direction during drag for better UX
-      if (isMobile) {
-        const windowWidth = window.innerWidth;
-        const rect = musicFloating.getBoundingClientRect();
-        const centerX = rect.left + (rect.width / 2);
-        
-        // Update expansion direction class
-        if (centerX > windowWidth / 2) {
-          if (!musicFloating.classList.contains('expand-left')) {
-            musicFloating.classList.remove('expand-right');
-            musicFloating.classList.add('expand-left');
-          }
-        } else {
-          if (!musicFloating.classList.contains('expand-right')) {
-            musicFloating.classList.remove('expand-left');
-            musicFloating.classList.add('expand-right');
-          }
-        }
-      }
     }
-    
+
     function handleDragEnd(e) {
       if (!isDragging) return;
-      
-      // Detect if this was just a tap (very little movement) or a drag
       let wasDragged = false;
-      
       if (e.type === 'mouseup') {
         const diffX = Math.abs(e.clientX - startX);
         const diffY = Math.abs(e.clientY - startY);
-        wasDragged = (diffX > 5 || diffY > 5); // Consider it a drag if moved more than 5px
+        wasDragged = (diffX > 5 || diffY > 5);
       } else if (e.type === 'touchend' && e.changedTouches && e.changedTouches.length > 0) {
         const diffX = Math.abs(e.changedTouches[0].clientX - startX);
         const diffY = Math.abs(e.changedTouches[0].clientY - startY);
-        wasDragged = (diffX > 5 || diffY > 5); // Consider it a drag if moved more than 5px
+        wasDragged = (diffX > 5 || diffY > 5);
       }
-      
+
       isDragging = false;
       musicFloating.classList.remove('dragging');
-      
-      // Remove event listeners
       document.removeEventListener('mousemove', handleDragMove);
       document.removeEventListener('mouseup', handleDragEnd);
       document.removeEventListener('touchmove', handleDragMove);
       document.removeEventListener('touchend', handleDragEnd);
-      
-      // Save position to localStorage
-      const style = window.getComputedStyle(musicFloating);
-      const position = {
-        top: style.top,
-        right: style.right,
-        bottom: style.bottom,
-        left: style.left
-      };
-      
-      localStorage.setItem('musicPlayerPosition', JSON.stringify(position));
-      
-      // If this was just a tap (not a drag), trigger the toggle
-      if (!wasDragged) {
-        // Small delay to ensure click event doesn't conflict
+
+      if (wasDragged) {
+        const style = window.getComputedStyle(musicFloating);
+        savedPosition = {
+          top: style.top !== 'auto' ? style.top : '',
+          right: style.right !== 'auto' ? style.right : '',
+          bottom: style.bottom !== 'auto' ? style.bottom : '',
+          left: style.left !== 'auto' ? style.left : ''
+        };
+      } else {
         setTimeout(function() {
           handlePlayerToggle();
         }, 10);
       }
     }
-    
-    // Set up drag event listeners for mobile
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (isMobile) {
-      musicFloating.addEventListener('mousedown', handleDragStart);
-      musicFloating.addEventListener('touchstart', handleDragStart, { passive: false });
-    }
-    
-    // Set up event listeners based on device type
-    if (window.matchMedia('(hover: hover)').matches) {
-      // Desktop: hover to expand
-      musicFloating.addEventListener('mouseenter', function() {
-        if (!isDragging) { // Don't expand if we're dragging
-          // Always expand right on desktop (as it's positioned absolutely)
-          musicFloating.classList.remove('expand-left');
-          musicFloating.classList.add('expand-right');
-          
-          musicFloating.classList.add('expanded');
-          if (!playerInitialized) {
-            initializePlayer();
-          }
-        }
-      });
-      
-      musicFloating.addEventListener('mouseleave', function() {
-        musicFloating.classList.remove('expanded');
+
+    musicFloating.addEventListener('mousedown', handleDragStart);
+    musicFloating.addEventListener('touchstart', handleDragStart, { passive: false });
+
+    document.addEventListener('click', function(e) {
+      if (!musicFloating.contains(e.target)) {
+        collapsePlayer();
+      }
+    });
+
+    document.getElementById('music-player').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    // Initialize immediately if DOM is already ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('Music player DOM ready');
       });
     } else {
-      // Mobile: For mobile, we'll handle click in the dragEnd function
-      // Instead of using click event which can conflict with drag
-      
-      document.addEventListener('click', function(e) {
-        if (!musicFloating.contains(e.target)) {
-          musicFloating.classList.remove('expanded');
-        }
-      });
-      
-      document.getElementById('music-player').addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
+      console.log('Music player initialized (DOM already ready)');
     }
-  });
+  })();
 </script>

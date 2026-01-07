@@ -1,4 +1,10 @@
-<script src="assets/js/main.min.js"></script>
+<!-- Load main scripts -->
+<script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/music-player-debug.js' | relative_url }}"></script>
+
+<!-- Load SPA router LAST so it doesn't interfere with modal handlers -->
+<!-- Modal handlers register with capture phase and stopImmediatePropagation -->
+<script src="{{ '/assets/js/spa-router-aggressive.js' | relative_url }}"></script>
 
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}

@@ -78,60 +78,73 @@
   
   <div id="wechat-qr-overlay">
     <div id="wechat-qr">
-      <img class="qr-image" src="{{ author.wechat | relative_url }}" alt="WeChat QR Code">
+      <img class="qr-image" src="{{ site.author.wechat | relative_url }}" alt="WeChat QR Code">
       <button class="close-button" onclick="closeOverlay()">×</button>
     </div>
   </div>
   
   <script>
-  const overlay = document.getElementById('wechat-qr-overlay');
-  const qr = document.getElementById('wechat-qr');
-  let isClosing = false;
-
-  function handleWeChatClick(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    if (!isClosing) {
-      showOverlay();
+  (function() {
+    // Prevent multiple initializations
+    if (window.wechatModalInitialized) {
+      console.log('WeChat modal already initialized');
+      return;
     }
-  }
+    window.wechatModalInitialized = true;
 
-  function showOverlay() {
-    // Reset all states
-    isClosing = false;
-    overlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    // Force browser reflow
-    void overlay.offsetWidth;
-    void qr.offsetWidth;
-    
-    // Apply animations
-    overlay.style.animation = 'fadeIn 0.3s ease-out forwards';
-    qr.style.animation = 'scaleIn 0.3s ease-out forwards';
-  }
+    const overlay = document.getElementById('wechat-qr-overlay');
+    const qr = document.getElementById('wechat-qr');
+    let isClosing = false;
 
-  function closeOverlay() {
-    if (isClosing) return;
-    isClosing = true;
-    
-    document.body.style.overflow = '';
-    overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
-    qr.style.animation = 'scaleIn 0.3s ease-out reverse';
+    // Make function globally accessible for SPA router
+    window.handleWeChatClick = function handleWeChatClick(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation(); // Stop SPA router from intercepting
+      if (!isClosing) {
+        showOverlay();
+      }
+    };
 
-    setTimeout(() => {
-      overlay.style.display = 'none';
-      // Clear animation states
-      overlay.style.animation = '';
-      qr.style.animation = '';
+    function showOverlay() {
+      // Reset all states
       isClosing = false;
-    }, 300);
-  }
+      overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
 
-  // Close overlay when clicking outside
-  overlay.addEventListener('click', function(event) {
-    if (event.target === this && !isClosing) {
-      closeOverlay();
+      // Force browser reflow
+      void overlay.offsetWidth;
+      void qr.offsetWidth;
+
+      // Apply animations
+      overlay.style.animation = 'fadeIn 0.3s ease-out forwards';
+      qr.style.animation = 'scaleIn 0.3s ease-out forwards';
     }
-  });
+
+    window.closeOverlay = function closeOverlay() {
+      if (isClosing) return;
+      isClosing = true;
+
+      document.body.style.overflow = '';
+      overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
+      qr.style.animation = 'scaleIn 0.3s ease-out reverse';
+
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        // Clear animation states
+        overlay.style.animation = '';
+        qr.style.animation = '';
+        isClosing = false;
+      }, 300);
+    };
+
+    // Close overlay when clicking outside
+    overlay.addEventListener('click', function(event) {
+      if (event.target === this && !isClosing) {
+        window.closeOverlay();
+      }
+    });
+
+    console.log('✓ WeChat modal initialized');
+  })();
   </script>

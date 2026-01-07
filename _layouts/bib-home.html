@@ -1,0 +1,48 @@
+<li class="home-pub">
+  <div class="home-pub__title">{{ entry.title }}</div>
+  <div class="home-pub__authors">
+    {% for author in entry.author_array %}
+      {% assign author_is_self = false %}
+      {% if author.last == site.scholar.last_name and site.scholar.first_name contains author.first %}
+        {% assign author_is_self = true %}
+      {% endif %}
+      {% if author_is_self %}
+        <em><b>{{author.first}} {{author.last}}</b></em>
+      {% else %}
+        {{author.first}} {{author.last}}
+      {% endif %}
+      {% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </div>
+  <div class="home-pub__venue">
+    {% if entry.type == "article" %}
+      <em><b>{{entry.journal}}{% if entry.year %} {{entry.year}}{% endif %}</b></em>
+    {% elsif entry.type == "inproceedings" %}
+      <em><b>{{entry.booktitle}}{% if entry.year %} {{entry.year}}{% endif %}</b></em>
+    {% elsif entry.type == "misc" %}
+      <em><b>Preprint{% if entry.year %} {{entry.year}}{% endif %}</b></em>
+    {% endif %}
+  </div>
+  <div class="home-pub__links">
+    {% if entry.arxiv %}<a href="{{ entry.arxiv }}">arXiv</a>{% endif %}
+    {% if entry.openreview %}<a href="{{ entry.openreview }}">OpenReview</a>{% endif %}
+    {% if entry.html %}<a href="{{ entry.html }}">HTML</a>{% endif %}
+    {% if entry.pdf %}
+      {% if entry.pdf contains '://' %}
+        <a href="{{ entry.pdf }}">PDF</a>
+      {% else %}
+        <a href="{{ entry.pdf | prepend: '/assets/files/' | relative_url }}">PDF</a>
+      {% endif %}
+    {% endif %}
+    {% if entry.code %}<a href="{{ entry.code }}">Code</a>{% endif %}
+    {% if entry.dataset %}<a href="{{ entry.dataset }}">Dataset</a>{% endif %}
+    {% if entry.slides %}
+      {% if entry.slides contains '://' %}
+        <a href="{{ entry.slides }}">Slides</a>
+      {% else %}
+        <a href="{{ entry.slides | prepend: '/assets/files/' | relative_url }}">Slides</a>
+      {% endif %}
+    {% endif %}
+    {% if entry.video %}<a href="{{ entry.video }}">Video</a>{% endif %}
+  </div>
+</li>

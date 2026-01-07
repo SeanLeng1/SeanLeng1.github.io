@@ -49,20 +49,20 @@
 }
 
 .preview-content {
-  position: relative;
-  margin: auto;
-  padding: 20px;
-  max-width: 800px;
-  max-height: 80vh;
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%) scale(0.95);
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  padding: 20px;
+  max-width: 90vw;
+  max-height: 90vh;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0;
 }
 
 .preview-modal.show .preview-content {
-  transform: translateY(-50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
 
@@ -77,17 +77,18 @@
 }
 
 .preview-close-button {  /* Changed class name here */
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #666;
-  font-size: 35px;
+  position: fixed;
+  right: 30px;
+  top: 20px;
+  color: #fff;
+  font-size: 40px;
   font-weight: bold;
   cursor: pointer;
   z-index: 1001;
   opacity: 0;
   transition: opacity 0.3s ease, color 0.2s ease;
   padding: 10px;
+  line-height: 1;
 }
 
 .preview-modal.show .preview-close-button {  /* Changed class name here */
@@ -100,63 +101,92 @@
 </style>
 
 <script>
-function initializeModal() {
-  const modal = document.getElementById('previewModal');
-  const modalImg = document.getElementById('previewImage');
-  const closeBtn = document.querySelector('.preview-close-button');  // Changed class name here
-  const previewButtons = document.querySelectorAll('.preview-button');
+(function() {
+  // Prevent multiple initializations
+  if (window.previewModalInitialized) {
+    console.log('Preview modal already initialized');
+    return;
+  }
+  window.previewModalInitialized = true;
 
-  function openModal() {
-    modal.style.display = "block";
-    requestAnimationFrame(() => {
-      modal.classList.add('show');
-    });
+  var modal = document.getElementById('previewModal');
+  var modalContent = modal ? modal.querySelector('.preview-content') : null;
+  var modalImg = document.getElementById('previewImage');
+  var closeBtn = modal ? modal.querySelector('.preview-close-button') : null;
+  if (!modal || !modalContent || !modalImg || !closeBtn) {
+    console.warn('Preview modal elements not found');
+    return;
+  }
+
+  var animationDuration = 300;
+  var isTransitioning = false;
+
+  function openModal(imageSrc) {
+    if (!imageSrc || isTransitioning) return;
+    isTransitioning = true;
+    modalImg.src = imageSrc;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    void modal.offsetWidth;
+    void modalContent.offsetWidth;
+
+    modal.style.animation = 'fadeIn 0.3s ease-out forwards';
+    modalContent.style.animation = 'slideIn 0.3s ease-out forwards';
+    modal.classList.add('show');
+
+    setTimeout(function() {
+      isTransitioning = false;
+    }, animationDuration);
   }
 
   function closeModal() {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = "none";
+    if (isTransitioning || modal.style.display !== 'block') return;
+    isTransitioning = true;
+
+    modal.style.animation = 'fadeOut 0.3s ease-out forwards';
+    modalContent.style.animation = 'slideOut 0.3s ease-out forwards';
+
+    setTimeout(function() {
+      modal.classList.remove('show');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
       modalImg.src = '';
-    }, 300);
+      modal.style.animation = '';
+      modalContent.style.animation = '';
+      isTransitioning = false;
+    }, animationDuration);
   }
 
-  // Open modal
-  previewButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      modalImg.src = this.getAttribute('data-preview');
-      openModal();
-    });
-  });
+  // Use event delegation on document with capture phase to intercept before SPA router
+  document.addEventListener('click', function(event) {
+    var button = event.target.closest('.preview-button');
+    if (!button) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation(); // Stop SPA router from intercepting
+    var previewSrc = button.getAttribute('data-preview');
+    openModal(previewSrc);
+  }, true); // Use capture phase
 
-  // Close button
-  closeBtn.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
+  closeBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     closeModal();
   });
 
-  // Close when clicking outside
-  modal.addEventListener('click', e => {
-    if (e.target === modal) {
+  modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
       closeModal();
     }
   });
 
-  // Handle ESC key
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
       closeModal();
     }
   });
-}
 
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeModal);
-} else {
-  initializeModal();
-}
+  console.log('✓ Preview modal initialized');
+})();
 </script>
