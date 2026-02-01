@@ -10,7 +10,7 @@ body_class: homepage
 redirect_from: 
   - /about/
   - /about.html
-years: [2025, 2024]
+years: [2026, 2025, 2024]
 cards:
   - id: news
     eyebrow: News
@@ -18,6 +18,8 @@ cards:
     wide: true
     type: list
     list:
+      - date: 2026.02
+        text: '<a href="https://arxiv.org/pdf/2503.00031" target="_blank" rel="noopener">Self-Calibration</a> accepted by ICLR 2026.'
       - date: 2025.09
         text: 'Survey paper on <a href="https://openreview.net/pdf?id=nLJZh4M6S5" target="_blank" rel="noopener">Reliable and Responsible Foundation Models</a> accepted by TMLR.'
       - date: 2025.06

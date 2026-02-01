@@ -2,7 +2,7 @@
 layout: default
 title: "Full Publications"
 permalink: /publications/
-years: [2025, 2024]
+years: [2026, 2025, 2024]
 body_class: pubspage
 hide_sidebar: true
 hide_masthead: true
