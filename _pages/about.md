@@ -63,6 +63,8 @@ cards:
     title: Community
     type: list
     list:
+      - date: 2026 - Now
+        text: 'Reviewer, ICML.'
       - date: 2025 - Now
         text: 'Reviewer, ICLR.'
       - date: 2024 - Now
