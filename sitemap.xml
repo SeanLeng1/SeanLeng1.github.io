@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>/</loc>
+<loc>https://jixuanleng.com/</loc>
 </url>
 <url>
-<loc>/publications/</loc>
+<loc>https://jixuanleng.com/publications/</loc>
 </url>
 <url>
-<loc>/images/paper_preview/4644_Reliable_and_Responsible_.pdf</loc>
-<lastmod>2026-02-24T05:17:21+08:00</lastmod>
+<loc>https://jixuanleng.com/images/paper_preview/4644_Reliable_and_Responsible_.pdf</loc>
+<lastmod>2026-03-06T21:46:45-08:00</lastmod>
 </url>
 <url>
-<loc>/images/paper_preview/leng-et-al-2024-development-of-urosam-a-machine-learning-model-to-automatically-identify-kidney-stone-composition-from.pdf</loc>
-<lastmod>2026-02-24T05:17:21+08:00</lastmod>
+<loc>https://jixuanleng.com/images/paper_preview/leng-et-al-2024-development-of-urosam-a-machine-learning-model-to-automatically-identify-kidney-stone-composition-from.pdf</loc>
+<lastmod>2026-03-06T21:46:45-08:00</lastmod>
 </url>
 </urlset>

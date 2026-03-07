@@ -1,5172 +1,947 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en">
   <head>
+    
+    
+    
+    
+    
     <meta charset="utf-8">
-
-<!-- begin SEO -->
-
-
-
-
-
-<title>Jixuan Leng - Homepage</title>
-
-
-
-
-
-
-
-<meta property="og:locale" content="en">
-<meta property="og:site_name" content="Jixuan Leng">
-<meta property="og:title" content="Jixuan Leng">
-
-
-  <link rel="canonical" href="https://github.com/pages/SeanLeng1/SeanLeng1.github.io/">
-  <meta property="og:url" content="https://github.com/pages/SeanLeng1/SeanLeng1.github.io/">
-
-
-
-  <meta property="og:description" content="Master of Science in Machine Learning">
-
-
-
-
-
-
-
-
-
-<!-- end SEO -->
-
-
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<meta http-equiv="cleartype" content="on">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="manifest" href="/images/site.webmanifest">
-
-<meta name="msapplication-TileColor" content="#000000">
-<meta name="msapplication-TileImage" content="images/mstile-144x144.png?v=M44lzPylqQ">
-<meta name="msapplication-config" content="images/browserconfig.xml?v=M44lzPylqQ">
-<meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="/assets/css/academicons.css"/>
-
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
-<!-- end custom head snippets -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Move the overlay to the body
-    const overlay = document.getElementById('wechat-qr-overlay');
-    if (overlay) {
-      document.body.appendChild(overlay);
-    }
-  
-    window.toggleWeChatQR = function() {
-      const overlay = document.getElementById('wechat-qr-overlay');
-      if (overlay.style.display === 'none' || !overlay.style.display) {
-        overlay.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-      } else {
-        overlay.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    };
-  });
-  </script>
-
-<script>
-  function openDeadlinesModal() {
-      const modal = document.getElementById('deadlines-modal');
-      if (modal) {
-          modal.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-      }
-  }
-  
-  function closeDeadlinesModal() {
-      const modal = document.getElementById('deadlines-modal');
-      if (modal) {
-          modal.style.display = 'none';
-          document.body.style.overflow = '';
-      }
-  }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-      // Handle ESC key
-      document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-              closeDeadlinesModal();
-          }
-      });
-  
-      // Handle click outside modal
-      const modal = document.getElementById('deadlines-modal');
-      if (modal) {
-          modal.addEventListener('click', function(e) {
-              if (e.target === modal) {
-                  closeDeadlinesModal();
-              }
-          });
-      }
-  });
-  </script>
-
-  </head>
-
-  <body class="homepage">
-
-    <div id="page-loader" aria-live="polite" aria-label="Page loading">
-      <span class="loader-progress" id="page-loader-progress">0 %</span>
-    </div>
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-    
-
-    <div id="main" role="main">
-      
-    
-      <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-        <meta itemprop="headline" content="">
-        <div class="page__inner-wrap">
-          <section class="page__content" itemprop="text">
-            
-<!-- Mobile-friendly modal container -->
-<style>
-  @keyframes modalFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes modalScaleIn {
-    from { 
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.7);
-    }
-    to { 
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-  
-  #deadlines-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 9999;
-    opacity: 0;
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  .modal-content {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 90%;
-    max-width: 1200px;
-    height: 90vh;
-    transform: translate(-50%, -50%);
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    opacity: 0;
-  }
-  
-  @media (max-width: 768px) {
-    .modal-content {
-      width: 95%;
-      height: 80vh;
-      max-height: 600px;
-    }
-  }
-  
-  .modal-close-button {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    transition: all 0.2s ease;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    line-height: 1;
-  }
-  
-  @media (max-width: 768px) {
-    .modal-close-button {
-      top: -45px;
-      right: 0;
-      background: white;
-    }
-  }
-  
-  .modal-close-button:hover {
-    background-color: #f0f0f0;
-    transform: scale(1.1);
-  }
-  
-  .modal-close-button:active {
-    transform: scale(0.95);
-  }
-  
-  .modal-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 8px;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-</style>
-
-<div id="deadlines-modal">
-  <div class="modal-content">
-    <button onclick="closeDeadlinesModal()" class="modal-close-button" aria-label="Close modal">&times;</button>
-    <iframe src="https://aideadlin.es/?sub=NLP,ML" class="modal-iframe" title="Conference Deadlines"></iframe>
-  </div>
-</div>
-
-<script>
-const deadlinesModal = document.getElementById('deadlines-modal');
-const deadlinesModalContent = deadlinesModal.querySelector('.modal-content');
-let isDeadlinesModalClosing = false;
-
-function openDeadlinesModal() {
-  // Reset all states
-  isDeadlinesModalClosing = false;
-  deadlinesModal.style.display = 'block';
-  document.body.style.overflow = 'hidden';
-  
-  // Force browser reflow
-  void deadlinesModal.offsetWidth;
-  void deadlinesModalContent.offsetWidth;
-  
-  // Apply animations
-  deadlinesModal.style.animation = 'modalFadeIn 0.3s ease-out forwards';
-  deadlinesModalContent.style.animation = 'modalScaleIn 0.3s ease-out forwards';
-}
-
-function closeDeadlinesModal() {
-  if (isDeadlinesModalClosing) return;
-  isDeadlinesModalClosing = true;
-  
-  document.body.style.overflow = '';
-  deadlinesModal.style.animation = 'modalFadeIn 0.3s ease-out reverse';
-  deadlinesModalContent.style.animation = 'modalScaleIn 0.3s ease-out reverse';
-
-  setTimeout(() => {
-    deadlinesModal.style.display = 'none';
-    // Clear animation states
-    deadlinesModal.style.animation = '';
-    deadlinesModalContent.style.animation = '';
-    isDeadlinesModalClosing = false;
-  }, 300);
-}
-
-// Close modal when clicking outside
-deadlinesModal.addEventListener('click', function(event) {
-  if (event.target === this && !isDeadlinesModalClosing) {
-    closeDeadlinesModal();
-  }
-});
-
-// Close modal on ESC key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && deadlinesModal.style.display === 'block' && !isDeadlinesModalClosing) {
-    closeDeadlinesModal();
-  }
-});
-</script>
-
-<link rel="stylesheet" href="/assets/css/contact-form.css" />
-
-<svg style="position:absolute;width:0;height:0;overflow:hidden">
-  <defs>
-    <!-- Noise texture for glass displacement -->
-    <filter id="glass-noise" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="4" result="turbulence">
-        <animate attributeName="baseFrequency" values="0.01;0.02;0.01" dur="8s" repeatCount="indefinite" />
-      </feTurbulence>
-      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="15" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-
-    <!-- Main displacement filter -->
-    <filter id="orb-displacement" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" seed="2">
-        <animate attributeName="baseFrequency" values="0.02;0.04;0.02" dur="12s" repeatCount="indefinite" />
-      </feTurbulence>
-      <feComponentTransfer in="noise" result="normalizedNoise">
-        <feFuncR type="table" tableValues="0 1" />
-        <feFuncG type="table" tableValues="0 1" />
-      </feComponentTransfer>
-      <feDisplacementMap in="SourceGraphic" in2="normalizedNoise" scale="5" xChannelSelector="R" yChannelSelector="G" />
-      <feGaussianBlur stdDeviation="0.5" />
-    </filter>
-
-    <!-- Animated gradient patterns -->
-    <linearGradient id="orb-grad-1">
-      <stop offset="0%" stop-color="#ffc9e5">
-        <animate attributeName="stop-color" values="#ffc9e5;#c9d5ff;#ffe5c9;#ffc9e5" dur="6s" repeatCount="indefinite" />
-      </stop>
-      <stop offset="50%" stop-color="#d5c9ff">
-        <animate attributeName="stop-color" values="#d5c9ff;#ffe5c9;#c9d5ff;#d5c9ff" dur="6s" repeatCount="indefinite" />
-      </stop>
-      <stop offset="100%" stop-color="#c9fff0">
-        <animate attributeName="stop-color" values="#c9fff0;#ffc9e5;#d5c9ff;#c9fff0" dur="6s" repeatCount="indefinite" />
-      </stop>
-    </linearGradient>
-
-    <!-- Glow filter -->
-    <filter id="orb-glow">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-      <feMerge>
-        <feMergeNode in="coloredBlur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-  </defs>
-</svg>
-
-<style>
-  body.homepage {
-    background-color: #f7f8fb;
-  }
-  .home-page {
-    min-height: 100vh;
-    padding: 3rem 1.5rem 0;
-    background-color: #f7f8fb;
-    background-image:
-      radial-gradient(circle at 20% -10%, rgba(253, 253, 253, 0.95), rgba(241, 241, 243, 0.9) 45%, rgba(226, 229, 234, 0.85) 100%),
-      radial-gradient(circle, rgba(99, 102, 241, 0.3) 1.5px, transparent 1.5px),
-      radial-gradient(circle, rgba(139, 92, 246, 0.25) 1.5px, transparent 1.5px);
-    background-size: 100% 100%, 24px 24px, 40px 40px;
-    background-position: 0 0, 0 0, 12px 12px;
-  }
-  .home-shell {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 28px;
-    padding: 3rem 2.5rem;
-    box-shadow: 0 25px 45px rgba(15, 15, 40, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    max-width: 1260px;
-    margin: 0 auto;
-  }
-  .home-grid {
-    gap: 1.5rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 2rem;
-  }
-  @media (max-width: 1080px) {
-    .home-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .home-card--wide {
-      grid-column: span 2;
-    }
-  }
-  @media (max-width: 900px) {
-    .home-page {
-      padding: 2rem 1rem 0 !important;
-    }
-    .home-shell {
-      padding: 2rem 1.5rem !important;
-    }
-    .home-grid {
-      display: grid !important;
-      grid-template-columns: 1fr !important;
-      grid-template-areas: none !important;
-      gap: 1rem !important;
-    }
-    .home-card,
-    .home-card--wide {
-      grid-column: 1 / -1 !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      min-width: 0 !important;
-    }
-  }
-  @media (max-width: 600px) {
-    .home-page {
-      padding: 1.5rem 0.75rem 0 !important;
-    }
-    .home-shell {
-      padding: 1.5rem 1rem !important;
-      border-radius: 20px;
-    }
-    .home-grid {
-      gap: 0.8rem !important;
-    }
-    .glass-btn {
-      font-size: 0.85rem;
-      padding: 0.55rem 1rem;
-    }
-    .glass-btn span {
-      font-size: 0.85rem;
-    }
-  }
-  .home-card {
-    position: relative;
-    overflow: hidden;
-    border: none;
-    padding: 0;
-    background: linear-gradient(180deg, #ffffff 0%, #f7f5ff 60%, #f2f2ff 100%);
-    border-radius: 20px;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-    box-shadow: 0 18px 35px rgba(15, 15, 40, 0.07);
-  }
-  .home-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.5), transparent 60%);
-    pointer-events: none;
-    opacity: 0.85;
-  }
-  .home-card--wide {
-    grid-column: span 3;
-  }
-  .home-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(10, 10, 30, 0.12);
-  }
-  .home-card__header {
-    position: relative;
-    z-index: 1;
-    padding: 1.5rem;
-  }
-  .home-card__header h3 {
-    margin-bottom: 0.4rem;
-    font-size: 1.4rem;
-  }
-  .home-card__header a.home-chip {
-    margin-top: 0.35rem;
-  }
-  .home-list {
-    position: relative;
-    z-index: 1;
-    list-style: none;
-    margin: 0;
-    padding: 0 1.5rem 1.5rem;
-  }
-  .home-list li {
-    padding-bottom: 0.6rem;
-    border-bottom: 1px dashed rgba(15, 15, 40, 0.08);
-    margin-bottom: 0.6rem;
-  }
-  .home-list li:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-  }
-  .home-list__date {
-    font-weight: 600;
-    color: rgba(15, 15, 40, 0.7);
-    margin-right: 0.35rem;
-  }
-  .home-pubs-list h3 {
-    margin: 1.4rem 0 0.35rem 1.5rem;
-    font-size: 1.4rem;
-    letter-spacing: 0.04em;
-    color: #343b52;
-    font-weight: 600;
-  }
-  .home-hero__social {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 1.6rem;
-  }
-  @keyframes liquidPulse {
-    0% {
-      transform: translateY(0) scale(1);
-      box-shadow: 0 18px 30px rgba(15, 15, 40, 0.12);
-    }
-    50% {
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 25px 45px rgba(15, 15, 40, 0.2);
-    }
-    100% {
-      transform: translateY(0) scale(1);
-      box-shadow: 0 18px 30px rgba(15, 15, 40, 0.12);
-    }
-  }
-  .home-hero__social {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    padding: 0.5rem 0;
-    margin-top: 1rem;
-  }
-
-  /* Glass Button */
-  .glass-btn {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.65rem 1.2rem;
-    border-radius: 20px;
-    cursor: pointer;
-    text-decoration: none;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    border: none;
-    background: transparent;
-  }
-
-  .glass-btn span {
-    position: relative;
-    z-index: 10;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #0f0f28;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-    pointer-events: none;
-  }
-
-  .glass-btn:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-  }
-
-  .glass-btn:active {
-    transform: translateY(-1px) scale(1.01);
-  }
-  .home-contact {
-    margin-top: 2rem;
-    border-radius: 20px;
-    padding: 2rem;
-    background: radial-gradient(circle at top right, rgba(194, 12, 12, 0.12), transparent 55%);
-    border: 1px solid rgba(194, 12, 12, 0.2);
-    box-shadow: 0 20px 40px rgba(15, 15, 40, 0.08);
-  }
-  .home-contact__header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .home-contact__header h3 {
-    margin: 0;
-  }
-  .home-contact__text {
-    margin-bottom: 1.5rem;
-  }
-</style>
-
-<div class="home-page">
-  <div class="home-shell">
-    <section class="home-hero">
-      <div class="home-hero__text">
-        <p class="home-hero__eyebrow">Jixuan Leng - MSML @ Carnegie Mellon University</p>
-        <h1>Jixuan Leng</h1>
-        <p class="home-hero__lede">
-          I am a second-year MSML student at Carnegie Mellon University advised by <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>. I completed my B.S. in Computer Science at University of Rochester with <a href="https://www.cs.rochester.edu/u/jluo/#Prospective" target="_blank" rel="noopener">Prof. Jiebo Luo</a> and collaborated with <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a> (UIUC DREAM Lab) and <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a> (WashU).
-        </p>
-        <p class="home-hero__lede">
-          My research interests focus on efficient training and inference, and model alignment for both LLMs and VLMs. I am currently a Student Researcher at Google Research advised by <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>.
-        </p>
-        <div class="home-hero__cta">
-          <a class="home-cta-link" href="mailto:jixuanl at cs.cmu.edu">Email: jixuanl at cs.cmu.edu</a>
-        </div>
-        <div class="home-hero__social">
-          <a class="glass-btn" href="https://scholar.google.com/citations?user=1lrOMKYAAAAJ" target="_blank" rel="noopener"><span>Google Scholar</span></a>
-          <a class="glass-btn" href="https://dblp.org/pid/261/6970.html" target="_blank" rel="noopener"><span>DBLP</span></a>
-          <a class="glass-btn" href="https://github.com/SeanLeng1" target="_blank" rel="noopener"><span>GitHub</span></a>
-          <a class="glass-btn" href="https://twitter.com/JixuanLeng" target="_blank" rel="noopener"><span>X (Twitter)</span></a>
-          <a class="glass-btn" href="javascript:void(0)" data-wechat-trigger=""><span>WeChat</span></a>
-          <a class="glass-btn" href="/publications/"><span>Full Publication list</span></a>
-        </div>
-      </div>
-      <div class="home-hero__card">
-        <div class="home-hero__avatar">
-          <img src="/images/dog.png" alt="Jixuan Leng" />
-        </div>
-        <div class="home-hero__meta">
-          <div class="home-hero__name">Jixuan Leng</div>
-          <div class="home-hero__role">Carnegie Mellon University - Pittsburgh, USA</div>
-          <div class="home-hero__chips">
-            <span class="chip">LLMs</span>
-            <span class="chip">VLMs</span>
-            <span class="chip">Efficiency</span>
-            <span class="chip">Reasoning</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-grid">
-      
-        <article class="home-card home-card--wide" id="news">
-          <div class="home-card__header">
-            <p class="home-card__eyebrow">News</p>
-            <h3>Recent highlights</h3>
-            
-          </div>
-          
-            <ul class="home-list">
-              
-                <li>
-                  <span class="home-list__date">2026.02</span>
-                  <span class="home-list__text"><a href="https://arxiv.org/pdf/2503.00031" target="_blank" rel="noopener">Self-Calibration</a> accepted by ICLR 2026.</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2025.09</span>
-                  <span class="home-list__text">Survey paper on <a href="https://openreview.net/pdf?id=nLJZh4M6S5" target="_blank" rel="noopener">Reliable and Responsible Foundation Models</a> accepted by TMLR.</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2025.06</span>
-                  <span class="home-list__text"><a href="https://arxiv.org/abs/2504.00043" target="_blank" rel="noopener">CrossWordBench</a> accepted by COLM 2025.</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2025.06</span>
-                  <span class="home-list__text">New preprints on <a href="https://arxiv.org/abs/2505.24217" target="_blank" rel="noopener">semi-structured LLM auditing</a> and <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">speculative decoding</a>.</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2025.05</span>
-                  <span class="home-list__text">Joining Google Research as a Student Researcher for summer 2025.</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2025.02</span>
-                  <span class="home-list__text"><a href="https://arxiv.org/abs/2410.09724" target="_blank" rel="noopener">Taming Overconfidence in LLMs</a> accepted by ICLR 2025 (poster).</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2024.09</span>
-                  <span class="home-list__text"><a href="https://openreview.net/forum?id=lEUle8S4xQ" target="_blank" rel="noopener">S<sup>2</sup>FT</a> accepted by NeurIPS 2024 (poster).</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2024.08</span>
-                  <span class="home-list__text">Started M.S. in Machine Learning at Carnegie Mellon University.</span>
-                </li>
-              
-            </ul>
-          
-        </article>
-      
-        <article class="home-card" id="education">
-          <div class="home-card__header">
-            <p class="home-card__eyebrow">Education</p>
-            <h3>Academic path</h3>
-            
-          </div>
-          
-            <ul class="home-list">
-              
-                <li>
-                  <span class="home-list__date">2024 - Now</span>
-                  <span class="home-list__text">M.S. in Machine Learning, Carnegie Mellon University, USA.</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2020 - 2024</span>
-                  <span class="home-list__text">B.S. in Computer Science, University of Rochester, USA.</span>
-                </li>
-              
-            </ul>
-          
-        </article>
-      
-        <article class="home-card" id="research">
-          <div class="home-card__header">
-            <p class="home-card__eyebrow">Research</p>
-            <h3>Experience</h3>
-            
-          </div>
-          
-            <ul class="home-list">
-              
-                <li>
-                  <span class="home-list__date">2025.06 - Now</span>
-                  <span class="home-list__text">Student Researcher, Google Research (advisor: <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>).</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2025.01 - 2025.05</span>
-                  <span class="home-list__text">Independent Study, Carnegie Mellon University (advisor: <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>).</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2024.06 - Now</span>
-                  <span class="home-list__text">Visiting Researcher, Washington University in St. Louis (advisor: <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a>).</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2023.12 - 2024.05</span>
-                  <span class="home-list__text">Honor Independent Study, VIStA Lab, University of Rochester (advisors: <a href="https://www.cs.rochester.edu/u/jluo/" target="_blank" rel="noopener">Prof. Jiebo Luo</a> and <a href="https://www.urmc.rochester.edu/people/112361798-rajat-k-jain" target="_blank" rel="noopener">Dr. Rajat K. Jain</a>).</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2022.12 - 2024.05</span>
-                  <span class="home-list__text">Research Intern, DREAM Lab (advisor: <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>).</span>
-                </li>
-              
-            </ul>
-          
-        </article>
-      
-        <article class="home-card" id="service">
-          <div class="home-card__header">
-            <p class="home-card__eyebrow">Service</p>
-            <h3>Community</h3>
-            
-          </div>
-          
-            <ul class="home-list">
-              
-                <li>
-                  <span class="home-list__date">2026 - Now</span>
-                  <span class="home-list__text">Reviewer, ICML.</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2025 - Now</span>
-                  <span class="home-list__text">Reviewer, ICLR.</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2024 - Now</span>
-                  <span class="home-list__text">Reviewer, TMLR.</span>
-                </li>
-              
-                <li>
-                  <span class="home-list__date">2022 - 2023</span>
-                  <span class="home-list__text">Teaching Assistant, CSC261/461: Database System, University of Rochester.</span>
-                </li>
-              
-            </ul>
-          
-        </article>
-      
-
-      <article class="home-card home-card--wide">
-        <div class="home-card__header">
-          <div>
-            <p class="home-card__eyebrow">Papers</p>
-            <h3>Selected publications</h3>
-          </div>
-          <a class="home-chip" href="/publications/">View all</a>
-        </div>
-        <div class="home-pubs-list">
-          
-            <h3 style="margin-bottom: 0.2em; margin-top: 0.8em;">2026</h3>
-            <ol class="bibliography"><li><div class="publication-container" style="max-width: 100%; display: block;">
-  
-    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
-      <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">Efficient Test-Time Scaling via Self-Calibration</div>
-
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
-          
-          
-          
-          
-          
-          
-
-          
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Chengsong Huang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Langlin Huang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        <em><b>Jixuan Leng</b></em>
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Jiacheng Liu
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Jiaxin Huang
-        
-      
-      
-      
-    
-  
-
-
-          
-        </div>
-
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
-          
-            <em><b>International Conference on Learning Representations (ICLR)
-            
-              2026
-            </b></em>
-          
-
-          | [
-          <a href="https://arxiv.org/abs/2503.00031">arXiv</a>
-          
-          
-          
-          
-          <a href="https://github.com/Chengsong-Huang/Self-Calibration">Code</a>
-          
-          
-          
-          
-          
-          
-          
-          
-          <a href="#" class="preview-button" data-preview="/images/preview/efficient-confidence-test-time-scaling.png">Preview</a>
-          
-          ]
-        </div>
-        
-
-        
-
-        
-
-      </div>
-    </div>
-  
-</div>
-
-
-</li></ol>
-          
-            <h3 style="margin-bottom: 0.2em; margin-top: 0.8em;">2025</h3>
-            <ol class="bibliography"><li><div class="publication-container" style="max-width: 100%; display: block;">
-  
-    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
-      <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">Reliable and Responsible Foundation Models</div>
-
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
-          
-          
-          
-          
-          
-          
-
-          
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Xinyu Yang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Junlin Han
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Rishi Bommasani
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Jinqi Luo
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Wenjie Qu
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Wangchunshu Zhou
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Adel Bibi
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Xiyao Wang
-        
-      
-      
-      
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-
-          
-            
-            <details style="display:inline;">
-              <summary style="display:inline; cursor:pointer;">&nbsp;+ 44 more</summary>
-              <span>
-                
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                    
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Jaehong Yoon
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Elias Stengel-Eskin
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Shengbang Tong
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Lingfeng Shen
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Rafael Rafailov
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Runjia Li
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Zhaoyang Wang
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Yiyang Zhou
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Chenhang Cui
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Yu Wang
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Wenhao Zheng
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Huichi Zhou
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Jindong Gu
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Zhaorun Chen
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Peng Xia
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Tony Lee
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Thomas P Zollo
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Vikash Sehwag
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        <em><b>Jixuan Leng</b></em>
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Jiuhai Chen
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Yuxin Wen
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Huan Zhang
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Zhun Deng
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Linjun Zhang
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Pavel Izmailov
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Pang Wei Koh
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Yulia Tsvetkov
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Andrew Gordon Wilson
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Jiaheng Zhang
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        James Zou
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Cihang Xie
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Hao Wang
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Philip Torr
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Julian McAuley
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        David Alvarez-Melis
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Florian Tramèr
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Kaidi Xu
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Suman Jana
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Chris Callison-Burch
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Rene Vidal
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Filippos Kokkinos
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Mohit Bansal
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Beidi Chen
-                      
-                    
-                    
-                  
-                
-                  
-                    , 
-                    
-                    
-                    
-                    
-
-                    
-                      
-                        Huaxiu Yao
-                      
-                    
-                    
-                  
-                
-              </span>
-            </details>
-            <span class="author-badge" style="font-size: 0.85em; opacity: 0.8;">(full list hidden)</span>
-          
-        </div>
-
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
-          
-            <em><b>Transactions on Machine Learning Research (TMLR)
-            
-              2025
-            </b></em>
-          
-
-          | [
-          <a href="/images/paper_preview/4644_Reliable_and_Responsible_.pdf">arXiv</a>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          <a href="https://openreview.net/forum?id=nLJZh4M6S5">OpenReview</a>
-          
-          
-          
-          <a href="#" class="preview-button" data-preview="/images/preview/reliable_survey.png">Preview</a>
-          
-          ]
-        </div>
-        
-
-        
-
-        
-
-      </div>
-    </div>
-  
-</div>
-
-
-</li>
-<li><div class="publication-container" style="max-width: 100%; display: block;">
-  
-    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
-      <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">POSS: Position Specialist Generates Better Draft for Speculative Decoding</div>
-
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
-          
-          
-          
-          
-          
-          
-
-          
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Langlin Huang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Chengsong Huang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        <em><b>Jixuan Leng</b></em>
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Di Huang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Jiaxin Huang
-        
-      
-      
-      
-    
-  
-
-
-          
-        </div>
-
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
-          
-            <em><b>Preprint
-            
-              2025
-            </b></em>
-          
-
-          | [
-          <a href="https://arxiv.org/abs/2506.03566">arXiv</a>
-          
-          
-          
-          
-          <a href="https://github.com/shrango/PosS">Code</a>
-          
-          
-          
-          
-          
-          
-          
-          
-          <a href="#" class="preview-button" data-preview="/images/preview/poss.png">Preview</a>
-          
-          ]
-        </div>
-        
-
-        
-
-        
-
-      </div>
-    </div>
-  
-</div>
-
-
-</li>
-<li><div class="publication-container" style="max-width: 100%; display: block;">
-  
-    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
-      <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">Semi-structured LLM Reasoners Can Be Rigorously Audited</div>
-
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
-          
-          
-          
-          
-          
-          
-
-          
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        <em><b>Jixuan Leng</b></em>
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Cassandra A. Cohen
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Zhixian Zhang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Chenyan Xiong
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          William W. Cohen
-        
-      
-      
-      
-    
-  
-
-
-          
-        </div>
-
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
-          
-            <em><b>Preprint
-            
-              2025
-            </b></em>
-          
-
-          | [
-          <a href="https://arxiv.org/abs/2505.24217">arXiv</a>
-          
-          
-          
-          
-          <a href="https://github.com/wwcohen/doctest-prompting">Code</a>
-          
-          
-          
-          
-          
-          
-          
-          
-          <a href="#" class="preview-button" data-preview="/images/preview/SSRM.png">Preview</a>
-          
-          ]
-        </div>
-        
-
-        
-
-        
-
-      </div>
-    </div>
-  
-</div>
-
-
-</li>
-<li><div class="publication-container" style="max-width: 100%; display: block;">
-  
-    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
-      <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">CrossWordBench: Evaluating the Reasoning Capabilities of LLMs and LVLMs with Controllable Puzzle Generation</div>
-
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
-          
-          
-          
-          
-          
-          
-
-          
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        <em><b>Jixuan Leng</b></em>
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Chengsong Huang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Langlin Huang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Bill Yuchen Lin
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          William W. Cohen
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Haohan Wang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Jiaxin Huang
-        
-      
-      
-      
-    
-  
-
-
-          
-        </div>
-
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
-          
-            <em><b>Second Conference on Language Modeling (COLM)
-            
-              2025
-            </b></em>
-          
-
-          | [
-          <a href="https://arxiv.org/abs/2504.00043">arXiv</a>
-          
-          
-          
-          
-          <a href="https://github.com/SeanLeng1/CrossWordBench">Code</a>
-          <a href="https://huggingface.co/datasets/HINT-lab/CrossWordBench">Dataset</a>
-          
-          
-          
-          
-          
-          
-          
-          <a href="#" class="preview-button" data-preview="/images/preview/crosswordbench-data-pipeline.png">Preview</a>
-          
-          ]
-        </div>
-        
-
-        
-
-        
-
-      </div>
-    </div>
-  
-</div>
-
-
-</li>
-<li><div class="publication-container" style="max-width: 100%; display: block;">
-  
-    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
-      <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">Taming Overconfidence in LLMs: Reward Calibration in RLHF</div>
-
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
-          
-          
-          
-          
-          
-          
-
-          
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        <em><b>Jixuan Leng</b></em>
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Chengsong Huang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Banghua Zhu
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Jiaxin Huang
-        
-      
-      
-      
-    
-  
-
-
-          
-        </div>
-
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
-          
-            <em><b>International Conference on Learning Representations (ICLR)
-            
-              2025
-            </b></em>
-          
-
-          | [
-          <a href="https://arxiv.org/abs/2410.09724">arXiv</a>
-          
-          
-          
-          
-          <a href="https://github.com/SeanLeng1/Reward-Calibration">Code</a>
-          
-          
-          
-          
-          <a href="https://openreview.net/forum?id=l0tg0jzsdL">OpenReview</a>
-          
-          
-          
-          <a href="#" class="preview-button" data-preview="/images/preview/iclr25-poster.png">Preview</a>
-          
-          ]
-        </div>
-        
-
-        
-
-        
-
-      </div>
-    </div>
-  
-</div>
-
-
-</li></ol>
-          
-            <h3 style="margin-bottom: 0.2em; margin-top: 0.8em;">2024</h3>
-            <ol class="bibliography"><li><div class="publication-container" style="max-width: 100%; display: block;">
-  
-    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
-      <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">S²FT: Efficient, Scalable and Generalizable LLM Fine-tuning by Structured Sparsity</div>
-
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
-          
-          
-          
-          
-          
-          
-
-          
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Xinyu Yang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        <em><b>Jixuan Leng</b></em>
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Geyang Guo
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Jiawei Zhao
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Ryumei Nakada
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Linjun Zhang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Huaxiu Yao
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Beidi Chen
-        
-      
-      
-      
-    
-  
-
-
-          
-        </div>
-
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
-          
-            <em><b>Conference on Neural Information Processing Systems (NeurIPS)
-            
-              2024
-            </b></em>
-          
-
-          | [
-          <a href="https://arxiv.org/abs/2412.06289">arXiv</a>
-          
-          
-          
-          
-          <a href="https://infini-ai-lab.github.io/S2FT-Page/">Code</a>
-          
-          
-          
-          
-          <a href="https://openreview.net/forum?id=lEUle8S4xQ">OpenReview</a>
-          
-          
-          
-          <a href="#" class="preview-button" data-preview="/images/preview/poster_s2ft-1.png">Preview</a>
-          
-          ]
-        </div>
-        
-
-        
-
-        
-
-      </div>
-    </div>
-  
-</div>
-
-
-</li>
-<li><div class="publication-container" style="max-width: 100%; display: block;">
-  
-    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
-      <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">Development of UroSAM: A Machine Learning Model to Automatically Identify Kidney Stone Composition from Endoscopic Video</div>
-
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
-          
-          
-          
-          
-          
-          
-
-          
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        <em><b>Jixuan Leng</b></em>
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Junfei Liu
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Galen Cheng
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Haohan Wang
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Scott Quarrier
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Jiebo Luo
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Rajat Jain
-        
-      
-      
-      
-    
-  
-
-
-          
-        </div>
-
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
-          
-            <em><b>Journal of Endourology
-            
-              2024
-            </b></em>
-          
-
-          | [
-          <a href="/images/paper_preview/leng-et-al-2024-development-of-urosam-a-machine-learning-model-to-automatically-identify-kidney-stone-composition-from.pdf">arXiv</a>
-          
-          
-          
-          
-          
-          
-          
-          
-          <a href="https://doi.org/10.1089/end.2023.0740">Website</a>
-          
-          
-          
-          
-          ]
-        </div>
-        
-
-        
-        <div class="abstract hidden"><p>Introduction: Chemical composition analysis is important in prevention counseling for kidney stone disease. Advances in laser technology have made dusting techniques more prevalent, but this offers no consistent way to collect enough material to send for chemical analysis, leading many to forgo this test. We developed a novel machine learning (ML) model to effectively assess stone composition based on intraoperative endoscopic video data. Methods: Two endourologists performed ureteroscopy for kidney stones ≥ 10 mm. Representative videos were recorded intraoperatively. Individual frames were extracted from the videos, and the stone was outlined by human tracing. An ML model, UroSAM, was built and trained to automatically identify kidney stones in the images and predict the majority stone composition as follows: calcium oxalate monohydrate (COM), dihydrate (COD), calcium phosphate (CAP), or uric acid (UA). UroSAM was built on top of the publicly available Segment Anything Model (SAM) and incorporated a U-Net convolutional neural network (CNN). Discussion: A total of 78 ureteroscopy videos were collected; 50 were used for the model after exclusions (32 COM, 8 COD, 8 CAP, 2 UA). The ML model segmented the images with 94.77% precision. Dice coefficient (0.9135) and Intersection over Union (0.8496) confirmed good segmentation performance of the ML model. A video-wise evaluation demonstrated 60% correct classification of stone composition. Subgroup analysis showed correct classification in 84.4% of COM videos. A post hoc adaptive threshold technique was used to mitigate biasing of the model toward COM because of data imbalance; this improved the overall correct classification to 62% while improving the classification of COD, CAP, and UA videos. Conclusions: This study demonstrates the effective development of UroSAM, an ML model that precisely identifies kidney stones from natural endoscopic video data. More high-quality video data will improve the performance of the model in classifying the majority stone composition.</p></div>
-        
-
-        
-
-      </div>
-    </div>
-  
-</div>
-
-
-</li>
-<li><div class="publication-container" style="max-width: 100%; display: block;">
-  
-    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
-      <div class="paper-box-text" style="width: 100%; display: block;">
-        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">Choosing Wisely and Learning Deeply: Selective Cross-Modality Distillation via CLIP for Domain Generalization</div>
-
-        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
-          
-          
-          
-          
-          
-          
-
-          
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        <em><b>Jixuan Leng</b></em>
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Yijiang Li
-        
-      
-      
-      ,
-    
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  
-    
-      
-        
-          Haohan Wang
-        
-      
-      
-      
-    
-  
-
-
-          
-        </div>
-
-        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
-          
-            <em><b>Transactions on Machine Learning Research (TMLR)
-            
-              2024
-            </b></em>
-          
-
-          | [
-          <a href="https://arxiv.org/abs/2311.15145">arXiv</a>
-          
-          
-          
-          
-          <a href="https://github.com/SeanLeng1/SCMD">Code</a>
-          
-          
-          
-          
-          <a href="https://openreview.net/forum?id=4KLwep6mA1">OpenReview</a>
-          
-          
-          
-          ]
-        </div>
-        
-
-        
-
-        
-
-      </div>
-    </div>
-  
-</div>
-
-
-</li></ol>
-          
-        </div>
-      </article>
-
-    </section>
-
-    <section class="home-contact">
-      <div class="home-contact__header">
-        <p class="home-card__eyebrow">Get in touch</p>
-        <h3>Let's collaborate</h3>
-      </div>
-      <p class="home-contact__text">Feel free to reach out if you would like to chat about research or collaboration.</p>
-      <!-- Contact Button -->
-<div style="text-align: center; margin: 40px 0;">
-  <button type="button" class="contact-button" data-contact="open">Get in Touch</button>
-</div>
-
-    </section>
-  </div>
-</div>
-
-<script src="/assets/js/contact-form.js"></script>
-
-<script>
-  // Global function to initialize glass buttons
-  window.initGlassButtons = function() {
-    const colors = [
-      ['#ffc9e5', '#d5c9ff', '#c9fff0'],
-      ['#c9d5ff', '#ffe5c9', '#ffc9e5'],
-      ['#ffe5c9', '#c9fff0', '#d5c9ff'],
-      ['#c9fff0', '#ffc9e5', '#ffe5c9'],
-      ['#d5c9ff', '#c9fff0', '#ffc9e5'],
-      ['#ffc9e5', '#ffe5c9', '#c9d5ff']
-    ];
-
-    document.querySelectorAll('.glass-btn').forEach((btn, index) => {
-      // Remove existing SVG if any
-      const existingSvg = btn.querySelector('svg');
-      if (existingSvg) {
-        existingSvg.remove();
-      }
-
-      const colorSet = colors[index % colors.length];
-      const svg = createGlassBtnSVG(colorSet, index);
-      btn.insertBefore(svg, btn.firstChild);
-    });
-  };
-
-  function createGlassBtnSVG(colors, seed) {
-      const svgNS = 'http://www.w3.org/2000/svg';
-      const svg = document.createElementNS(svgNS, 'svg');
-      svg.style.position = 'absolute';
-      svg.style.inset = '-1px';
-      svg.style.width = 'calc(100% + 2px)';
-      svg.style.height = 'calc(100% + 2px)';
-      svg.style.pointerEvents = 'none';
-      svg.setAttribute('viewBox', '0 0 100 100');
-      svg.setAttribute('preserveAspectRatio', 'none');
-
-      const gradId = `btn-grad-${seed}`;
-      const defs = document.createElementNS(svgNS, 'defs');
-
-      // Animated gradient
-      const grad = document.createElementNS(svgNS, 'linearGradient');
-      grad.setAttribute('id', gradId);
-      grad.setAttribute('x1', '0%');
-      grad.setAttribute('y1', '0%');
-      grad.setAttribute('x2', '100%');
-      grad.setAttribute('y2', '100%');
-
-      colors.forEach((color, i) => {
-        const stop = document.createElementNS(svgNS, 'stop');
-        stop.setAttribute('offset', `${(i / (colors.length - 1)) * 100}%`);
-        stop.setAttribute('stop-color', color);
-        stop.setAttribute('stop-opacity', '0.6');
-
-        const anim = document.createElementNS(svgNS, 'animate');
-        anim.setAttribute('attributeName', 'stop-color');
-        anim.setAttribute('values', colors.join(';') + ';' + colors[0]);
-        anim.setAttribute('dur', `${5 + seed * 0.5}s`);
-        anim.setAttribute('repeatCount', 'indefinite');
-
-        stop.appendChild(anim);
-        grad.appendChild(stop);
-      });
-
-      // Rotate animation
-      const gradTransform = document.createElementNS(svgNS, 'animateTransform');
-      gradTransform.setAttribute('attributeName', 'gradientTransform');
-      gradTransform.setAttribute('type', 'rotate');
-      gradTransform.setAttribute('from', '0 0.5 0.5');
-      gradTransform.setAttribute('to', '360 0.5 0.5');
-      gradTransform.setAttribute('dur', '10s');
-      gradTransform.setAttribute('repeatCount', 'indefinite');
-      grad.appendChild(gradTransform);
-
-      defs.appendChild(grad);
-      svg.appendChild(defs);
-
-      // Background rect
-      const rect = document.createElementNS(svgNS, 'rect');
-      rect.setAttribute('x', '0');
-      rect.setAttribute('y', '0');
-      rect.setAttribute('width', '100');
-      rect.setAttribute('height', '100');
-      rect.setAttribute('fill', `url(#${gradId})`);
-      rect.setAttribute('rx', '20');
-      rect.style.filter = 'url(#orb-displacement)';
-      svg.appendChild(rect);
-
-      // Top highlight
-      const highlight = document.createElementNS(svgNS, 'ellipse');
-      highlight.setAttribute('cx', '50%');
-      highlight.setAttribute('cy', '30%');
-      highlight.setAttribute('rx', '40%');
-      highlight.setAttribute('ry', '25%');
-      highlight.setAttribute('fill', 'white');
-      highlight.setAttribute('opacity', '0.4');
-      highlight.style.filter = 'blur(8px)';
-      svg.appendChild(highlight);
-
-      return svg;
-  }
-
-  // Global initialization function for homepage elements
-  window.initHomePageElements = function() {
-    console.log('🏠 Initializing homepage elements...');
-
-    // Initialize WeChat trigger
-    var trigger = document.querySelector('[data-wechat-trigger]');
-    if (trigger && typeof handleWeChatClick === 'function') {
-      console.log('   ✓ Binding WeChat trigger');
-      // Remove any existing listener to avoid duplicates
-      trigger.replaceWith(trigger.cloneNode(true));
-      trigger = document.querySelector('[data-wechat-trigger]');
-      trigger.addEventListener('click', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        handleWeChatClick(event);
-      });
-    }
-
-    // Initialize glass buttons
-    var buttons = document.querySelectorAll('.glass-btn');
-    if (buttons.length > 0) {
-      console.log('   ✓ Initializing glass buttons');
-      initGlassButtons();
-    }
-
-    console.log('✅ Homepage elements initialized');
-  };
-
-  // Initialize on first page load
-  window.addEventListener('load', function() {
-    initHomePageElements();
-  });
-
-  // Also try on DOMContentLoaded as fallback for first load
-  document.addEventListener('DOMContentLoaded', function() {
-    if (document.querySelector('.glass-btn') && !document.querySelector('.glass-btn svg')) {
-      console.log('Initializing from DOMContentLoaded (first load)');
-      initHomePageElements();
-    }
-  });
-
-  // Make all publication links open in new tab (except preview buttons)
-  function makePublicationLinksExternal() {
-    var pubsSection = document.querySelector('.home-pubs-list');
-    if (pubsSection) {
-      var links = pubsSection.querySelectorAll('a:not(.preview-button)');
-      links.forEach(function(link) {
-        // Skip if it's a relative link (internal navigation)
-        if (!link.href.startsWith('http://') && !link.href.startsWith('https://') && !link.href.startsWith('#')) {
-          return;
-        }
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-      });
-      console.log('✓ Made', links.length, 'publication links open in new tab');
-    }
-  }
-
-  // Run on load
-  window.addEventListener('load', makePublicationLinksExternal);
-
-  // Also run after SPA navigation
-  window.addEventListener('spa:navigate', function() {
-    setTimeout(makePublicationLinksExternal, 100);
-  });
-</script>
-
-
-          </section>
-        </div>
-      </article>
-    </div>
-
-    <!-- Music Player (outside of SPA content area) -->
-    <!-- NetEase Music Player Component -->
-
-<!-- Preconnect to CDNs -->
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
-<!-- Defer CSS loading until needed -->
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css"></noscript>
-
-<style>
-  /* Floating Music Player */
-  #music-floating {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
-                0 0 0 1px rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    will-change: width, height, border-radius, opacity, transform;
-    opacity: 0.95;
-    z-index: 100;
-    touch-action: none;
-    overflow: hidden;
-  }
-
-  #music-floating:hover {
-    opacity: 1;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2),
-                0 0 0 1px rgba(0, 0, 0, 0.08);
-    transform: scale(1.05);
-  }
-
-  #music-floating.dragging {
-    transition: none;
-    opacity: 1;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  }
-
-  #music-floating .content {
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    overflow: hidden;
-    position: relative;
-  }
-
-  #music-floating.expand-left .content {
-    transform-origin: right center;
-  }
-
-  #music-floating.expand-right .content {
-    transform-origin: left center;
-  }
-
-  #music-floating.expanded {
-    width: min(540px, 92vw);
-    height: 360px;
-    border-radius: 20px;
-    opacity: 1;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(0, 0, 0, 0.1);
-  }
-
-  #music-floating.expanded:hover {
-    transform: none;
-  }
-
-  /* APlayer Container Styling */
-  #music-player {
-    display: none;
-    width: 100%;
-    height: 100%;
-    padding: 16px;
-    box-sizing: border-box;
-    background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
-  }
-
-  #music-floating.expanded #music-player {
-    display: block;
-  }
-
-  #music-floating.expanded #music-icon {
-    display: none;
-  }
-
-  /* Icon Styling */
-  #music-icon {
-    text-align: center;
-    font-size: 14px;
-    color: #333;
-    line-height: 60px;
-    height: 100%;
-    width: 100%;
-    position: relative;
-  }
-
-  #music-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-  }
-
-  #music-floating:hover #music-icon img {
-    transform: rotate(5deg) scale(1.1);
-  }
-
-  /* Now Playing Ticker */
-  #music-nowplaying {
-    display: none;
-    position: absolute;
-    bottom: -22px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px;
-    color: #666;
-    white-space: nowrap;
-    max-width: 260px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 4px 12px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  #music-nowplaying span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: ticker 15s linear infinite;
-  }
-
-  @keyframes ticker {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-  }
-
-  /* Loading Animation - Rotate the icon */
-  #music-floating.loading #music-icon img {
-    animation: spin-icon 5s linear infinite;
-  }
-
-  @keyframes spin-icon {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  /* APlayer Custom Styling */
-  .aplayer {
-    box-shadow: none !important;
-    margin: 0 !important;
-    height: 100% !important;
-    background: transparent !important;
-    border-radius: 12px !important;
-  }
-
-  .aplayer .aplayer-body {
-    background: transparent !important;
-  }
-
-  .aplayer .aplayer-list {
-    background: rgba(255, 255, 255, 0.5) !important;
-    border-radius: 8px !important;
-    margin-top: 8px !important;
-  }
-
-  .aplayer .aplayer-list ol li {
-    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
-  }
-
-  .aplayer .aplayer-list ol li:hover {
-    background: rgba(194, 12, 12, 0.05) !important;
-  }
-
-  .aplayer .aplayer-list ol li.aplayer-list-light {
-    background: rgba(194, 12, 12, 0.1) !important;
-  }
-
-  /* Mobile Responsive */
-  @media only screen and (max-width: 768px) {
-    #music-floating.expanded {
-      width: 92vw;
-      height: 340px;
-      position: fixed;
-    }
-
-    #music-player {
-      padding: 12px;
-    }
-
-    #music-nowplaying {
-      max-width: 200px;
-      font-size: 10px;
-    }
-  }
-</style>
-
-<!-- Floating Music Player -->
-<div id="music-floating-container"></div>
-
-<script>
-  (function() {
-    // Prevent multiple initializations (important for SPA)
-    if (window.musicPlayerInitialized) {
-      console.log('Music player already initialized, skipping...');
-      return;
-    }
-    window.musicPlayerInitialized = true;
-
-    // Create the player HTML dynamically (only once)
-    const container = document.getElementById('music-floating-container');
-    if (!container) {
-      console.error('Music player container not found');
-      return;
-    }
-
-    container.innerHTML = `
-      <div id="music-floating">
-        <div class="content">
-          <div id="music-icon">
-            <img src="/images/Isla.png" alt="Music Player">
-          </div>
-          <div id="music-player">
-            <div id="aplayer"></div>
-          </div>
-          <div id="music-nowplaying"><span></span></div>
-        </div>
-      </div>
-    `;
-
-    const musicFloating = document.getElementById('music-floating');
-    const nowPlaying = document.getElementById('music-nowplaying');
-
-    // Store state globally to persist across SPA navigation
-    window.musicPlayerState = window.musicPlayerState || {
-      playerInitialized: false,
-      scriptsLoaded: false,
-      savedPosition: { top: '20px', right: '20px', bottom: '', left: '' },
-      currentLimit: 10,  // Start with fewer songs for faster initial load
-      maxLimit: 200,
-      aplayerInstance: null
-    };
-
-    // Shorthand references
-    let playerInitialized = window.musicPlayerState.playerInitialized;
-    let scriptsLoaded = window.musicPlayerState.scriptsLoaded;
-    let savedPosition = window.musicPlayerState.savedPosition;
-    let currentLimit = window.musicPlayerState.currentLimit;
-    let maxLimit = window.musicPlayerState.maxLimit;
-    let aplayerInstance = window.musicPlayerState.aplayerInstance;
-
-    function loadScripts(callback) {
-      if (scriptsLoaded) {
-        callback();
-        return;
-      }
-      const aplayerScript = document.createElement('script');
-      aplayerScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js';
-      aplayerScript.async = true;
-
-      const metingScript = document.createElement('script');
-      metingScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/meting/2.0.1/Meting.min.js';
-      metingScript.async = true;
-
-      aplayerScript.onload = function() {
-        document.body.appendChild(metingScript);
-      };
-      metingScript.onload = function() {
-        scriptsLoaded = window.musicPlayerState.scriptsLoaded = true;
-        callback();
-      };
-
-      document.body.appendChild(aplayerScript);
-    }
-
-    function initializePlayer() {
-      if (playerInitialized) return;
-      musicFloating.classList.add('loading');
-      loadScripts(function() {
-        const metingElement = document.createElement('meting-js');
-        metingElement.setAttribute('server', 'netease');
-        metingElement.setAttribute('type', 'playlist');
-        metingElement.setAttribute('id', '602810440');
-        metingElement.setAttribute('autoplay', 'false');
-        metingElement.setAttribute('theme', '#C20C0C');
-        metingElement.setAttribute('limit', currentLimit.toString());
-        metingElement.setAttribute('volume', '0.1');
-        document.getElementById('aplayer').appendChild(metingElement);
-
-        setTimeout(function() {
-          const checkAPlayer = setInterval(function() {
-            if (window.aplayer && window.aplayer.audio) {
-              clearInterval(checkAPlayer);
-              aplayerInstance = window.musicPlayerState.aplayerInstance = window.aplayer;
-              playerInitialized = window.musicPlayerState.playerInitialized = true;
-              musicFloating.classList.remove('loading');
-              if (nowPlaying) nowPlaying.style.display = 'block';
-
-              console.log('🎵 Music player ready with', currentLimit, 'songs');
-              setupAPlayerEvents();
-              setupLazyLoad();
-            }
-          }, 100);  // Check more frequently (was 200ms)
-        }, 500);  // Start checking sooner (was 1000ms)
-      });
-    }
-
-    function setupLazyLoad() {
-      const { scrollContainer, playlistList } = getPlaylistElements();
-      if (!scrollContainer || !playlistList) {
-        console.log('⏳ Waiting for playlist element...');
-        setTimeout(setupLazyLoad, 500);
-        return;
-      }
-
-      console.log('✅ Lazy load enabled - scroll to bottom to load more songs');
-
-      if (lazyLoadScrollContainer && lazyLoadScrollHandler) {
-        lazyLoadScrollContainer.removeEventListener('scroll', lazyLoadScrollHandler);
-      }
-
-      const containerToUse = scrollContainer;
-      lazyLoadScrollContainer = containerToUse;
-      lazyLoadScrollHandler = function() {
-        const scrollTop = containerToUse.scrollTop;
-        const scrollHeight = containerToUse.scrollHeight;
-        const clientHeight = containerToUse.clientHeight;
-        const scrollBottom = scrollHeight - scrollTop - clientHeight;
-
-        // Debug: log when close to bottom
-        if (scrollBottom < 150 && scrollBottom > 50) {
-          console.log('📜 Scroll position:', scrollBottom, 'px from bottom');
-        }
-
-        if (scrollBottom < 100) {
-          loadMoreSongs();
-        }
-      };
-
-      containerToUse.addEventListener('scroll', lazyLoadScrollHandler);
-    }
-
-    let isLoadingMore = false;
-    let lazyLoadScrollContainer = null;
-    let lazyLoadScrollHandler = null;
-
-    function getPlaylistElements() {
-      const playlistWrapper = document.querySelector('.aplayer-list');
-      if (!playlistWrapper) {
-        return { scrollContainer: null, playlistList: null };
-      }
-      const scrollContainer = playlistWrapper.querySelector('.aplayer-list-body') ||
-        playlistWrapper.querySelector('.aplayer-list-main') ||
-        playlistWrapper;
-      const playlistList = playlistWrapper.querySelector('ol') ||
-        playlistWrapper.querySelector('ul');
-      return { scrollContainer, playlistList };
-    }
-
-    function loadMoreSongs() {
-      if (currentLimit >= maxLimit || isLoadingMore) return;
-
-      const newLimit = Math.min(currentLimit + 10, maxLimit);  // Load 10 at a time instead of 20
-      if (newLimit === currentLimit) return;
-
-      isLoadingMore = true;
-      console.log('📥 Loading more songs:', currentLimit, '→', newLimit);
-
-      // Show loading indicator
-      const { playlistList } = getPlaylistElements();
-      if (playlistList) {
-        const loadingItem = document.createElement('li');
-        loadingItem.className = 'lazy-loading-indicator';
-        loadingItem.innerHTML = '<span style="padding: 10px; color: #999;">Loading more songs...</span>';
-        playlistList.appendChild(loadingItem);
-      }
-
-      currentLimit = window.musicPlayerState.currentLimit = newLimit;
-
-      const aplayerContainer = document.getElementById('aplayer');
-      const metingElement = aplayerContainer.querySelector('meting-js');
-      if (metingElement) {
-        metingElement.setAttribute('limit', currentLimit.toString());
-        const parent = metingElement.parentNode;
-        const clone = metingElement.cloneNode(true);
-        parent.removeChild(metingElement);
-        setTimeout(function() {
-          parent.appendChild(clone);
-          setTimeout(function() {
-            // Remove loading indicator
-            const loadingIndicator = document.querySelector('.lazy-loading-indicator');
-            if (loadingIndicator) loadingIndicator.remove();
-
-            setupLazyLoad();
-            isLoadingMore = false;
-            console.log('✅ Loaded', newLimit, 'songs');
-          }, 1000);  // Reduced from 1500ms to 1000ms
-        }, 50);  // Reduced from 100ms to 50ms
-      }
-    }
-
-    function setupAPlayerEvents() {
-      if (!aplayerInstance) {
-        console.error('APlayer instance not found');
-        return;
-      }
-
-      console.log('Setting up APlayer event listeners');
-
-      aplayerInstance.on('play', function() {
-        console.log('APlayer: play event fired');
-        updateNowPlaying();
-      });
-
-      aplayerInstance.on('pause', function() {
-        console.log('APlayer: pause event fired');
-      });
-
-      aplayerInstance.on('ended', function() {
-        console.log('APlayer: ended event fired');
-      });
-
-      aplayerInstance.on('loadeddata', function() {
-        console.log('APlayer: loadeddata event fired');
-        updateNowPlaying();
-      });
-
-      aplayerInstance.on('listswitch', function(index) {
-        console.log('APlayer: listswitch event fired, index:', index);
-        setTimeout(() => {
-          updateNowPlaying();
-        }, 400);
-      });
-
-      updateNowPlaying();
-    }
-
-    function handlePlayerToggle() {
-      if (!musicFloating.classList.contains('expanded')) {
-        const isMobile = window.innerWidth < 769;
-        const targetWidth = isMobile ? Math.min(window.innerWidth - 24, 540) : 540;
-        const targetHeight = isMobile ? 340 : 360;
-        const padding = 12;
-        const rect = musicFloating.getBoundingClientRect();
-
-        const spaceLeft = rect.left;
-        const spaceRight = window.innerWidth - rect.right;
-        const spaceAbove = rect.top;
-        const spaceBelow = window.innerHeight - rect.bottom;
-
-        const expandLeft = spaceLeft > spaceRight;
-        musicFloating.classList.remove('expand-left', 'expand-right');
-        musicFloating.classList.add(expandLeft ? 'expand-left' : 'expand-right');
-
-        let topPos;
-        if (spaceBelow >= targetHeight + padding) {
-          topPos = rect.top;
-        } else if (spaceAbove >= targetHeight + padding) {
-          topPos = rect.bottom - targetHeight;
-        } else {
-          topPos = Math.max(padding, Math.min(rect.top, window.innerHeight - targetHeight - padding));
-        }
-
-        let leftPos;
-        if (expandLeft) {
-          leftPos = rect.right - targetWidth;
-          leftPos = Math.max(padding, leftPos);
-        } else {
-          leftPos = rect.left;
-          leftPos = Math.min(leftPos, window.innerWidth - targetWidth - padding);
-        }
-
-        musicFloating.style.top = `${topPos}px`;
-        musicFloating.style.left = `${leftPos}px`;
-        musicFloating.style.right = 'auto';
-        musicFloating.style.bottom = 'auto';
-
-        musicFloating.style.width = `${targetWidth}px`;
-        musicFloating.style.height = `${targetHeight}px`;
-        musicFloating.classList.add('expanded');
-        if (!playerInitialized) initializePlayer();
-      } else {
-        collapsePlayer();
-      }
-    }
-
-    function collapsePlayer() {
-      musicFloating.classList.remove('expanded');
-      musicFloating.style.width = '';
-      musicFloating.style.height = '';
-      musicFloating.style.top = savedPosition.top;
-      musicFloating.style.bottom = savedPosition.bottom;
-      musicFloating.style.left = savedPosition.left;
-      musicFloating.style.right = savedPosition.right;
-    }
-
-    function updateNowPlaying() {
-      let title = '';
-      let artist = '';
-
-      if (aplayerInstance && aplayerInstance.list && aplayerInstance.list.audios) {
-        const currentIndex = aplayerInstance.list.index;
-        const currentAudio = aplayerInstance.list.audios[currentIndex];
-
-        if (currentAudio) {
-          title = currentAudio.name || currentAudio.title || '';
-          artist = currentAudio.artist || '';
-          console.log('Got song info from APlayer instance:', { title, artist, index: currentIndex });
-        }
-      }
-
-      if (!title) {
-        const titleEl = document.querySelector('.aplayer-title');
-        const artistEl = document.querySelector('.aplayer-author');
-
-        if (titleEl && titleEl.textContent) {
-          title = titleEl.textContent.trim();
-        }
-
-        if (artistEl && artistEl.textContent) {
-          artist = artistEl.textContent.trim();
-        }
-
-        if (title || artist) {
-          console.log('Got song info from DOM:', { title, artist });
-        }
-      }
-
-      if (nowPlaying) {
-        const text = title ? `${title}${artist ? ' — ' + artist : ''}` : '';
-        nowPlaying.querySelector('span').textContent = text;
-      }
-    }
-
-    // Dragging functionality
-    let isDragging = false;
-    let startX, startY, startRight, startBottom, startTop, startLeft;
-
-    function handleDragStart(e) {
-      if (musicFloating.classList.contains('expanded')) {
-        if (e.target.closest('#music-icon')) {
-          handlePlayerToggle();
-        }
-        return;
-      }
-      isDragging = true;
-      musicFloating.classList.add('dragging');
-      const style = window.getComputedStyle(musicFloating);
-      const hasRight = style.right !== 'auto';
-      const hasBottom = style.bottom !== 'auto';
-
-      if (hasRight) {
-        startRight = parseInt(style.right);
-        startLeft = null;
-      } else {
-        startLeft = parseInt(style.left);
-        startRight = null;
-      }
-      if (hasBottom) {
-        startBottom = parseInt(style.bottom);
-        startTop = null;
-      } else {
-        startTop = parseInt(style.top);
-        startBottom = null;
-      }
-
-      if (e.type === 'mousedown') {
-        startX = e.clientX;
-        startY = e.clientY;
-        document.addEventListener('mousemove', handleDragMove);
-        document.addEventListener('mouseup', handleDragEnd);
-      } else if (e.type === 'touchstart') {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        document.addEventListener('touchmove', handleDragMove, { passive: false });
-        document.addEventListener('touchend', handleDragEnd);
-      }
-      e.preventDefault();
-    }
-
-    function handleDragMove(e) {
-      if (!isDragging) return;
-      let currentX, currentY;
-      if (e.type === 'mousemove') {
-        currentX = e.clientX;
-        currentY = e.clientY;
-      } else if (e.type === 'touchmove') {
-        currentX = e.touches[0].clientX;
-        currentY = e.touches[0].clientY;
-        e.preventDefault();
-      }
-      const diffX = currentX - startX;
-      const diffY = currentY - startY;
-
-      if (startRight !== null) {
-        musicFloating.style.right = Math.max(0, startRight - diffX) + 'px';
-        musicFloating.style.left = 'auto';
-      } else if (startLeft !== null) {
-        musicFloating.style.left = Math.max(0, startLeft + diffX) + 'px';
-        musicFloating.style.right = 'auto';
-      }
-
-      if (startBottom !== null) {
-        musicFloating.style.bottom = Math.max(0, startBottom - diffY) + 'px';
-        musicFloating.style.top = 'auto';
-      } else if (startTop !== null) {
-        musicFloating.style.top = Math.max(0, startTop + diffY) + 'px';
-        musicFloating.style.bottom = 'auto';
-      }
-    }
-
-    function handleDragEnd(e) {
-      if (!isDragging) return;
-      let wasDragged = false;
-      if (e.type === 'mouseup') {
-        const diffX = Math.abs(e.clientX - startX);
-        const diffY = Math.abs(e.clientY - startY);
-        wasDragged = (diffX > 5 || diffY > 5);
-      } else if (e.type === 'touchend' && e.changedTouches && e.changedTouches.length > 0) {
-        const diffX = Math.abs(e.changedTouches[0].clientX - startX);
-        const diffY = Math.abs(e.changedTouches[0].clientY - startY);
-        wasDragged = (diffX > 5 || diffY > 5);
-      }
-
-      isDragging = false;
-      musicFloating.classList.remove('dragging');
-      document.removeEventListener('mousemove', handleDragMove);
-      document.removeEventListener('mouseup', handleDragEnd);
-      document.removeEventListener('touchmove', handleDragMove);
-      document.removeEventListener('touchend', handleDragEnd);
-
-      if (wasDragged) {
-        const style = window.getComputedStyle(musicFloating);
-        savedPosition = {
-          top: style.top !== 'auto' ? style.top : '',
-          right: style.right !== 'auto' ? style.right : '',
-          bottom: style.bottom !== 'auto' ? style.bottom : '',
-          left: style.left !== 'auto' ? style.left : ''
-        };
-      } else {
-        setTimeout(function() {
-          handlePlayerToggle();
-        }, 10);
-      }
-    }
-
-    musicFloating.addEventListener('mousedown', handleDragStart);
-    musicFloating.addEventListener('touchstart', handleDragStart, { passive: false });
-
-    document.addEventListener('click', function(e) {
-      if (!musicFloating.contains(e.target)) {
-        collapsePlayer();
-      }
-    });
-
-    document.getElementById('music-player').addEventListener('click', function(e) {
-      e.stopPropagation();
-    });
-
-    // Initialize immediately if DOM is already ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log('Music player DOM ready');
-      });
-    } else {
-      console.log('Music player initialized (DOM already ready)');
-    }
-  })();
-</script>
-
-
-    <!-- Load modal scripts BEFORE SPA router so they can register handlers first -->
-    <style>
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes scaleIn {
-    from { 
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.7);
-    }
-    to { 
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-  
-  #wechat-qr-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 99999;
-    opacity: 0;
-  }
-  
-  #wechat-qr {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    z-index: 100000;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    opacity: 0;
-  }
-  
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #666;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  .close-button:hover {
-    background-color: rgba(0,0,0,0.1);
-    color: #333;
-  }
-  
-  .qr-image {
-    width: 300px;
-    height: 300px;
-    object-fit: contain;
-    display: block;
-    border-radius: 8px;
-    -webkit-user-select: none;
-    user-select: none;
-  }
-  </style>
-  
-  <div id="wechat-qr-overlay">
-    <div id="wechat-qr">
-      <img class="qr-image" src="/images/wechat_public_account.jpg" alt="WeChat QR Code">
-      <button class="close-button" onclick="closeOverlay()">×</button>
-    </div>
-  </div>
-  
-  <script>
-  (function() {
-    // Prevent multiple initializations
-    if (window.wechatModalInitialized) {
-      console.log('WeChat modal already initialized');
-      return;
-    }
-    window.wechatModalInitialized = true;
-
-    const overlay = document.getElementById('wechat-qr-overlay');
-    const qr = document.getElementById('wechat-qr');
-    let isClosing = false;
-
-    // Make function globally accessible for SPA router
-    window.handleWeChatClick = function handleWeChatClick(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      event.stopImmediatePropagation(); // Stop SPA router from intercepting
-      if (!isClosing) {
-        showOverlay();
-      }
-    };
-
-    function showOverlay() {
-      // Reset all states
-      isClosing = false;
-      overlay.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-
-      // Force browser reflow
-      void overlay.offsetWidth;
-      void qr.offsetWidth;
-
-      // Apply animations
-      overlay.style.animation = 'fadeIn 0.3s ease-out forwards';
-      qr.style.animation = 'scaleIn 0.3s ease-out forwards';
-    }
-
-    window.closeOverlay = function closeOverlay() {
-      if (isClosing) return;
-      isClosing = true;
-
-      document.body.style.overflow = '';
-      overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
-      qr.style.animation = 'scaleIn 0.3s ease-out reverse';
-
-      setTimeout(() => {
-        overlay.style.display = 'none';
-        // Clear animation states
-        overlay.style.animation = '';
-        qr.style.animation = '';
-        isClosing = false;
-      }, 300);
-    };
-
-    // Close overlay when clicking outside
-    overlay.addEventListener('click', function(event) {
-      if (event.target === this && !isClosing) {
-        window.closeOverlay();
-      }
-    });
-
-    console.log('✓ WeChat modal initialized');
-  })();
-  </script>
-    <!-- Paper Preview Modal -->
-<div id="previewModal" class="preview-modal">
-  <div class="preview-content">
-    <span class="preview-close-button">&times;</span>  <!-- Changed class name here -->
-    <img id="previewImage" src="" alt="Preview">
-  </div>
-</div>
-
-<style>
-.preview-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background-color: rgb(222, 243, 253);
-    padding: 2px 8px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.9em;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.2s ease;
-  }
-
-.preview-button:hover {
-  background-color: rgb(255, 255, 255);
-}
-
-.preview-button::before {
-  content: "👁️"; /* Using eye emoji as icon */
-  font-size: 1em;
-}
-
-.preview-modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  transition: background-color 0.3s ease;
-  opacity: 0;
-}
-
-.preview-modal.show {
-  opacity: 1;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.preview-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.95);
-  padding: 20px;
-  max-width: 90vw;
-  max-height: 90vh;
-  text-align: center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
-}
-
-.preview-modal.show .preview-content {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-}
-
-.preview-content img {
-  width: auto;
-  max-width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.preview-close-button {  /* Changed class name here */
-  position: fixed;
-  right: 30px;
-  top: 20px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1001;
-  opacity: 0;
-  transition: opacity 0.3s ease, color 0.2s ease;
-  padding: 10px;
-  line-height: 1;
-}
-
-.preview-modal.show .preview-close-button {  /* Changed class name here */
-  opacity: 1;
-}
-
-.preview-close-button:hover {  /* Changed class name here */
-  color: #fff;
-}
-</style>
-
-<script>
-(function() {
-  // Prevent multiple initializations
-  if (window.previewModalInitialized) {
-    console.log('Preview modal already initialized');
-    return;
-  }
-  window.previewModalInitialized = true;
-
-  var modal = document.getElementById('previewModal');
-  var modalContent = modal ? modal.querySelector('.preview-content') : null;
-  var modalImg = document.getElementById('previewImage');
-  var closeBtn = modal ? modal.querySelector('.preview-close-button') : null;
-  if (!modal || !modalContent || !modalImg || !closeBtn) {
-    console.warn('Preview modal elements not found');
-    return;
-  }
-
-  var animationDuration = 300;
-  var isTransitioning = false;
-
-  function openModal(imageSrc) {
-    if (!imageSrc || isTransitioning) return;
-    isTransitioning = true;
-    modalImg.src = imageSrc;
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-
-    void modal.offsetWidth;
-    void modalContent.offsetWidth;
-
-    modal.style.animation = 'fadeIn 0.3s ease-out forwards';
-    modalContent.style.animation = 'slideIn 0.3s ease-out forwards';
-    modal.classList.add('show');
-
-    setTimeout(function() {
-      isTransitioning = false;
-    }, animationDuration);
-  }
-
-  function closeModal() {
-    if (isTransitioning || modal.style.display !== 'block') return;
-    isTransitioning = true;
-
-    modal.style.animation = 'fadeOut 0.3s ease-out forwards';
-    modalContent.style.animation = 'slideOut 0.3s ease-out forwards';
-
-    setTimeout(function() {
-      modal.classList.remove('show');
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-      modalImg.src = '';
-      modal.style.animation = '';
-      modalContent.style.animation = '';
-      isTransitioning = false;
-    }, animationDuration);
-  }
-
-  // Use event delegation on document with capture phase to intercept before SPA router
-  document.addEventListener('click', function(event) {
-    var button = event.target.closest('.preview-button');
-    if (!button) return;
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation(); // Stop SPA router from intercepting
-    var previewSrc = button.getAttribute('data-preview');
-    openModal(previewSrc);
-  }, true); // Use capture phase
-
-  closeBtn.addEventListener('click', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    closeModal();
-  });
-
-  modal.addEventListener('click', function(event) {
-    if (event.target === modal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      closeModal();
-    }
-  });
-
-  console.log('✓ Preview modal initialized');
-})();
-</script>
-
-    <style>
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -45%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-@keyframes slideOut {
-  from {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  to {
-    opacity: 0;
-    transform: translate(-50%, -45%);
-  }
-}
-
-.contact-button {
-  display: inline-block;
-  background: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  border: none;
-  font-size: 16px;
-  transition: background-color 0.2s;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  z-index: 1000;
-  opacity: 0;
-}
-
-.modal-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  max-width: 600px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  z-index: 1001;
-  opacity: 0;
-}
-
-.warning-message {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 18px;
-  opacity: 1;
-  transition: opacity 0.3s ease-out;
-}
-
-.contact-form {
-  display: none;
-  max-width: 100%;
-  margin: 0;
-  padding: 20px 0;
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-}
-
-.form-control {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.form-control:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
-}
-
-textarea.form-control {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.submit-btn {
-  background: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.2s;
-}
-
-.submit-btn:hover {
-  background: #0056b3;
-}
-
-.close-button {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
-  padding: 5px;
-}
-
-.close-button:hover {
-  color: #333;
-}
-</style>
-
-<!-- Contact Form Modal (outside #main to persist across SPA navigation) -->
-<div id="contact-modal" class="modal-overlay">
-  <div class="modal-content">
-    <button type="button" class="close-button" data-contact="close">&times;</button>
-
-    <div id="warning-message" class="warning-message">
-      <h3>Contact Information</h3>
-      <p>Please note that this contact form is for informal inquiries. I might not be able to respond to all messages.</p>
-      <button type="button" class="contact-button" data-contact="continue">Continue</button>
-    </div>
-
-    <div id="contact-form" class="contact-form">
-      <h3>Send Message</h3>
-      <form action="https://formspree.io/f/xrbbwwdj" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="_replyto" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="_subject" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" class="form-control" required></textarea>
-        </div>
-
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
-    </div>
-  </div>
-</div>
-
-
-    <!-- Load main scripts -->
-<script src="/assets/js/main.min.js"></script>
-<script src="/assets/js/music-player-debug.js"></script>
-
-<!-- Load SPA router LAST so it doesn't interfere with modal handlers -->
-<!-- Modal handlers register with capture phase and stopImmediatePropagation -->
-<script src="/assets/js/spa-router-aggressive.js"></script>
-
-
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', "");
-</script>
-
-
-<script>
-    $(document).ready(function () {
-        
-        var gsDataBaseUrl = 'https://cdn.jsdelivr.net/gh/SeanLeng1/SeanLeng1.github.io@'
-        
-        $.getJSON(gsDataBaseUrl + "google-scholar-stats/gs_data.json", function (data) {
-            var totalCitation = data['citedby']
-            document.getElementById('total_cit').innerHTML = totalCitation;
-            var citationEles = document.getElementsByClassName('show_paper_citations')
-            Array.prototype.forEach.call(citationEles, element => {
-                var paperId = element.getAttribute('data')
-                var numCitations = data['publications'][paperId]['num_citations']
-                element.innerHTML = '| Citations: ' + numCitations;
-            });
-        });
-    })
-</script>
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jixuan Leng</title>
+    <meta name="description" content="Research website for Jixuan Leng, focused on efficient and reliable foundation models.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jixuan Leng">
+    <meta property="og:description" content="Research website for Jixuan Leng, focused on efficient and reliable foundation models.">
+    <meta property="og:url" content="https://jixuanleng.com/">
+    <meta property="og:site_name" content="Jixuan Leng">
+    <meta property="og:image" content="https://jixuanleng.com/images/dog.png">
+    <link rel="canonical" href="https://jixuanleng.com/">
     <script>
-      (function() {
-        var loader = document.getElementById('page-loader');
-        var progress = document.getElementById('page-loader-progress');
-        if (!loader || !progress) {
-          return;
-        }
-
-        loader.style.display = 'flex';
-
-        var value = 0;
-        var finished = false;
-        var intervalId = setInterval(function() {
-          if (finished) {
-            return;
-          }
-          value = Math.min(value + Math.random() * 12 + 5, 92);
-          progress.textContent = Math.round(value) + ' %';
-        }, 150);
-
-        var finish = function() {
-          if (finished) {
-            return;
-          }
-          finished = true;
-          clearInterval(intervalId);
-          progress.textContent = '100 %';
-          loader.classList.add('fade-out');
-          setTimeout(function() {
-            loader.remove();
-          }, 450);
-        };
-
-        window.addEventListener('load', finish);
-        setTimeout(function() {
-          if (document.readyState === 'complete') {
-            finish();
-          }
-        }, 1500);
-      })();
+      document.documentElement.classList.add('has-js');
     </script>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <meta name="theme-color" content="#eef2f7">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body class="home-page">
+    <div class="page-loader" data-page-loader aria-live="polite" aria-label="Loading site experience">
+      <div class="page-loader__panel">
+        <div class="page-loader__track" aria-hidden="true">
+          <span class="page-loader__bar" data-page-loader-bar></span>
+        </div>
+        <p class="page-loader__progress" data-page-loader-progress>0%</p>
+      </div>
+    </div>
+
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="page-background" aria-hidden="true">
+      <span class="page-background__orb page-background__orb--one"></span>
+      <span class="page-background__orb page-background__orb--two"></span>
+      <span class="page-background__spotlight"></span>
+      <span class="page-background__grid"></span>
+    </div>
+
+    <header class="site-header" data-site-header>
+      <div class="site-header__inner">
+        <a class="site-brand" href="/" aria-label="Jixuan Leng">
+          <span class="site-brand__mark">JL</span>
+          <span class="site-brand__text">
+            <span>Jixuan Leng</span>
+            <small>M.S. in Machine Learning at Carnegie Mellon University</small>
+          </span>
+        </a>
+
+        <div class="site-header__actions">
+          
+            <div
+              class="site-music"
+              data-music-root
+              style="--music-theme: #7f99c4;"
+              data-theme="#7f99c4"
+              data-server="netease"
+              data-type="playlist"
+              data-id="602810440"
+              data-volume="0.10"
+              data-limit="12"
+              data-autoplay="false"
+              data-fallback-url="https://music.163.com/#/playlist?id=602810440">
+              <button class="site-music__trigger site-header__control" type="button" data-music-toggle aria-expanded="false" aria-controls="site-music-panel">
+                <span class="site-music__glyph" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <span class="site-music__label">Music</span>
+              </button>
+
+              <div class="site-music__panel" id="site-music-panel" data-music-panel hidden>
+                <div class="site-music__panel-shell">
+                  <div class="site-music__panel-head">
+                    <div class="site-music__panel-copy">
+                      <p class="site-music__eyebrow">Now Playing</p>
+                      <p class="site-music__track" data-music-track>Curated Listening</p>
+                      <p class="site-music__artist" data-music-artist>Open the player to keep listening across pages.</p>
+                    </div>
+                    <button class="site-music__close" type="button" data-music-close aria-label="Close music player">Close</button>
+                  </div>
+                  <div class="site-music__player" data-music-player></div>
+                  <a class="site-music__fallback" href="https://music.163.com/#/playlist?id=602810440" target="_blank" rel="noopener" data-music-fallback hidden>Open Playlist</a>
+                </div>
+              </div>
+            </div>
+          
+
+          <nav class="site-nav" id="site-nav-menu" data-nav-menu>
+            
+              <a class="site-nav__link site-header__control" href="/publications/">Publications</a>
+            
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="content">
+      
+
+
+
+<section class="section section--hero">
+  <div class="shell hero">
+    <div class="hero__copy" data-reveal>
+      <div class="hero__intro">
+        <div class="hero__intro-copy">
+        <h1 class="display display--hero">Jixuan Leng</h1>
+        <p class="hero__summary">Research on efficient, reliable, and aligned foundation models.</p>
+        </div>
+
+        <div class="hero__visual">
+          <div class="profile-panel profile-panel--hero">
+            <div class="profile-panel__art" aria-hidden="true">
+              <span class="profile-panel__glow profile-panel__glow--one"></span>
+              <span class="profile-panel__glow profile-panel__glow--two"></span>
+              <img src="/images/dog.png" alt="Jixuan Leng">
+            </div>
+          </div>
+        </div>
+      </div>
+
+        
+          <p class="lead">I am a second-year M.S. in Machine Learning student at Carnegie Mellon University advised by <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>. Before CMU, I completed my B.S. in Computer Science at the University of Rochester, where I was advised by <a href="https://www.cs.rochester.edu/u/jluo/#Prospective" target="_blank" rel="noopener">Prof. Jiebo Luo</a>.</p>
+        
+          <p class="lead">My research focuses on efficient training and inference, model alignment, and evaluation for large language and vision-language models. I am currently a Student Researcher at Google Research advised by <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>, and I also collaborate with <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a> and <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>.</p>
+        
+
+        <div class="hero__actions">
+          <a class="button" href="/publications/">View All Publications</a>
+          <a class="button button--ghost" href="mailto:jixuanl@cs.cmu.edu">Email Me</a>
+        </div>
+
+        <div class="hero__links">
+          
+            <a class="text-link" href="https://scholar.google.com/citations?user=1lrOMKYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          
+            <a class="text-link" href="https://github.com/SeanLeng1" target="_blank" rel="noopener">GitHub</a>
+          
+            <a class="text-link" href="https://www.linkedin.com/in/jixuan-leng-2862b2227/" target="_blank" rel="noopener">LinkedIn</a>
+          
+            <a class="text-link" href="https://dblp.org/pid/261/6970.html" target="_blank" rel="noopener">DBLP</a>
+          
+          <button class="text-link text-link--button" type="button" data-modal-target="wechat-modal">WeChat</button>
+        </div>
+
+        <ul class="tag-row" aria-label="Research areas">
+          
+            <li>LLMs</li>
+          
+            <li>VLMs</li>
+          
+            <li>Efficiency</li>
+          
+            <li>Alignment</li>
+          
+            <li>Reasoning</li>
+          
+        </ul>
+      </div>
+  </div>
+
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="section-heading" data-reveal>
+      <h2>News</h2>
+      <p>Updates from papers, collaborations, and current roles.</p>
+    </div>
+
+    <div class="highlight-grid">
+      
+        <article class="highlight-card" data-reveal>
+          <span class="highlight-card__date">2026.02</span>
+          <p><a href="https://arxiv.org/pdf/2503.00031" target="_blank" rel="noopener">🥳🥳 Self-Calibration</a> accepted by ICLR 2026.</p>
+        </article>
+      
+        <article class="highlight-card" data-reveal>
+          <span class="highlight-card__date">2025.09</span>
+          <p>🥳🥳 Survey paper on <a href="https://openreview.net/forum?id=nLJZh4M6S5" target="_blank" rel="noopener">Reliable and Responsible Foundation Models</a> accepted by TMLR.</p>
+        </article>
+      
+        <article class="highlight-card" data-reveal>
+          <span class="highlight-card__date">2025.06</span>
+          <p><a href="https://arxiv.org/abs/2504.00043" target="_blank" rel="noopener">🥳🥳 CrossWordBench</a> accepted by COLM 2025.</p>
+        </article>
+      
+        <article class="highlight-card" data-reveal>
+          <span class="highlight-card__date">2025.06</span>
+          <p>New preprints on <a href="https://arxiv.org/abs/2505.24217" target="_blank" rel="noopener">semi-structured LLM auditing</a> and <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">speculative decoding</a>.</p>
+        </article>
+      
+        <article class="highlight-card" data-reveal>
+          <span class="highlight-card__date">2025.05</span>
+          <p>🎓🎓 Joined Google Research as a Student Researcher for summer 2025.</p>
+        </article>
+      
+        <article class="highlight-card" data-reveal>
+          <span class="highlight-card__date">2025.02</span>
+          <p><a href="https://arxiv.org/abs/2410.09724" target="_blank" rel="noopener">🥳🥳 Taming Overconfidence in LLMs</a> accepted by ICLR 2025.</p>
+        </article>
+      
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted" id="trajectory">
+  <div class="shell">
+    <div class="section-heading" data-reveal>
+      <h2>Trajectory</h2>
+      <p></p>
+    </div>
+
+    <div class="detail-grid">
+      <article class="detail-card" data-reveal>
+        <h3>Education</h3>
+        <ul class="detail-list">
+          
+            <li>
+              <span>2024 - Now</span>
+              <div>
+                
+                  <div class="detail-list__institution">
+                    <span class="detail-list__logo">
+                      <img src="/images/logos/cmu.png" alt="Carnegie Mellon University mark">
+                    </span>
+                    <div class="detail-list__copy">
+                      <strong>Carnegie Mellon University</strong>
+                      <div>M.S. in Machine Learning, USA</div>
+                    </div>
+                  </div>
+                
+              </div>
+            </li>
+          
+            <li>
+              <span>2020 - 2024</span>
+              <div>
+                
+                  <div class="detail-list__institution">
+                    <span class="detail-list__logo">
+                      <img src="/images/logos/rochester.svg" alt="University of Rochester shield">
+                    </span>
+                    <div class="detail-list__copy">
+                      <strong>University of Rochester</strong>
+                      <div>B.S. in Computer Science, USA</div>
+                    </div>
+                  </div>
+                
+              </div>
+            </li>
+          
+        </ul>
+      </article>
+
+      <article class="detail-card" data-reveal>
+        <h3>Research Experience</h3>
+        <ul class="detail-list">
+          
+            <li>
+              <span>2025.06 - Now</span>
+              <div>Student Researcher, Google Research (advisor: <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>).</div>
+            </li>
+          
+            <li>
+              <span>2025.01 - 2025.05</span>
+              <div>Independent Study, Carnegie Mellon University (advisor: <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>).</div>
+            </li>
+          
+            <li>
+              <span>2024.06 - Now</span>
+              <div>Visiting Researcher, Washington University in St. Louis (advisor: <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a>).</div>
+            </li>
+          
+            <li>
+              <span>2023.12 - 2024.05</span>
+              <div>Honor Independent Study, VIStA Lab, University of Rochester (advisors: <a href="https://www.cs.rochester.edu/u/jluo/" target="_blank" rel="noopener">Prof. Jiebo Luo</a> and <a href="https://www.urmc.rochester.edu/people/112361798-rajat-k-jain" target="_blank" rel="noopener">Dr. Rajat K. Jain</a>).</div>
+            </li>
+          
+            <li>
+              <span>2022.12 - 2024.05</span>
+              <div>Research Intern, DREAM Lab (advisor: <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>).</div>
+            </li>
+          
+        </ul>
+      </article>
+
+      <article class="detail-card" data-reveal>
+        <h3>Service</h3>
+        <ul class="detail-list">
+          
+            <li>
+              <span>2026 - Now</span>
+              <div>Reviewer, ICML.</div>
+            </li>
+          
+            <li>
+              <span>2025 - Now</span>
+              <div>Reviewer, ICLR.</div>
+            </li>
+          
+            <li>
+              <span>2024 - Now</span>
+              <div>Reviewer, TMLR.</div>
+            </li>
+          
+            <li>
+              <span>2022 - 2023</span>
+              <div>Teaching Assistant, CSC261/461: Database System, University of Rochester.</div>
+            </li>
+          
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted">
+  <div class="shell">
+    <div class="section-heading" data-reveal>
+      <h2>Selected publications</h2>
+      
+    </div>
+
+    <div class="paper-grid">
+      <ol class="bibliography"><li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="paper-inline">
+  <div class="paper-inline__meta">
+    
+      <span class="paper-inline__pill">ICLR</span>
+    
+    <span class="paper-inline__year">2026</span>
+  </div>
+
+  <h3 class="paper-inline__title">
+    
+      <a href="https://arxiv.org/abs/2503.00031" target="_blank" rel="noopener">Efficient Test-Time Scaling via Self-Calibration</a>
+    
+  </h3>
+
+  <p class="paper-inline__authors">
+    
+      
+      
+      
+      <span class="paper-inline__author">Chengsong Huang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Langlin Huang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author paper-inline__author--self">Jixuan Leng</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Jiacheng Liu</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Jiaxin Huang</span>
+    
+    
+  </p>
+
+  <p class="paper-inline__venue">
+    
+      International Conference on Learning Representations (ICLR)
+    
+  </p>
+
+  <div class="paper-inline__actions">
+    
+      <button type="button" data-preview-src="/images/preview/efficient-confidence-test-time-scaling.png" data-preview-title="Efficient Test-Time Scaling via Self-Calibration">Preview</button>
+    
+    
+      
+        <a href="https://arxiv.org/abs/2503.00031" target="_blank" rel="noopener">arXiv</a>
+      
+    
+    
+    
+    
+    <a href="https://github.com/Chengsong-Huang/Self-Calibration" target="_blank" rel="noopener">Code</a>
+    
+  </div>
+</article>
+</li>
+<li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="paper-inline">
+  <div class="paper-inline__meta">
+    
+      <span class="paper-inline__pill">TMLR</span>
+    
+    <span class="paper-inline__year">2025</span>
+  </div>
+
+  <h3 class="paper-inline__title">
+    
+      <a href="https://openreview.net/forum?id=nLJZh4M6S5" target="_blank" rel="noopener">Reliable and Responsible Foundation Models</a>
+    
+  </h3>
+
+  <p class="paper-inline__authors">
+    
+      
+      
+      
+      <span class="paper-inline__author">Xinyu Yang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Junlin Han</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Rishi Bommasani</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Jinqi Luo</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Wenjie Qu</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Wangchunshu Zhou</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Adel Bibi</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Xiyao Wang</span>
+    
+      
+        
+    
+      <span class="paper-inline__more">+44 more</span>
+    
+  </p>
+
+  <p class="paper-inline__venue">
+    
+      Transactions on Machine Learning Research (TMLR)
+    
+  </p>
+
+  <div class="paper-inline__actions">
+    
+      <button type="button" data-preview-src="/images/preview/reliable_survey.png" data-preview-title="Reliable and Responsible Foundation Models">Preview</button>
+    
+    
+      
+        <a href="/images/paper_preview/4644_Reliable_and_Responsible_.pdf" target="_blank" rel="noopener">PDF</a>
+      
+    
+    <a href="https://openreview.net/forum?id=nLJZh4M6S5" target="_blank" rel="noopener">OpenReview</a>
+    
+    <a href="https://openreview.net/forum?id=nLJZh4M6S5" target="_blank" rel="noopener">Paper</a>
+    
+    
+  </div>
+</article>
+</li>
+<li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="paper-inline">
+  <div class="paper-inline__meta">
+    
+    <span class="paper-inline__year">2025</span>
+  </div>
+
+  <h3 class="paper-inline__title">
+    
+      <a href="https://arxiv.org/abs/2505.24217" target="_blank" rel="noopener">Semi-structured LLM Reasoners Can Be Rigorously Audited</a>
+    
+  </h3>
+
+  <p class="paper-inline__authors">
+    
+      
+      
+      
+      <span class="paper-inline__author paper-inline__author--self">Jixuan Leng</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Cassandra A. Cohen</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Zhixian Zhang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Chenyan Xiong</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">William W. Cohen</span>
+    
+    
+  </p>
+
+  <p class="paper-inline__venue">
+    
+      Preprint
+    
+  </p>
+
+  <div class="paper-inline__actions">
+    
+      <button type="button" data-preview-src="/images/preview/SSRM.png" data-preview-title="Semi-structured LLM Reasoners Can Be Rigorously Audited">Preview</button>
+    
+    
+      
+        <a href="https://arxiv.org/abs/2505.24217" target="_blank" rel="noopener">arXiv</a>
+      
+    
+    
+    
+    
+    <a href="https://github.com/wwcohen/doctest-prompting" target="_blank" rel="noopener">Code</a>
+    
+  </div>
+</article>
+</li>
+<li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="paper-inline">
+  <div class="paper-inline__meta">
+    
+      <span class="paper-inline__pill">COLM</span>
+    
+    <span class="paper-inline__year">2025</span>
+  </div>
+
+  <h3 class="paper-inline__title">
+    
+      <a href="https://arxiv.org/abs/2504.00043" target="_blank" rel="noopener">CrossWordBench: Evaluating the Reasoning Capabilities of LLMs and LVLMs with Controllable Puzzle Generation</a>
+    
+  </h3>
+
+  <p class="paper-inline__authors">
+    
+      
+      
+      
+      <span class="paper-inline__author paper-inline__author--self">Jixuan Leng</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Chengsong Huang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Langlin Huang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Bill Yuchen Lin</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">William W. Cohen</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Haohan Wang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Jiaxin Huang</span>
+    
+    
+  </p>
+
+  <p class="paper-inline__venue">
+    
+      Second Conference on Language Modeling (COLM)
+    
+  </p>
+
+  <div class="paper-inline__actions">
+    
+      <button type="button" data-preview-src="/images/preview/crosswordbench-data-pipeline.png" data-preview-title="CrossWordBench: Evaluating the Reasoning Capabilities of LLMs and LVLMs with Controllable Puzzle Generation">Preview</button>
+    
+    
+      
+        <a href="https://arxiv.org/abs/2504.00043" target="_blank" rel="noopener">arXiv</a>
+      
+    
+    
+    
+    
+    <a href="https://github.com/SeanLeng1/CrossWordBench" target="_blank" rel="noopener">Code</a>
+    <a href="https://huggingface.co/datasets/HINT-lab/CrossWordBench" target="_blank" rel="noopener">Data</a>
+  </div>
+</article>
+</li>
+<li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="paper-inline">
+  <div class="paper-inline__meta">
+    
+      <span class="paper-inline__pill">ICLR</span>
+    
+    <span class="paper-inline__year">2025</span>
+  </div>
+
+  <h3 class="paper-inline__title">
+    
+      <a href="https://arxiv.org/abs/2410.09724" target="_blank" rel="noopener">Taming Overconfidence in LLMs: Reward Calibration in RLHF</a>
+    
+  </h3>
+
+  <p class="paper-inline__authors">
+    
+      
+      
+      
+      <span class="paper-inline__author paper-inline__author--self">Jixuan Leng</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Chengsong Huang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Banghua Zhu</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Jiaxin Huang</span>
+    
+    
+  </p>
+
+  <p class="paper-inline__venue">
+    
+      International Conference on Learning Representations (ICLR)
+    
+  </p>
+
+  <div class="paper-inline__actions">
+    
+      <button type="button" data-preview-src="/images/preview/iclr25-poster.png" data-preview-title="Taming Overconfidence in LLMs: Reward Calibration in RLHF">Preview</button>
+    
+    
+      
+        <a href="https://arxiv.org/abs/2410.09724" target="_blank" rel="noopener">arXiv</a>
+      
+    
+    <a href="https://openreview.net/forum?id=l0tg0jzsdL" target="_blank" rel="noopener">OpenReview</a>
+    
+    
+    <a href="https://github.com/SeanLeng1/Reward-Calibration" target="_blank" rel="noopener">Code</a>
+    
+  </div>
+</article>
+</li>
+<li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="paper-inline">
+  <div class="paper-inline__meta">
+    
+      <span class="paper-inline__pill">NeurIPS</span>
+    
+    <span class="paper-inline__year">2024</span>
+  </div>
+
+  <h3 class="paper-inline__title">
+    
+      <a href="https://arxiv.org/abs/2412.06289" target="_blank" rel="noopener">S2FT: Efficient, Scalable and Generalizable LLM Fine-tuning by Structured Sparsity</a>
+    
+  </h3>
+
+  <p class="paper-inline__authors">
+    
+      
+      
+      
+      <span class="paper-inline__author">Xinyu Yang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author paper-inline__author--self">Jixuan Leng</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Geyang Guo</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Jiawei Zhao</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Ryumei Nakada</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Linjun Zhang</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Huaxiu Yao</span>, 
+    
+      
+      
+      
+      <span class="paper-inline__author">Beidi Chen</span>
+    
+    
+  </p>
+
+  <p class="paper-inline__venue">
+    
+      Conference on Neural Information Processing Systems (NeurIPS)
+    
+  </p>
+
+  <div class="paper-inline__actions">
+    
+      <button type="button" data-preview-src="/images/preview/poster_s2ft-1.png" data-preview-title="S2FT: Efficient, Scalable and Generalizable LLM Fine-tuning by Structured Sparsity">Preview</button>
+    
+    
+      
+        <a href="https://arxiv.org/abs/2412.06289" target="_blank" rel="noopener">arXiv</a>
+      
+    
+    <a href="https://openreview.net/forum?id=lEUle8S4xQ" target="_blank" rel="noopener">OpenReview</a>
+    
+    
+    <a href="https://infini-ai-lab.github.io/S2FT-Page/" target="_blank" rel="noopener">Code</a>
+    
+  </div>
+</article>
+</li></ol>
+    </div>
+
+    <div class="section-actions" data-reveal>
+      <a class="button button--ghost" href="/publications/">View All Publications</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="shell">
+    <article class="detail-card detail-card--accent detail-card--contact" data-reveal>
+      <h2>Get in touch</h2>
+      <p class="section-copy">The fastest way to reach me is by email. You can also find publication updates on Google Scholar, code on GitHub, and professional details on LinkedIn or DBLP.</p>
+      <div class="contact-stack">
+        <a class="button" href="mailto:jixuanl@cs.cmu.edu">jixuanl at cs.cmu.edu</a>
+        
+          
+            <a class="button button--ghost" href="https://scholar.google.com/citations?user=1lrOMKYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          
+        
+          
+            <a class="button button--ghost" href="https://github.com/SeanLeng1" target="_blank" rel="noopener">GitHub</a>
+          
+        
+          
+            <a class="button button--ghost" href="https://www.linkedin.com/in/jixuan-leng-2862b2227/" target="_blank" rel="noopener">LinkedIn</a>
+          
+        
+          
+        
+        <button class="button button--ghost" type="button" data-modal-target="wechat-modal">WeChat QR</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+    </main>
+
+    <div class="modal" id="wechat-modal" hidden aria-hidden="true">
+      <div class="modal__scrim" data-modal-close></div>
+      <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="wechat-modal-title" tabindex="-1">
+        <button class="modal__close" type="button" data-modal-close aria-label="Close dialog">Close</button>
+        <p class="modal__eyebrow">WeChat</p>
+        <h2 id="wechat-modal-title">Scan to connect</h2>
+        <img src="/images/wechat_public_account.jpg" alt="WeChat QR code for Jixuan Leng">
+      </div>
+    </div>
+
+    <div class="modal modal--preview" id="publication-preview-modal" hidden aria-hidden="true">
+      <div class="modal__scrim" data-modal-close></div>
+      <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="publication-preview-title" tabindex="-1">
+        <button class="modal__close" type="button" data-modal-close aria-label="Close dialog">Close</button>
+        <h2 id="publication-preview-title" data-preview-modal-title>Publication Preview</h2>
+        <img src="" alt="" data-preview-modal-image>
+      </div>
+    </div>
+
+    <script src="/assets/js/site.js"></script>
   </body>
 </html>
