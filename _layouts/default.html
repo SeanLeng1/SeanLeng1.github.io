@@ -1,90 +1,139 @@
----
-layout: compress
----
-
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="{{ site.lang | default: 'en' }}">
   <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-  </head>
-
-  <body class="{{ page.body_class }}">
-
-    <div id="page-loader" aria-live="polite" aria-label="Page loading">
-      <span class="loader-progress" id="page-loader-progress">0 %</span>
-    </div>
-
-    {% include browser-upgrade.html %}
-    {% unless page.hide_masthead %}
-      {% include masthead.html %}
-    {% endunless %}
-
-    <div id="main" role="main">
-      {% unless page.hide_sidebar %}
-        {% include sidebar.html %}
-      {% endunless %}
-    
-      <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-        {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-        <div class="page__inner-wrap">
-          <section class="page__content" itemprop="text">
-            {{ content }}
-          </section>
-        </div>
-      </article>
-    </div>
-
-    <!-- Music Player (outside of SPA content area) -->
-    {% include netease.html %}
-
-    <!-- Load modal scripts BEFORE SPA router so they can register handlers first -->
-    {% include wechat-modal.html %}
-    {% include preview-modal.html %}
-    {% include contact-modal.html %}
-
-    {% include scripts.html %}
-
+    {% assign profile = site.data.profile %}
+    {% assign navigation = site.data.navigation %}
+    {% assign music = site.data.music %}
+    {% assign page_title = page.title | default: site.title %}
+    {% assign meta_description = page.description | default: site.description %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page_title == site.title %}{{ site.title }}{% else %}{{ page_title }} - {{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ meta_description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% if page_title == site.title %}{{ site.title }}{% else %}{{ page_title }} - {{ site.title }}{% endif %}">
+    <meta property="og:description" content="{{ meta_description }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:image" content="{{ profile.avatar | absolute_url }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
     <script>
-      (function() {
-        var loader = document.getElementById('page-loader');
-        var progress = document.getElementById('page-loader-progress');
-        if (!loader || !progress) {
-          return;
-        }
-
-        loader.style.display = 'flex';
-
-        var value = 0;
-        var finished = false;
-        var intervalId = setInterval(function() {
-          if (finished) {
-            return;
-          }
-          value = Math.min(value + Math.random() * 12 + 5, 92);
-          progress.textContent = Math.round(value) + ' %';
-        }, 150);
-
-        var finish = function() {
-          if (finished) {
-            return;
-          }
-          finished = true;
-          clearInterval(intervalId);
-          progress.textContent = '100 %';
-          loader.classList.add('fade-out');
-          setTimeout(function() {
-            loader.remove();
-          }, 450);
-        };
-
-        window.addEventListener('load', finish);
-        setTimeout(function() {
-          if (document.readyState === 'complete') {
-            finish();
-          }
-        }, 1500);
-      })();
+      document.documentElement.classList.add('has-js');
     </script>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/images/favicon-16x16.png' | relative_url }}">
+    <link rel="shortcut icon" href="{{ '/images/favicon.ico' | relative_url }}">
+    <link rel="manifest" href="{{ '/images/site.webmanifest' | relative_url }}">
+    <meta name="theme-color" content="#eef2f7">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  </head>
+  <body class="{{ page.body_class | default: 'site-page' }}">
+    <div class="page-loader" data-page-loader aria-live="polite" aria-label="Loading site experience">
+      <div class="page-loader__panel">
+        <div class="page-loader__track" aria-hidden="true">
+          <span class="page-loader__bar" data-page-loader-bar></span>
+        </div>
+        <p class="page-loader__progress" data-page-loader-progress>0%</p>
+      </div>
+    </div>
+
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="page-background" aria-hidden="true">
+      <span class="page-background__orb page-background__orb--one"></span>
+      <span class="page-background__orb page-background__orb--two"></span>
+      <span class="page-background__spotlight"></span>
+      <span class="page-background__grid"></span>
+    </div>
+
+    <header class="site-header" data-site-header>
+      <div class="site-header__inner">
+        <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">
+          <span class="site-brand__mark">{{ navigation.brand_mark }}</span>
+          <span class="site-brand__text">
+            <span>{{ profile.name }}</span>
+            <small>{{ profile.short_role }}</small>
+          </span>
+        </a>
+
+        <div class="site-header__actions">
+          {% if music.enabled %}
+            <div
+              class="site-music"
+              data-music-root
+              style="--music-theme: {{ music.theme }};"
+              data-theme="{{ music.theme }}"
+              data-server="{{ music.server }}"
+              data-type="{{ music.type }}"
+              data-id="{{ music.id }}"
+              data-volume="{{ music.volume }}"
+              data-limit="{{ music.limit }}"
+              data-autoplay="{{ music.autoplay }}"
+              data-fallback-url="{{ music.playlist_url }}">
+              <button class="site-music__trigger site-header__control" type="button" data-music-toggle aria-expanded="false" aria-controls="site-music-panel">
+                <span class="site-music__glyph" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <span class="site-music__label">{{ music.button_label }}</span>
+              </button>
+
+              <div class="site-music__panel" id="site-music-panel" data-music-panel hidden>
+                <div class="site-music__panel-shell">
+                  <div class="site-music__panel-head">
+                    <div class="site-music__panel-copy">
+                      <p class="site-music__eyebrow">{{ music.panel_eyebrow }}</p>
+                      <p class="site-music__track" data-music-track>{{ music.panel_title }}</p>
+                      <p class="site-music__artist" data-music-artist>{{ music.panel_subtitle }}</p>
+                    </div>
+                    <button class="site-music__close" type="button" data-music-close aria-label="Close music player">Close</button>
+                  </div>
+                  <div class="site-music__player" data-music-player></div>
+                  <a class="site-music__fallback" href="{{ music.playlist_url }}" target="_blank" rel="noopener" data-music-fallback hidden>Open Playlist</a>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          <nav class="site-nav" id="site-nav-menu" data-nav-menu>
+            {% if page.url == navigation.links.publications.url %}
+              <a class="site-nav__link site-header__control" href="{{ navigation.links.home.url | relative_url }}">{{ navigation.links.home.title }}</a>
+            {% else %}
+              <a class="site-nav__link site-header__control" href="{{ navigation.links.publications.url | relative_url }}">{{ navigation.links.publications.title }}</a>
+            {% endif %}
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="content">
+      {{ content }}
+    </main>
+
+    <div class="modal" id="wechat-modal" hidden aria-hidden="true">
+      <div class="modal__scrim" data-modal-close></div>
+      <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="wechat-modal-title" tabindex="-1">
+        <button class="modal__close" type="button" data-modal-close aria-label="Close dialog">Close</button>
+        <p class="modal__eyebrow">WeChat</p>
+        <h2 id="wechat-modal-title">Scan to connect</h2>
+        <img src="{{ profile.wechat_qr | relative_url }}" alt="WeChat QR code for {{ profile.name }}">
+      </div>
+    </div>
+
+    <div class="modal modal--preview" id="publication-preview-modal" hidden aria-hidden="true">
+      <div class="modal__scrim" data-modal-close></div>
+      <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="publication-preview-title" tabindex="-1">
+        <button class="modal__close" type="button" data-modal-close aria-label="Close dialog">Close</button>
+        <h2 id="publication-preview-title" data-preview-modal-title>Publication Preview</h2>
+        <img src="" alt="" data-preview-modal-image>
+      </div>
+    </div>
+
+    <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
   </body>
 </html>

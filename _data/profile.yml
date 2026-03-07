@@ -1,0 +1,22 @@
+name: "Jixuan Leng"
+short_role: "M.S. in Machine Learning at Carnegie Mellon University"
+affiliation: "Carnegie Mellon University"
+location: "Pittsburgh, USA"
+avatar: "/images/dog.png"
+
+email:
+  username: "jixuanl"
+  domain: "cs.cmu.edu"
+  display: "jixuanl at cs.cmu.edu"
+
+social_links:
+  - title: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=1lrOMKYAAAAJ"
+  - title: "GitHub"
+    url: "https://github.com/SeanLeng1"
+  - title: "LinkedIn"
+    url: "https://www.linkedin.com/in/jixuan-leng-2862b2227/"
+  - title: "DBLP"
+    url: "https://dblp.org/pid/261/6970.html"
+
+wechat_qr: "/images/wechat_public_account.jpg"

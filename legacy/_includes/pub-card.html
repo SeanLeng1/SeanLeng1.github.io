@@ -1,0 +1,110 @@
+{% comment %}
+Reusable publication card.
+Embedding policy:
+- Allow iframe only for arxiv/pdf links (or anything ending with .pdf).
+- For hosts known to block iframes (e.g., openreview), show a placeholder with an external link.
+{% endcomment %}
+{% assign preview_link = nil %}
+{% assign pdf_link = nil %}
+{% assign is_pdf_like = false %}
+
+{% if entry.arxiv %}
+  {% assign pdf_link = entry.arxiv %}
+  {% if pdf_link contains '/abs/' %}
+    {% assign pdf_link = pdf_link | replace: '/abs/', '/pdf/' %}
+  {% endif %}
+  {% unless pdf_link contains '.pdf' %}
+    {% assign pdf_link = pdf_link | append: '.pdf' %}
+  {% endunless %}
+  {% unless pdf_link contains '://' %}
+    {% assign pdf_link = pdf_link | relative_url %}
+  {% endunless %}
+  {% assign preview_link = pdf_link %}
+  {% assign is_pdf_like = true %}
+{% elsif entry.pdf %}
+  {% if entry.pdf contains '://' %}
+    {% assign pdf_link = entry.pdf %}
+  {% else %}
+    {% assign pdf_link = entry.pdf | prepend: '/assets/files/' | relative_url %}
+  {% endif %}
+  {% assign preview_link = pdf_link %}
+  {% assign is_pdf_like = pdf_link contains '.pdf' %}
+{% elsif entry.website %}
+  {% assign preview_link = entry.website %}
+{% elsif entry.url %}
+  {% assign preview_link = entry.url %}
+{% endif %}
+
+{% assign host_blocks_iframe = false %}
+{% if preview_link contains 'openreview.net' %}
+  {% assign host_blocks_iframe = true %}
+{% endif %}
+
+{% assign author_limit = 6 %}
+{% assign total_authors = entry.author_array | size %}
+{% assign hidden_count = total_authors | minus: author_limit %}
+{% assign self_first = site.scholar.first_name | downcase | strip %}
+{% assign self_last = site.scholar.last_name | downcase | strip %}
+
+<div class="pub-card" data-year="{{ entry.year }}">
+  <div class="pub-card__meta">
+    <span class="pub-card__pill">{{ entry.year }}</span>
+    <div class="pub-card__title">{{ entry.title }}</div>
+    <div class="pub-card__authors">
+      {% for author in entry.author_array %}
+        {% if forloop.index0 >= author_limit %}
+          {% break %}
+        {% endif %}
+        {% assign first_name = author.first | strip %}
+        {% assign last_name = author.last | strip %}
+        {% assign first_match = false %}
+        {% assign last_match = false %}
+        {% if first_name == site.scholar.first_name %}
+          {% assign first_match = true %}
+        {% endif %}
+        {% if last_name == site.scholar.last_name %}
+          {% assign last_match = true %}
+        {% endif %}
+        {% assign is_self = false %}
+        {% if first_match and last_match %}
+          {% assign is_self = true %}
+        {% endif %}
+        <span class="pub-card__author{% if is_self %} pub-card__author--me{% endif %}">{{ first_name }} {{ last_name }}</span>
+        {% assign next_index = forloop.index0 | plus: 1 %}
+        {% if next_index < author_limit and next_index < total_authors %}, {% endif %}
+      {% endfor %}
+      {% if hidden_count > 0 %}
+        <span class="pub-card__more">… (full author list hidden)</span>
+      {% endif %}
+    </div>
+    {% if entry.booktitle or entry.journal or entry.abbr %}
+    <div class="pub-card__venue">
+      {% if entry.abbr %}<span class="pub-card__abbr">{{ entry.abbr }}</span>{% endif %}
+      {% if entry.booktitle %}{{ entry.booktitle }}{% elsif entry.journal %}{{ entry.journal }}{% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="pub-card__media">
+    {% if preview_link and is_pdf_like and host_blocks_iframe == false %}
+      <iframe src="{{ preview_link }}#toolbar=0&view=FitH" title="{{ entry.title | escape }} preview" loading="lazy"></iframe>
+    {% else %}
+      <div class="pub-card__placeholder">
+        {% if host_blocks_iframe %}
+          Preview blocked by site policy.
+        {% else %}
+          Preview unavailable.
+        {% endif %}
+        {% if preview_link %}
+          <a class="pub-card__link pub-card__link--inline" href="{{ preview_link }}" target="_blank" rel="noopener">Open in new tab</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="pub-card__links">
+    {% if pdf_link %}<a class="pub-card__link" href="{{ pdf_link }}" target="_blank" rel="noopener">PDF</a>{% endif %}
+    {% if entry.code %}<a class="pub-card__link" href="{{ entry.code }}" target="_blank" rel="noopener">Code</a>{% endif %}
+    {% if entry.dataset %}<a class="pub-card__link" href="{{ entry.dataset }}" target="_blank" rel="noopener">Data</a>{% endif %}
+  </div>
+</div>

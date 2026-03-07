@@ -1,0 +1,174 @@
+---
+layout: default
+title: "Jixuan Leng"
+description: "Research website for Jixuan Leng, focused on efficient and reliable foundation models."
+body_class: "home-page"
+redirect_from:
+  - /about/
+  - /about.html
+---
+{% assign home = site.data.home %}
+{% assign profile = site.data.profile %}
+{% assign email = profile.email.username | append: '@' | append: profile.email.domain %}
+
+<section class="section section--hero">
+  <div class="shell hero">
+    <div class="hero__copy" data-reveal>
+      <div class="hero__intro">
+        <div class="hero__intro-copy">
+        <h1 class="display display--hero">{{ home.hero.title }}</h1>
+        <p class="hero__summary">{{ home.hero.summary }}</p>
+        </div>
+
+        <div class="hero__visual">
+          <div class="profile-panel profile-panel--hero">
+            <div class="profile-panel__art" aria-hidden="true">
+              <span class="profile-panel__glow profile-panel__glow--one"></span>
+              <span class="profile-panel__glow profile-panel__glow--two"></span>
+              <img src="{{ profile.avatar | relative_url }}" alt="{{ profile.name }}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+        {% for paragraph in home.hero.intro %}
+          <p class="lead">{{ paragraph }}</p>
+        {% endfor %}
+
+        <div class="hero__actions">
+          <a class="button" href="{{ '/publications/' | relative_url }}">View All Publications</a>
+          <a class="button button--ghost" href="mailto:{{ email }}">Email Me</a>
+        </div>
+
+        <div class="hero__links">
+          {% for link in profile.social_links %}
+            <a class="text-link" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+          {% endfor %}
+          <button class="text-link text-link--button" type="button" data-modal-target="wechat-modal">WeChat</button>
+        </div>
+
+        <ul class="tag-row" aria-label="Research areas">
+          {% for badge in home.hero.badges %}
+            <li>{{ badge }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+  </div>
+
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="section-heading" data-reveal>
+      <h2>{{ home.news.title }}</h2>
+      <p>{{ home.news.description }}</p>
+    </div>
+
+    <div class="highlight-grid">
+      {% for item in home.news.items %}
+        <article class="highlight-card" data-reveal>
+          <span class="highlight-card__date">{{ item.date }}</span>
+          <p>{{ item.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted" id="trajectory">
+  <div class="shell">
+    <div class="section-heading" data-reveal>
+      <h2>{{ home.trajectory.title }}</h2>
+      <p>{{ home.trajectory.description }}</p>
+    </div>
+
+    <div class="detail-grid">
+      <article class="detail-card" data-reveal>
+        <h3>Education</h3>
+        <ul class="detail-list">
+          {% for item in home.education %}
+            <li>
+              <span>{{ item.date }}</span>
+              <div>
+                {% if item.logo and item.institution %}
+                  <div class="detail-list__institution">
+                    <span class="detail-list__logo">
+                      <img src="{{ item.logo | relative_url }}" alt="{{ item.logo_alt | default: item.institution }}">
+                    </span>
+                    <div class="detail-list__copy">
+                      <strong>{{ item.institution }}</strong>
+                      <div>{{ item.program }}{% if item.location %}, {{ item.location }}{% endif %}</div>
+                    </div>
+                  </div>
+                {% else %}
+                  {{ item.text }}
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </article>
+
+      <article class="detail-card" data-reveal>
+        <h3>Research Experience</h3>
+        <ul class="detail-list">
+          {% for item in home.experience %}
+            <li>
+              <span>{{ item.date }}</span>
+              <div>{{ item.text }}</div>
+            </li>
+          {% endfor %}
+        </ul>
+      </article>
+
+      <article class="detail-card" data-reveal>
+        <h3>Service</h3>
+        <ul class="detail-list">
+          {% for item in home.service %}
+            <li>
+              <span>{{ item.date }}</span>
+              <div>{{ item.text }}</div>
+            </li>
+          {% endfor %}
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted">
+  <div class="shell">
+    <div class="section-heading" data-reveal>
+      <h2>{{ home.selected.title }}</h2>
+      {% if home.selected.description %}
+        <p>{{ home.selected.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="paper-grid">
+      {% bibliography --query @*[selected=true] --template pub-inline %}
+    </div>
+
+    <div class="section-actions" data-reveal>
+      <a class="button button--ghost" href="{{ '/publications/' | relative_url }}">View All Publications</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="shell">
+    <article class="detail-card detail-card--accent detail-card--contact" data-reveal>
+      <h2>{{ home.contact.title }}</h2>
+      <p class="section-copy">{{ home.contact.text }}</p>
+      <div class="contact-stack">
+        <a class="button" href="mailto:{{ email }}">{{ profile.email.display }}</a>
+        {% for link in profile.social_links %}
+          {% unless link.title == 'DBLP' %}
+            <a class="button button--ghost" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+          {% endunless %}
+        {% endfor %}
+        <button class="button button--ghost" type="button" data-modal-target="wechat-modal">WeChat QR</button>
+      </div>
+    </article>
+  </div>
+</section>

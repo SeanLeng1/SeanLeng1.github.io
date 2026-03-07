@@ -1,0 +1,193 @@
+<div class="publication-container" style="max-width: 100%; display: block;">
+  {% if entry.type == "thesis" %}
+    {{reference}}
+  {% else %}
+    <div class="paper-box" style="width: 100%; display: block; padding-bottom: 0.5rem;padding-top: 0.5rem;">
+      <div class="paper-box-text" style="width: 100%; display: block;">
+        <div class="title" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">{{entry.title}}</div>
+
+        <div class="author" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em;">
+          {% assign coauthors = entry.coauthors | split: ', ' %}
+          {% assign total_authors = entry.author_array | size %}
+          {% assign author_limit = entry.author_limit | default: 8 %}
+          {% assign force_hidden = entry.fullauthorshidden | default: false %}
+          {% assign truncated = false %}
+          {% if total_authors > author_limit %}
+            {% assign truncated = true %}
+          {% endif %}
+
+          {% for author in entry.author_array %}
+  {% assign author_is_self = false %}
+  {% assign author_is_coauthor = false %}
+
+  {% if author.last == site.scholar.last_name %}
+    {% if site.scholar.first_name contains author.first %}
+      {% assign author_is_self = true %}
+    {% endif %}
+  {% endif %}
+
+  {% for coauthor in coauthors %}
+    {% assign coauthor_parts = coauthor | split: ' ' %}
+    {% if coauthor_parts.size > 1 %}
+      {% assign coauthor_first = coauthor_parts.first %}
+      {% assign coauthor_last = coauthor_parts.last %}
+      {% if author.first == coauthor_first and author.last == coauthor_last %}
+        {% assign author_is_coauthor = true %}
+        {% break %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign coauthor_url = nil %}
+  {% if site.data.coauthors[author.last] %}
+    {% for co in site.data.coauthors[author.last] %}
+      {% if co.firstname contains author.first %}
+        {% assign coauthor_url = co.url %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if forloop.index0 < author_limit %}
+    {% if total_authors == 1 %}
+      {% if author_is_self %}
+        <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+      {% else %}
+        {{author.first}} {{author.last}}{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+      {% endif %}
+    {% else %}
+      {% if author_is_self %}
+        <em><b>{{author.first}} {{author.last}}</b></em>{% if entry.corr %}<sup>#</sup>{% endif %}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+      {% else %}
+        {% if coauthor_url %}
+          <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>
+        {% else %}
+          {{author.first}} {{author.last}}{% if author_is_coauthor %}<b><sup>*</sup></b>{% endif %}
+        {% endif %}
+      {% endif %}
+      {% assign next_index = forloop.index0 | plus: 1 %}
+      {% if next_index < author_limit and next_index < total_authors %},{% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+          {% if truncated or force_hidden %}
+            {% assign hidden_count = total_authors | minus: author_limit %}
+            <details style="display:inline;">
+              <summary style="display:inline; cursor:pointer;">&nbsp;+ {{ hidden_count }} more</summary>
+              <span>
+                {% assign first_hidden = true %}
+                {% for author in entry.author_array %}
+                  {% if forloop.index0 >= author_limit %}
+                    {% if first_hidden == false %}, {% endif %}
+                    {% assign author_is_self = false %}
+                    {% if author.last == site.scholar.last_name and site.scholar.first_name contains author.first %}
+                      {% assign author_is_self = true %}
+                    {% endif %}
+                    {% assign coauthor_url = nil %}
+                    {% if site.data.coauthors[author.last] %}
+                      {% for co in site.data.coauthors[author.last] %}
+                        {% if co.firstname contains author.first %}
+                          {% assign coauthor_url = co.url %}
+                          {% break %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+
+                    {% if coauthor_url %}
+                      <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>
+                    {% else %}
+                      {% if author_is_self %}
+                        <em><b>{{author.first}} {{author.last}}</b></em>
+                      {% else %}
+                        {{author.first}} {{author.last}}
+                      {% endif %}
+                    {% endif %}
+                    {% assign first_hidden = false %}
+                  {% endif %}
+                {% endfor %}
+              </span>
+            </details>
+            <span class="author-badge" style="font-size: 0.85em; opacity: 0.8;">(full list hidden)</span>
+          {% endif %}
+        </div>
+
+        <div class="venue" style="padding-top: 0em; padding-bottom: 0px; margin-bottom: 0em; ">
+          {% if entry.type == "article" %}
+            <em><b>{{entry.journal}}
+            {% if entry.year %}
+              {{entry.year}}
+            {% endif %}</b></em>
+          {% elsif entry.type == "inproceedings" %}
+            <em><b>{{entry.booktitle}}
+            {% if entry.year %}
+              {{entry.year}}
+            {% endif %}</b></em>
+          {% elsif entry.type == "misc" %}
+            <em><b>Preprint
+            {% if entry.year %}
+              {{entry.year}}
+            {% endif %}</b></em>
+          {% endif %}
+
+          | [
+          {% if entry.arxiv %}<a href="{{ entry.arxiv }}">arXiv</a>{% endif %}
+          {% if entry.html %}<a href="{{ entry.html }}">HTML</a>{% endif %}
+          {% if entry.pdf %}
+            {% if entry.pdf contains '://' %}
+              <a href="{{ entry.pdf }}">PDF</a>
+            {% else %}
+              <a href="{{ entry.pdf | prepend: '/assets/files/' | relative_url }}">PDF</a>
+            {% endif %}
+          {% endif %}
+          {% if entry.supp %}
+            {% if entry.supp contains '://' %}
+              <a href="{{ entry.supp }}">Supp</a>
+            {% else %}
+              <a href="{{ entry.supp | prepend: '/assets/files/' | relative_url }}">Supp</a>
+            {% endif %}
+          {% endif %}
+          {% if entry.blog %}<a href="{{ entry.blog }}">Blog</a>{% endif %}
+          {% if entry.code %}<a href="{{ entry.code }}">Code</a>{% endif %}
+          {% if entry.dataset %}<a href="{{ entry.dataset }}">Dataset</a>{% endif %}
+          {% if entry.poster %}
+            {% if entry.poster contains '://' %}
+              <a href="{{ entry.poster }}">Poster</a>
+            {% else %}
+              <a href="{{ entry.poster | prepend: '/assets/files/' | relative_url }}">Poster</a>
+            {% endif %}
+          {% endif %}
+          {% if entry.slides %}
+            {% if entry.slides contains '://' %}
+              <a href="{{ entry.slides }}">Slides</a>
+            {% else %}
+              <a href="{{ entry.slides | prepend: '/assets/files/' | relative_url }}">Slides</a>
+            {% endif %}
+          {% endif %}
+          {% if entry.website %}<a href="{{ entry.website }}">Website</a>{% endif %}
+          {% if entry.openreview %}<a href="{{ entry.openreview }}">OpenReview</a>{% endif %}
+          {% if entry.video %}<a href="{{ entry.video }}">Video</a>{% endif %}
+          {% if entry.zhihu %}<a href="{{ entry.zhihu }}">Zhihu</a>{% endif %}
+          {% if entry.preview %}
+          <a href="#" class="preview-button" data-preview="{{ entry.preview | relative_url }}">Preview</a>
+          {% endif %}
+          ]
+        </div>
+        {% if entry.special %}
+        <div class="special"><b>({{entry.special}})</b></div>
+        {% endif %}
+
+        {% if entry.abstract %}
+        <div class="abstract hidden"><p>{{ entry.abstract }}</p></div>
+        {% endif %}
+
+        {% if entry.bibtex_show %}
+        <div class="bibtex hidden">{% highlight bibtex %}{{ entry.bibtex }}{% endhighlight %}</div>
+        {% endif %}
+
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+

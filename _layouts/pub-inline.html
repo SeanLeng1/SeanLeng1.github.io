@@ -1,0 +1,120 @@
+{% assign arxiv_link = nil %}
+{% if entry.arxiv %}
+  {% if entry.arxiv contains '://' %}
+    {% assign arxiv_link = entry.arxiv %}
+  {% else %}
+    {% assign arxiv_link = entry.arxiv | relative_url %}
+  {% endif %}
+{% endif %}
+
+{% assign pdf_link = nil %}
+{% if arxiv_link %}
+  {% assign pdf_link = arxiv_link %}
+  {% if pdf_link contains '/abs/' %}
+    {% assign pdf_link = pdf_link | replace: '/abs/', '/pdf/' %}
+  {% endif %}
+  {% if pdf_link contains 'arxiv.org' %}
+    {% unless pdf_link contains '.pdf' %}
+      {% assign pdf_link = pdf_link | append: '.pdf' %}
+    {% endunless %}
+  {% endif %}
+{% elsif entry.pdf %}
+  {% if entry.pdf contains '://' %}
+    {% assign pdf_link = entry.pdf %}
+  {% else %}
+    {% assign pdf_link = entry.pdf | prepend: '/assets/files/' | relative_url %}
+  {% endif %}
+{% endif %}
+
+{% assign paper_link = nil %}
+{% if entry.url %}
+  {% assign paper_link = entry.url %}
+{% elsif entry.website %}
+  {% assign paper_link = entry.website %}
+{% elsif arxiv_link %}
+  {% assign paper_link = arxiv_link %}
+{% elsif entry.openreview %}
+  {% assign paper_link = entry.openreview %}
+{% endif %}
+
+{% if paper_link and paper_link contains '://' %}
+  {% assign resolved_paper_link = paper_link %}
+{% elsif paper_link %}
+  {% assign resolved_paper_link = paper_link | relative_url %}
+{% endif %}
+
+{% assign preview_image = nil %}
+{% if entry.preview %}
+  {% if entry.preview contains '://' %}
+    {% assign preview_image = entry.preview %}
+  {% else %}
+    {% assign preview_image = entry.preview | relative_url %}
+  {% endif %}
+{% endif %}
+
+{% assign author_limit = 8 %}
+{% assign total_authors = entry.author_array | size %}
+{% assign hidden_count = total_authors | minus: author_limit %}
+
+<article class="paper-inline">
+  <div class="paper-inline__meta">
+    {% if entry.abbr %}
+      <span class="paper-inline__pill">{{ entry.abbr }}</span>
+    {% endif %}
+    <span class="paper-inline__year">{{ entry.year }}</span>
+  </div>
+
+  <h3 class="paper-inline__title">
+    {% if resolved_paper_link %}
+      <a href="{{ resolved_paper_link }}" target="_blank" rel="noopener">{{ entry.title }}</a>
+    {% else %}
+      {{ entry.title }}
+    {% endif %}
+  </h3>
+
+  <p class="paper-inline__authors">
+    {% for author in entry.author_array %}
+      {% if forloop.index0 >= author_limit %}
+        {% break %}
+      {% endif %}
+      {% assign is_self = false %}
+      {% if author.first == site.scholar.first_name and author.last == site.scholar.last_name %}
+        {% assign is_self = true %}
+      {% endif %}
+      <span class="{% if is_self %}paper-inline__author paper-inline__author--self{% else %}paper-inline__author{% endif %}">{{ author.first }} {{ author.last }}</span>{% assign next_index = forloop.index0 | plus: 1 %}{% if next_index < author_limit and next_index < total_authors %}, {% endif %}
+    {% endfor %}
+    {% if hidden_count > 0 %}
+      <span class="paper-inline__more">+{{ hidden_count }} more</span>
+    {% endif %}
+  </p>
+
+  <p class="paper-inline__venue">
+    {% if entry.type == "misc" or entry.booktitle == nil and entry.journal == nil %}
+      Preprint
+    {% elsif entry.booktitle %}
+      {{ entry.booktitle }}
+    {% else %}
+      {{ entry.journal }}
+    {% endif %}
+  </p>
+
+  <div class="paper-inline__actions">
+    {% if preview_image %}
+      <button type="button" data-preview-src="{{ preview_image }}" data-preview-title="{{ entry.title | escape }}">Preview</button>
+    {% endif %}
+    {% if entry.arxiv %}
+      {% if entry.arxiv contains '://' %}
+        <a href="{{ entry.arxiv }}" target="_blank" rel="noopener">arXiv</a>
+      {% elsif pdf_link %}
+        <a href="{{ pdf_link }}" target="_blank" rel="noopener">PDF</a>
+      {% endif %}
+    {% elsif pdf_link %}
+      <a href="{{ pdf_link }}" target="_blank" rel="noopener">PDF</a>
+    {% endif %}
+    {% if entry.openreview %}<a href="{{ entry.openreview }}" target="_blank" rel="noopener">OpenReview</a>{% endif %}
+    {% if entry.website %}<a href="{{ entry.website }}" target="_blank" rel="noopener">Website</a>{% endif %}
+    {% if entry.url and entry.url != entry.arxiv and entry.url != entry.website %}<a href="{{ entry.url }}" target="_blank" rel="noopener">Paper</a>{% endif %}
+    {% if entry.code %}<a href="{{ entry.code }}" target="_blank" rel="noopener">Code</a>{% endif %}
+    {% if entry.dataset %}<a href="{{ entry.dataset }}" target="_blank" rel="noopener">Data</a>{% endif %}
+  </div>
+</article>

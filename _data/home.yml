@@ -1,0 +1,108 @@
+hero:
+  title: "Jixuan Leng"
+  summary: "Research on efficient, reliable, and aligned foundation models."
+  intro:
+    - >-
+      I am a second-year M.S. in Machine Learning student at Carnegie Mellon University advised by
+      <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>.
+      Before CMU, I completed my B.S. in Computer Science at the University of Rochester, where I was advised by
+      <a href="https://www.cs.rochester.edu/u/jluo/#Prospective" target="_blank" rel="noopener">Prof. Jiebo Luo</a>.
+    - >-
+      My research focuses on efficient training and inference, model alignment, and evaluation for large language and
+      vision-language models. I am currently a Student Researcher at Google Research advised by
+      <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>, and I also
+      collaborate with <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a>
+      and <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>.
+  badges:
+    - "LLMs"
+    - "VLMs"
+    - "Efficiency"
+    - "Alignment"
+    - "Reasoning"
+
+selected:
+  title: "Selected publications"
+
+trajectory:
+  title: "Trajectory"
+  # description: "A concise view of current roles, prior collaborations, and ongoing community work."
+
+experience:
+  - date: "2025.06 - Now"
+    text: >-
+      Student Researcher, Google Research
+      (advisor: <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>).
+  - date: "2025.01 - 2025.05"
+    text: >-
+      Independent Study, Carnegie Mellon University
+      (advisor: <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>).
+  - date: "2024.06 - Now"
+    text: >-
+      Visiting Researcher, Washington University in St. Louis
+      (advisor: <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a>).
+  - date: "2023.12 - 2024.05"
+    text: >-
+      Honor Independent Study, VIStA Lab, University of Rochester
+      (advisors: <a href="https://www.cs.rochester.edu/u/jluo/" target="_blank" rel="noopener">Prof. Jiebo Luo</a> and
+      <a href="https://www.urmc.rochester.edu/people/112361798-rajat-k-jain" target="_blank" rel="noopener">Dr. Rajat K. Jain</a>).
+  - date: "2022.12 - 2024.05"
+    text: >-
+      Research Intern, DREAM Lab
+      (advisor: <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>).
+
+education:
+  - date: "2024 - Now"
+    institution: "Carnegie Mellon University"
+    program: "M.S. in Machine Learning"
+    location: "USA"
+    logo: "/images/logos/cmu.png"
+    logo_alt: "Carnegie Mellon University mark"
+  - date: "2020 - 2024"
+    institution: "University of Rochester"
+    program: "B.S. in Computer Science"
+    location: "USA"
+    logo: "/images/logos/rochester.svg"
+    logo_alt: "University of Rochester shield"
+
+service:
+  - date: "2026 - Now"
+    text: "Reviewer, ICML."
+  - date: "2025 - Now"
+    text: "Reviewer, ICLR."
+  - date: "2024 - Now"
+    text: "Reviewer, TMLR."
+  - date: "2022 - 2023"
+    text: "Teaching Assistant, CSC261/461: Database System, University of Rochester."
+
+news:
+  title: "News"
+  description: "Updates from papers, collaborations, and current roles."
+  items:
+    - date: "2026.02"
+      text: >-
+        <a href="https://arxiv.org/pdf/2503.00031" target="_blank" rel="noopener">🥳🥳 Self-Calibration</a> accepted by ICLR 2026.
+    - date: "2025.09"
+      text: >-
+        🥳🥳 Survey paper on
+        <a href="https://openreview.net/forum?id=nLJZh4M6S5" target="_blank" rel="noopener">Reliable and Responsible Foundation Models</a>
+        accepted by TMLR.
+    - date: "2025.06"
+      text: >-
+        <a href="https://arxiv.org/abs/2504.00043" target="_blank" rel="noopener">🥳🥳 CrossWordBench</a> accepted by COLM 2025.
+    - date: "2025.06"
+      text: >-
+        New preprints on
+        <a href="https://arxiv.org/abs/2505.24217" target="_blank" rel="noopener">semi-structured LLM auditing</a>
+        and <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">speculative decoding</a>.
+    - date: "2025.05"
+      text: "🎓🎓 Joined Google Research as a Student Researcher for summer 2025."
+    - date: "2025.02"
+      text: >-
+        <a href="https://arxiv.org/abs/2410.09724" target="_blank" rel="noopener">🥳🥳 Taming Overconfidence in LLMs</a>
+        accepted by ICLR 2025.
+
+contact:
+  title: "Get in touch"
+  text: >-
+    The fastest way to reach me is by email. You can also find publication updates on Google Scholar,
+    code on GitHub, and professional details on LinkedIn or DBLP.
