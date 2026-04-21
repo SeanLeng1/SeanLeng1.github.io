@@ -78,6 +78,12 @@ news:
   title: "News"
   description: "Updates from papers, collaborations, and current roles."
   items:
+    - date: "2026.04"
+      text: "🎓🎓 I will start my PhD in CMU MLD in Fall 2026."
+    - date: "2026.04"
+      text: >-
+        New preprints on
+        <a href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener">GroupDPO efficiency</a>.
     - date: "2026.02"
       text: >-
         <a href="https://arxiv.org/pdf/2503.00031" target="_blank" rel="noopener">🥳🥳 Self-Calibration</a> accepted by ICLR 2026.
@@ -94,12 +100,12 @@ news:
         New preprints on
         <a href="https://arxiv.org/abs/2505.24217" target="_blank" rel="noopener">semi-structured LLM auditing</a>
         and <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">speculative decoding</a>.
-    - date: "2025.05"
-      text: "🎓🎓 Joined Google Research as a Student Researcher for summer 2025."
-    - date: "2025.02"
-      text: >-
-        <a href="https://arxiv.org/abs/2410.09724" target="_blank" rel="noopener">🥳🥳 Taming Overconfidence in LLMs</a>
-        accepted by ICLR 2025.
+    # - date: "2025.05"
+    #   text: "🎓🎓 Joined Google Research as a Student Researcher for summer 2025."
+    # - date: "2025.02"
+    #   text: >-
+    #     <a href="https://arxiv.org/abs/2410.09724" target="_blank" rel="noopener">🥳🥳 Taming Overconfidence in LLMs</a>
+    #     accepted by ICLR 2025.
 
 contact:
   title: "Get in touch"
