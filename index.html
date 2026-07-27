@@ -23,14 +23,15 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
     <link rel="shortcut icon" href="/images/favicon.ico">
     <link rel="manifest" href="/images/site.webmanifest">
-    <meta name="theme-color" content="#eef2f7">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <meta name="theme-color" content="#f5f5f7">
+    <meta name="visitor-globe-api" content="https://visitor-globe.jixuanleng.workers.dev">
+    <link rel="stylesheet" href="/assets/css/main.css?v=33">
   </head>
   <body class="home-page">
     <div class="page-loader" data-page-loader aria-live="polite" aria-label="Loading site experience">
@@ -43,12 +44,17 @@
     </div>
 
     <a class="skip-link" href="#content">Skip to content</a>
+    <span class="scroll-progress" aria-hidden="true"></span>
     <div class="page-background" aria-hidden="true">
+      <canvas class="page-background__gl" data-gl-bg></canvas>
       <span class="page-background__orb page-background__orb--one"></span>
       <span class="page-background__orb page-background__orb--two"></span>
       <span class="page-background__spotlight"></span>
       <span class="page-background__grid"></span>
     </div>
+    <div class="page-grain" aria-hidden="true"></div>
+    <div class="side-rail side-rail--left" aria-hidden="true">Efficient · Reliable · Aligned</div>
+    <div class="side-rail side-rail--right" aria-hidden="true">Jixuan Leng — Portfolio</div>
 
     <header class="site-header" data-site-header>
       <div class="site-header__inner">
@@ -65,11 +71,12 @@
             <div
               class="site-music"
               data-music-root
-              style="--music-theme: #7f99c4;"
-              data-theme="#7f99c4"
+              style="--music-theme: #5e5ce6;"
+              data-theme="#5e5ce6"
               data-server="netease"
               data-type="playlist"
               data-id="602810440"
+              data-api="https://visitor-globe.jixuanleng.workers.dev/meting?server=:server&type=:type&id=:id&limit=12&auth=:auth&r=:r"
               data-volume="0.10"
               data-limit="12"
               data-autoplay="false"
@@ -90,8 +97,34 @@
                       <p class="site-music__eyebrow">Now Playing</p>
                       <p class="site-music__track" data-music-track>Curated Listening</p>
                       <p class="site-music__artist" data-music-artist>Open the player to keep listening across pages.</p>
+                      <span class="site-music__quality" data-music-quality hidden></span>
                     </div>
                     <button class="site-music__close" type="button" data-music-close aria-label="Close music player">Close</button>
+                  </div>
+                  <div class="site-music__volume" data-music-volume-row>
+                    <button class="site-music__mute" type="button" data-music-mute aria-label="Toggle mute">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"></path>
+                        <path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+                        <path class="wave" d="M18.5 5.5a9.5 9.5 0 0 1 0 13"></path>
+                      </svg>
+                    </button>
+                    <input class="site-music__volume-range" type="range" min="0" max="100" step="any" value="10" data-music-volume aria-label="Volume">
+                    <button class="site-music__lyrics-toggle is-on" type="button" data-lyrics-toggle aria-label="Toggle floating lyrics" aria-pressed="true" title="Floating lyrics">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 18V6l10-2v11"></path>
+                        <circle cx="6.5" cy="18" r="2.5"></circle>
+                        <circle cx="16.5" cy="15" r="2.5"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="site-music__search" data-music-search-row>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="11" cy="11" r="7"></circle>
+                      <path d="m20 20-3.8-3.8"></path>
+                    </svg>
+                    <input type="search" placeholder="Search playlist" data-music-search aria-label="Search playlist" autocomplete="off">
+                    <span class="site-music__search-count" data-music-search-count hidden></span>
                   </div>
                   <div class="site-music__player" data-music-player></div>
                   <a class="site-music__fallback" href="https://music.163.com/#/playlist?id=602810440" target="_blank" rel="noopener" data-music-fallback hidden>Open Playlist</a>
@@ -116,106 +149,142 @@
 
 <section class="section section--hero">
   <div class="shell hero">
-    <div class="hero__copy" data-reveal>
-      <div class="hero__intro">
-        <div class="hero__intro-copy">
-        <h1 class="display display--hero">Jixuan Leng</h1>
-        <p class="hero__summary">Research on efficient, reliable, and aligned foundation models.</p>
-        </div>
+    <p class="hero__eyebrow" data-reveal>
+      <span class="hero__pulse" aria-hidden="true"></span>M.S. in Machine Learning at Carnegie Mellon University
+    </p>
 
-        <div class="hero__visual">
-          <div class="profile-panel profile-panel--hero">
-            <div class="profile-panel__art" aria-hidden="true">
-              <span class="profile-panel__glow profile-panel__glow--one"></span>
-              <span class="profile-panel__glow profile-panel__glow--two"></span>
-              <img src="/images/dog.png" alt="Jixuan Leng">
-            </div>
-          </div>
-        </div>
+    <h1 class="display display--hero">Jixuan Leng</h1>
+
+    <div class="hero__meta" data-reveal>
+      <span class="hero__avatar">
+        <img src="/images/dog.png" alt="Jixuan Leng">
+      </span>
+      <p class="hero__summary">Research on efficient, reliable, and aligned foundation models.</p>
+    </div>
+
+    <div class="hero__bio" data-reveal>
+      
+        <p class="lead">I am a second-year M.S. in Machine Learning student (And incoming Ph.D. in ML) at Carnegie Mellon University advised by <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>. Before CMU, I completed my B.S. in Computer Science at the University of Rochester, where I was advised by <a href="https://www.cs.rochester.edu/u/jluo/#Prospective" target="_blank" rel="noopener">Prof. Jiebo Luo</a>.</p>
+      
+        <p class="lead">My research focuses on efficient training and inference, model alignment, and evaluation for large language and vision-language models. I am currently a Student Researcher at Google Research advised by <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>, and I also collaborate with <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a> and <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>.</p>
+      
+    </div>
+
+    <div class="hero__actions" data-reveal>
+      <a class="button" href="/publications/">View All Publications</a>
+      <a class="button button--ghost" href="mailto:jixuanl@cs.cmu.edu">Email Me</a>
+      <div class="hero__links">
+        
+          <a class="text-link" href="https://scholar.google.com/citations?user=1lrOMKYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        
+          <a class="text-link" href="https://github.com/SeanLeng1" target="_blank" rel="noopener">GitHub</a>
+        
+          <a class="text-link" href="https://www.linkedin.com/in/jixuan-leng-2862b2227/" target="_blank" rel="noopener">LinkedIn</a>
+        
+          <a class="text-link" href="https://dblp.org/pid/261/6970.html" target="_blank" rel="noopener">DBLP</a>
+        
+        <button class="text-link text-link--button" type="button" data-modal-target="wechat-modal">WeChat</button>
       </div>
+    </div>
 
-        
-          <p class="lead">I am a second-year M.S. in Machine Learning student (And incoming Ph.D. in ML) at Carnegie Mellon University advised by <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>. Before CMU, I completed my B.S. in Computer Science at the University of Rochester, where I was advised by <a href="https://www.cs.rochester.edu/u/jluo/#Prospective" target="_blank" rel="noopener">Prof. Jiebo Luo</a>.</p>
-        
-          <p class="lead">My research focuses on efficient training and inference, model alignment, and evaluation for large language and vision-language models. I am currently a Student Researcher at Google Research advised by <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>, and I also collaborate with <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a> and <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>.</p>
-        
-
-        <div class="hero__actions">
-          <a class="button" href="/publications/">View All Publications</a>
-          <a class="button button--ghost" href="mailto:jixuanl@cs.cmu.edu">Email Me</a>
-        </div>
-
-        <div class="hero__links">
-          
-            <a class="text-link" href="https://scholar.google.com/citations?user=1lrOMKYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-          
-            <a class="text-link" href="https://github.com/SeanLeng1" target="_blank" rel="noopener">GitHub</a>
-          
-            <a class="text-link" href="https://www.linkedin.com/in/jixuan-leng-2862b2227/" target="_blank" rel="noopener">LinkedIn</a>
-          
-            <a class="text-link" href="https://dblp.org/pid/261/6970.html" target="_blank" rel="noopener">DBLP</a>
-          
-          <button class="text-link text-link--button" type="button" data-modal-target="wechat-modal">WeChat</button>
-        </div>
-
-        <ul class="tag-row" aria-label="Research areas">
-          
-            <li>LLMs</li>
-          
-            <li>VLMs</li>
-          
-            <li>Efficiency</li>
-          
-            <li>Alignment</li>
-          
-            <li>Reasoning</li>
-          
-        </ul>
-      </div>
+    <ul class="sr-only" aria-label="Research areas">
+      
+        <li>LLMs</li>
+      
+        <li>VLMs</li>
+      
+        <li>Efficiency</li>
+      
+        <li>Alignment</li>
+      
+        <li>Reasoning</li>
+      
+    </ul>
   </div>
 
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      
+        
+          <span class="marquee__item">LLMs</span>
+          <span class="marquee__sep">✦</span>
+        
+          <span class="marquee__item">VLMs</span>
+          <span class="marquee__sep">✦</span>
+        
+          <span class="marquee__item">Efficiency</span>
+          <span class="marquee__sep">✦</span>
+        
+          <span class="marquee__item">Alignment</span>
+          <span class="marquee__sep">✦</span>
+        
+          <span class="marquee__item">Reasoning</span>
+          <span class="marquee__sep">✦</span>
+        
+      
+        
+          <span class="marquee__item">LLMs</span>
+          <span class="marquee__sep">✦</span>
+        
+          <span class="marquee__item">VLMs</span>
+          <span class="marquee__sep">✦</span>
+        
+          <span class="marquee__item">Efficiency</span>
+          <span class="marquee__sep">✦</span>
+        
+          <span class="marquee__item">Alignment</span>
+          <span class="marquee__sep">✦</span>
+        
+          <span class="marquee__item">Reasoning</span>
+          <span class="marquee__sep">✦</span>
+        
+      
+    </div>
+  </div>
+
+  <span class="hero__scrollhint" aria-hidden="true"><span></span></span>
 </section>
 
-<section class="section">
+<section class="section section--news">
   <div class="shell">
     <div class="section-heading" data-reveal>
       <h2>News</h2>
       <p>Updates from papers, collaborations, and current roles.</p>
     </div>
 
-    <div class="highlight-grid">
+    <ol class="timeline">
       
-        <article class="highlight-card" data-reveal>
-          <span class="highlight-card__date">2026.04</span>
-          <p>🎓🎓 I will start my PhD in CMU MLD in Fall 2026.</p>
-        </article>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__date">2026.04</span>
+          <p class="timeline__text">🎓🎓 I will start my PhD in CMU MLD in Fall 2026.</p>
+        </li>
       
-        <article class="highlight-card" data-reveal>
-          <span class="highlight-card__date">2026.04</span>
-          <p>New preprints on <a href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener">GroupDPO efficiency</a>.</p>
-        </article>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__date">2026.04</span>
+          <p class="timeline__text">New preprints on <a href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener">GroupDPO efficiency</a>.</p>
+        </li>
       
-        <article class="highlight-card" data-reveal>
-          <span class="highlight-card__date">2026.02</span>
-          <p><a href="https://arxiv.org/pdf/2503.00031" target="_blank" rel="noopener">🥳🥳 Self-Calibration</a> accepted by ICLR 2026.</p>
-        </article>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__date">2026.02</span>
+          <p class="timeline__text"><a href="https://arxiv.org/pdf/2503.00031" target="_blank" rel="noopener">🥳🥳 Self-Calibration</a> accepted by ICLR 2026.</p>
+        </li>
       
-        <article class="highlight-card" data-reveal>
-          <span class="highlight-card__date">2025.09</span>
-          <p>🥳🥳 Survey paper on <a href="https://openreview.net/forum?id=nLJZh4M6S5" target="_blank" rel="noopener">Reliable and Responsible Foundation Models</a> accepted by TMLR.</p>
-        </article>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__date">2025.09</span>
+          <p class="timeline__text">🥳🥳 Survey paper on <a href="https://openreview.net/forum?id=nLJZh4M6S5" target="_blank" rel="noopener">Reliable and Responsible Foundation Models</a> accepted by TMLR.</p>
+        </li>
       
-        <article class="highlight-card" data-reveal>
-          <span class="highlight-card__date">2025.06</span>
-          <p><a href="https://arxiv.org/abs/2504.00043" target="_blank" rel="noopener">🥳🥳 CrossWordBench</a> accepted by COLM 2025.</p>
-        </article>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__date">2025.06</span>
+          <p class="timeline__text"><a href="https://arxiv.org/abs/2504.00043" target="_blank" rel="noopener">🥳🥳 CrossWordBench</a> accepted by COLM 2025.</p>
+        </li>
       
-        <article class="highlight-card" data-reveal>
-          <span class="highlight-card__date">2025.06</span>
-          <p>New preprints on <a href="https://arxiv.org/abs/2505.24217" target="_blank" rel="noopener">semi-structured LLM auditing</a> and <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">speculative decoding</a>.</p>
-        </article>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__date">2025.06</span>
+          <p class="timeline__text">New preprints on <a href="https://arxiv.org/abs/2505.24217" target="_blank" rel="noopener">semi-structured LLM auditing</a> and <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">speculative decoding</a>.</p>
+        </li>
       
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -229,7 +298,7 @@
     <div class="detail-grid">
       <article class="detail-card" data-reveal>
         <h3>Education</h3>
-        <ul class="detail-list">
+        <ul class="detail-list detail-list--narrow">
           
             <li>
               <span>2024 - Now</span>
@@ -270,10 +339,15 @@
 
       <article class="detail-card" data-reveal>
         <h3>Research Experience</h3>
-        <ul class="detail-list">
+        <ul class="detail-list detail-list--wide">
           
             <li>
-              <span>2025.06 - Now</span>
+              <span>2026.06 - Present</span>
+              <div>Student Researcher, Google AdsGenAI (advisor: <a href="https://www.cs.utexas.edu/~rofuyu/" target="_blank" rel="noopener">Dr. Hsiang-Fu Yu</a>).</div>
+            </li>
+          
+            <li>
+              <span>2025.06 - 2026.03</span>
               <div>Student Researcher, Google Research (advisor: <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>).</div>
             </li>
           
@@ -330,7 +404,7 @@
   </div>
 </section>
 
-<section class="section section--tinted">
+<section class="section">
   <div class="shell">
     <div class="section-heading" data-reveal>
       <h2>Selected publications</h2>
@@ -409,9 +483,13 @@
       <button type="button" data-preview-src="/images/preview/groupdpo.png" data-preview-title="GroupDPO: Memory efficient Group-wise Direct Preference Optimization">Preview</button>
     
     
+      
+        <a href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener">arXiv</a>
+      
     
     
-    <a href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener">Paper</a>
+    
+    
     
     
   </div>
@@ -870,29 +948,40 @@
 
 <section class="section" id="contact">
   <div class="shell">
-    <article class="detail-card detail-card--accent detail-card--contact" data-reveal>
-      <h2>Get in touch</h2>
-      <p class="section-copy">The fastest way to reach me is by email. You can also find publication updates on Google Scholar, code on GitHub, and professional details on LinkedIn or DBLP.</p>
-      <div class="contact-stack">
-        <a class="button" href="mailto:jixuanl@cs.cmu.edu">jixuanl at cs.cmu.edu</a>
-        
-          
-            <a class="button button--ghost" href="https://scholar.google.com/citations?user=1lrOMKYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-          
-        
-          
-            <a class="button button--ghost" href="https://github.com/SeanLeng1" target="_blank" rel="noopener">GitHub</a>
-          
-        
-          
-            <a class="button button--ghost" href="https://www.linkedin.com/in/jixuan-leng-2862b2227/" target="_blank" rel="noopener">LinkedIn</a>
-          
-        
-          
-        
-        <button class="button button--ghost" type="button" data-modal-target="wechat-modal">WeChat QR</button>
+    <div class="contact">
+      <div class="contact__globe" data-reveal>
+        <canvas
+          data-globe
+          data-markers='[{"lat":40.44,"lng":-79.99},{"lat":43.16,"lng":-77.61},{"lat":38.63,"lng":-90.20},{"lat":37.42,"lng":-122.08}]'
+          role="img"
+          aria-label="Rotating globe marking Pittsburgh, Rochester, St. Louis and Mountain View"></canvas>
+        <p class="contact__globe-caption">Pittsburgh · Rochester · St. Louis · Mountain View</p>
       </div>
-    </article>
+
+      <article class="detail-card detail-card--accent detail-card--contact" data-reveal>
+        <h2>Get in touch</h2>
+        <p class="section-copy">The fastest way to reach me is by email. You can also find publication updates on Google Scholar, code on GitHub, and professional details on LinkedIn or DBLP.</p>
+        <div class="contact-stack">
+          <a class="button" href="mailto:jixuanl@cs.cmu.edu">jixuanl at cs.cmu.edu</a>
+          
+            
+              <a class="button button--ghost" href="https://scholar.google.com/citations?user=1lrOMKYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            
+          
+            
+              <a class="button button--ghost" href="https://github.com/SeanLeng1" target="_blank" rel="noopener">GitHub</a>
+            
+          
+            
+              <a class="button button--ghost" href="https://www.linkedin.com/in/jixuan-leng-2862b2227/" target="_blank" rel="noopener">LinkedIn</a>
+            
+          
+            
+          
+          <button class="button button--ghost" type="button" data-modal-target="wechat-modal">WeChat QR</button>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -917,6 +1006,18 @@
       </div>
     </div>
 
-    <script src="/assets/js/site.js"></script>
+    
+      <div class="site-lyrics" data-lyrics hidden aria-live="polite">
+        <div class="site-lyrics__stack">
+          <p class="site-lyrics__line" data-lyrics-line></p>
+          <p class="site-lyrics__line site-lyrics__line--next" data-lyrics-next></p>
+        </div>
+        <button class="site-lyrics__close" type="button" data-lyrics-close aria-label="Hide floating lyrics">×</button>
+      </div>
+    
+
+    <script src="/assets/js/site.js?v=33"></script>
+    <script src="/assets/js/world-coast.js?v=33"></script>
+    <script src="/assets/js/effects.js?v=33"></script>
   </body>
 </html>

@@ -23,14 +23,15 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
     <link rel="shortcut icon" href="/images/favicon.ico">
     <link rel="manifest" href="/images/site.webmanifest">
-    <meta name="theme-color" content="#eef2f7">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <meta name="theme-color" content="#f5f5f7">
+    <meta name="visitor-globe-api" content="https://visitor-globe.jixuanleng.workers.dev">
+    <link rel="stylesheet" href="/assets/css/main.css?v=33">
   </head>
   <body class="publications-page">
     <div class="page-loader" data-page-loader aria-live="polite" aria-label="Loading site experience">
@@ -43,12 +44,17 @@
     </div>
 
     <a class="skip-link" href="#content">Skip to content</a>
+    <span class="scroll-progress" aria-hidden="true"></span>
     <div class="page-background" aria-hidden="true">
+      <canvas class="page-background__gl" data-gl-bg></canvas>
       <span class="page-background__orb page-background__orb--one"></span>
       <span class="page-background__orb page-background__orb--two"></span>
       <span class="page-background__spotlight"></span>
       <span class="page-background__grid"></span>
     </div>
+    <div class="page-grain" aria-hidden="true"></div>
+    <div class="side-rail side-rail--left" aria-hidden="true">Efficient · Reliable · Aligned</div>
+    <div class="side-rail side-rail--right" aria-hidden="true">Jixuan Leng — Portfolio</div>
 
     <header class="site-header" data-site-header>
       <div class="site-header__inner">
@@ -65,11 +71,12 @@
             <div
               class="site-music"
               data-music-root
-              style="--music-theme: #7f99c4;"
-              data-theme="#7f99c4"
+              style="--music-theme: #5e5ce6;"
+              data-theme="#5e5ce6"
               data-server="netease"
               data-type="playlist"
               data-id="602810440"
+              data-api="https://visitor-globe.jixuanleng.workers.dev/meting?server=:server&type=:type&id=:id&limit=12&auth=:auth&r=:r"
               data-volume="0.10"
               data-limit="12"
               data-autoplay="false"
@@ -90,8 +97,34 @@
                       <p class="site-music__eyebrow">Now Playing</p>
                       <p class="site-music__track" data-music-track>Curated Listening</p>
                       <p class="site-music__artist" data-music-artist>Open the player to keep listening across pages.</p>
+                      <span class="site-music__quality" data-music-quality hidden></span>
                     </div>
                     <button class="site-music__close" type="button" data-music-close aria-label="Close music player">Close</button>
+                  </div>
+                  <div class="site-music__volume" data-music-volume-row>
+                    <button class="site-music__mute" type="button" data-music-mute aria-label="Toggle mute">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"></path>
+                        <path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+                        <path class="wave" d="M18.5 5.5a9.5 9.5 0 0 1 0 13"></path>
+                      </svg>
+                    </button>
+                    <input class="site-music__volume-range" type="range" min="0" max="100" step="any" value="10" data-music-volume aria-label="Volume">
+                    <button class="site-music__lyrics-toggle is-on" type="button" data-lyrics-toggle aria-label="Toggle floating lyrics" aria-pressed="true" title="Floating lyrics">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 18V6l10-2v11"></path>
+                        <circle cx="6.5" cy="18" r="2.5"></circle>
+                        <circle cx="16.5" cy="15" r="2.5"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="site-music__search" data-music-search-row>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="11" cy="11" r="7"></circle>
+                      <path d="m20 20-3.8-3.8"></path>
+                    </svg>
+                    <input type="search" placeholder="Search playlist" data-music-search aria-label="Search playlist" autocomplete="off">
+                    <span class="site-music__search-count" data-music-search-count hidden></span>
                   </div>
                   <div class="site-music__player" data-music-player></div>
                   <a class="site-music__fallback" href="https://music.163.com/#/playlist?id=602810440" target="_blank" rel="noopener" data-music-fallback hidden>Open Playlist</a>
@@ -161,24 +194,108 @@
 
 <article class="paper-card">
   <div class="paper-card__media">
+    <div class="paper-card__ambient" style="background-image: url('/images/preview/poss.png');"></div>
+    <div class="paper-card__stage">
+      <div class="paper-card__viewport">
+        
+          <div class="paper-card__document-shell">
+            <iframe class="paper-card__document" data-src="https://arxiv.org/pdf/2506.03566.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="POSS: Position Specialist Generates Better Draft for Speculative Decoding PDF preview" loading="lazy"></iframe>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="paper-card__body">
+    <div class="paper-card__meta">
+      
+        <span class="paper-card__pill">COLM</span>
+      
+      <span class="paper-card__year">2026</span>
+    </div>
+
+    <h3 class="paper-card__title">
+      
+        <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">POSS: Position Specialist Generates Better Draft for Speculative Decoding</a>
+      
+    </h3>
+
+    <p class="paper-card__authors">
+      
+        
+        
+        
+        <span class="paper-card__author">Langlin Huang</span>, 
+      
+        
+        
+        
+        <span class="paper-card__author">Chengsong Huang</span>, 
+      
+        
+        
+        
+        <span class="paper-card__author paper-card__author--self">Jixuan Leng</span>, 
+      
+        
+        
+        
+        <span class="paper-card__author">Di Huang</span>, 
+      
+        
+        
+        
+        <span class="paper-card__author">Jiaxin Huang</span>
+      
+      
+    </p>
+
+    <p class="paper-card__venue">
+      
+        Third Conference on Language Modeling (COLM)
+      
+    </p>
+
+    <div class="paper-card__actions">
+      <a href="https://arxiv.org/pdf/2506.03566.pdf" target="_blank" rel="noopener">PDF</a>
+      <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">Paper</a>
+      
+      
+      <a href="https://github.com/shrango/PosS" target="_blank" rel="noopener">Code</a>
+      
+    </div>
+  </div>
+</article>
+</li>
+<li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="paper-card">
+  <div class="paper-card__media">
     <div class="paper-card__ambient" style="background-image: url('/images/preview/groupdpo.png');"></div>
     <div class="paper-card__stage">
       <div class="paper-card__viewport">
         
-          <div class="paper-card__poster">
-            
-              <a class="paper-card__poster-image" href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener" aria-label="Open paper: GroupDPO: Memory efficient Group-wise Direct Preference Optimization">
-                <img src="/images/preview/groupdpo.png" alt="GroupDPO: Memory efficient Group-wise Direct Preference Optimization preview" loading="lazy" decoding="async" />
-              </a>
-            
-            <div class="paper-card__poster-caption">
-              <strong>GroupDPO: Memory efficient Group-wise Direct Preference Optimization</strong>
-              <span>
-                
-                  2026
-                
-              </span>
-            </div>
+          <div class="paper-card__document-shell">
+            <iframe class="paper-card__document" data-src="https://arxiv.org/pdf/2604.15602.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="GroupDPO: Memory efficient Group-wise Direct Preference Optimization PDF preview" loading="lazy"></iframe>
           </div>
         
       </div>
@@ -234,7 +351,7 @@
     </p>
 
     <div class="paper-card__actions">
-      
+      <a href="https://arxiv.org/pdf/2604.15602.pdf" target="_blank" rel="noopener">PDF</a>
       <a href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener">Paper</a>
       
       
@@ -272,7 +389,7 @@
       <div class="paper-card__viewport">
         
           <div class="paper-card__document-shell">
-            <iframe class="paper-card__document" src="https://arxiv.org/pdf/2503.00031.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Efficient Test-Time Scaling via Self-Calibration PDF preview" loading="lazy"></iframe>
+            <iframe class="paper-card__document" data-src="https://arxiv.org/pdf/2503.00031.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Efficient Test-Time Scaling via Self-Calibration PDF preview" loading="lazy"></iframe>
           </div>
         
       </div>
@@ -376,7 +493,7 @@
       <div class="paper-card__viewport">
         
           <div class="paper-card__document-shell">
-            <iframe class="paper-card__document" src="/images/paper_preview/4644_Reliable_and_Responsible_.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Reliable and Responsible Foundation Models PDF preview" loading="lazy"></iframe>
+            <iframe class="paper-card__document" data-src="/images/paper_preview/4644_Reliable_and_Responsible_.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Reliable and Responsible Foundation Models PDF preview" loading="lazy"></iframe>
           </div>
         
       </div>
@@ -476,106 +593,12 @@
 
 <article class="paper-card">
   <div class="paper-card__media">
-    <div class="paper-card__ambient" style="background-image: url('/images/preview/poss.png');"></div>
-    <div class="paper-card__stage">
-      <div class="paper-card__viewport">
-        
-          <div class="paper-card__document-shell">
-            <iframe class="paper-card__document" src="https://arxiv.org/pdf/2506.03566.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="POSS: Position Specialist Generates Better Draft for Speculative Decoding PDF preview" loading="lazy"></iframe>
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="paper-card__body">
-    <div class="paper-card__meta">
-      
-      <span class="paper-card__year">2025</span>
-    </div>
-
-    <h3 class="paper-card__title">
-      
-        <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">POSS: Position Specialist Generates Better Draft for Speculative Decoding</a>
-      
-    </h3>
-
-    <p class="paper-card__authors">
-      
-        
-        
-        
-        <span class="paper-card__author">Langlin Huang</span>, 
-      
-        
-        
-        
-        <span class="paper-card__author">Chengsong Huang</span>, 
-      
-        
-        
-        
-        <span class="paper-card__author paper-card__author--self">Jixuan Leng</span>, 
-      
-        
-        
-        
-        <span class="paper-card__author">Di Huang</span>, 
-      
-        
-        
-        
-        <span class="paper-card__author">Jiaxin Huang</span>
-      
-      
-    </p>
-
-    <p class="paper-card__venue">
-      
-        Preprint
-      
-    </p>
-
-    <div class="paper-card__actions">
-      <a href="https://arxiv.org/pdf/2506.03566.pdf" target="_blank" rel="noopener">PDF</a>
-      <a href="https://arxiv.org/abs/2506.03566" target="_blank" rel="noopener">Paper</a>
-      
-      
-      <a href="https://github.com/shrango/PosS" target="_blank" rel="noopener">Code</a>
-      
-    </div>
-  </div>
-</article>
-</li>
-<li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<article class="paper-card">
-  <div class="paper-card__media">
     <div class="paper-card__ambient" style="background-image: url('/images/preview/SSRM.png');"></div>
     <div class="paper-card__stage">
       <div class="paper-card__viewport">
         
           <div class="paper-card__document-shell">
-            <iframe class="paper-card__document" src="https://arxiv.org/pdf/2505.24217.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Semi-structured LLM Reasoners Can Be Rigorously Audited PDF preview" loading="lazy"></iframe>
+            <iframe class="paper-card__document" data-src="https://arxiv.org/pdf/2505.24217.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Semi-structured LLM Reasoners Can Be Rigorously Audited PDF preview" loading="lazy"></iframe>
           </div>
         
       </div>
@@ -669,7 +692,7 @@
       <div class="paper-card__viewport">
         
           <div class="paper-card__document-shell">
-            <iframe class="paper-card__document" src="https://arxiv.org/pdf/2504.00043.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="CrossWordBench: Evaluating the Reasoning Capabilities of LLMs and LVLMs with Controllable Puzzle Generation PDF preview" loading="lazy"></iframe>
+            <iframe class="paper-card__document" data-src="https://arxiv.org/pdf/2504.00043.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="CrossWordBench: Evaluating the Reasoning Capabilities of LLMs and LVLMs with Controllable Puzzle Generation PDF preview" loading="lazy"></iframe>
           </div>
         
       </div>
@@ -774,7 +797,7 @@
       <div class="paper-card__viewport">
         
           <div class="paper-card__document-shell">
-            <iframe class="paper-card__document" src="https://arxiv.org/pdf/2410.09724.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Taming Overconfidence in LLMs: Reward Calibration in RLHF PDF preview" loading="lazy"></iframe>
+            <iframe class="paper-card__document" data-src="https://arxiv.org/pdf/2410.09724.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Taming Overconfidence in LLMs: Reward Calibration in RLHF PDF preview" loading="lazy"></iframe>
           </div>
         
       </div>
@@ -873,7 +896,7 @@
       <div class="paper-card__viewport">
         
           <div class="paper-card__document-shell">
-            <iframe class="paper-card__document" src="https://arxiv.org/pdf/2412.06289.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="S2FT: Efficient, Scalable and Generalizable LLM Fine-tuning by Structured Sparsity PDF preview" loading="lazy"></iframe>
+            <iframe class="paper-card__document" data-src="https://arxiv.org/pdf/2412.06289.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="S2FT: Efficient, Scalable and Generalizable LLM Fine-tuning by Structured Sparsity PDF preview" loading="lazy"></iframe>
           </div>
         
       </div>
@@ -978,7 +1001,7 @@
       <div class="paper-card__viewport">
         
           <div class="paper-card__document-shell">
-            <iframe class="paper-card__document" src="/images/paper_preview/leng-et-al-2024-development-of-urosam-a-machine-learning-model-to-automatically-identify-kidney-stone-composition-from.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Development of UroSAM: A Machine Learning Model to Automatically Identify Kidney Stone Composition from Endoscopic Video PDF preview" loading="lazy"></iframe>
+            <iframe class="paper-card__document" data-src="/images/paper_preview/leng-et-al-2024-development-of-urosam-a-machine-learning-model-to-automatically-identify-kidney-stone-composition-from.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Development of UroSAM: A Machine Learning Model to Automatically Identify Kidney Stone Composition from Endoscopic Video PDF preview" loading="lazy"></iframe>
           </div>
         
       </div>
@@ -1083,7 +1106,7 @@
       <div class="paper-card__viewport">
         
           <div class="paper-card__document-shell">
-            <iframe class="paper-card__document" src="https://arxiv.org/pdf/2311.15145.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Choosing Wisely and Learning Deeply: Selective Cross-Modality Distillation via CLIP for Domain Generalization PDF preview" loading="lazy"></iframe>
+            <iframe class="paper-card__document" data-src="https://arxiv.org/pdf/2311.15145.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&amp;zoom=page-width" title="Choosing Wisely and Learning Deeply: Selective Cross-Modality Distillation via CLIP for Domain Generalization PDF preview" loading="lazy"></iframe>
           </div>
         
       </div>
@@ -1168,6 +1191,18 @@
       </div>
     </div>
 
-    <script src="/assets/js/site.js"></script>
+    
+      <div class="site-lyrics" data-lyrics hidden aria-live="polite">
+        <div class="site-lyrics__stack">
+          <p class="site-lyrics__line" data-lyrics-line></p>
+          <p class="site-lyrics__line site-lyrics__line--next" data-lyrics-next></p>
+        </div>
+        <button class="site-lyrics__close" type="button" data-lyrics-close aria-label="Hide floating lyrics">×</button>
+      </div>
+    
+
+    <script src="/assets/js/site.js?v=33"></script>
+    <script src="/assets/js/world-coast.js?v=33"></script>
+    <script src="/assets/js/effects.js?v=33"></script>
   </body>
 </html>
