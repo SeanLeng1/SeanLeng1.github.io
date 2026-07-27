@@ -23,14 +23,15 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon.png' | relative_url }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | relative_url }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ '/images/favicon-16x16.png' | relative_url }}">
     <link rel="shortcut icon" href="{{ '/images/favicon.ico' | relative_url }}">
     <link rel="manifest" href="{{ '/images/site.webmanifest' | relative_url }}">
-    <meta name="theme-color" content="#eef2f7">
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <meta name="theme-color" content="#f5f5f7">
+    <meta name="visitor-globe-api" content="{{ site.visitor_globe_api }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v=33">
   </head>
   <body class="{{ page.body_class | default: 'site-page' }}">
     <div class="page-loader" data-page-loader aria-live="polite" aria-label="Loading site experience">
@@ -43,12 +44,17 @@
     </div>
 
     <a class="skip-link" href="#content">Skip to content</a>
+    <span class="scroll-progress" aria-hidden="true"></span>
     <div class="page-background" aria-hidden="true">
+      <canvas class="page-background__gl" data-gl-bg></canvas>
       <span class="page-background__orb page-background__orb--one"></span>
       <span class="page-background__orb page-background__orb--two"></span>
       <span class="page-background__spotlight"></span>
       <span class="page-background__grid"></span>
     </div>
+    <div class="page-grain" aria-hidden="true"></div>
+    <div class="side-rail side-rail--left" aria-hidden="true">Efficient · Reliable · Aligned</div>
+    <div class="side-rail side-rail--right" aria-hidden="true">Jixuan Leng — Portfolio</div>
 
     <header class="site-header" data-site-header>
       <div class="site-header__inner">
@@ -70,6 +76,7 @@
               data-server="{{ music.server }}"
               data-type="{{ music.type }}"
               data-id="{{ music.id }}"
+              data-api="{{ music.api }}"
               data-volume="{{ music.volume }}"
               data-limit="{{ music.limit }}"
               data-autoplay="{{ music.autoplay }}"
@@ -90,8 +97,34 @@
                       <p class="site-music__eyebrow">{{ music.panel_eyebrow }}</p>
                       <p class="site-music__track" data-music-track>{{ music.panel_title }}</p>
                       <p class="site-music__artist" data-music-artist>{{ music.panel_subtitle }}</p>
+                      <span class="site-music__quality" data-music-quality hidden></span>
                     </div>
                     <button class="site-music__close" type="button" data-music-close aria-label="Close music player">Close</button>
+                  </div>
+                  <div class="site-music__volume" data-music-volume-row>
+                    <button class="site-music__mute" type="button" data-music-mute aria-label="Toggle mute">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"></path>
+                        <path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+                        <path class="wave" d="M18.5 5.5a9.5 9.5 0 0 1 0 13"></path>
+                      </svg>
+                    </button>
+                    <input class="site-music__volume-range" type="range" min="0" max="100" step="any" value="10" data-music-volume aria-label="Volume">
+                    <button class="site-music__lyrics-toggle is-on" type="button" data-lyrics-toggle aria-label="Toggle floating lyrics" aria-pressed="true" title="Floating lyrics">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 18V6l10-2v11"></path>
+                        <circle cx="6.5" cy="18" r="2.5"></circle>
+                        <circle cx="16.5" cy="15" r="2.5"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="site-music__search" data-music-search-row>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="11" cy="11" r="7"></circle>
+                      <path d="m20 20-3.8-3.8"></path>
+                    </svg>
+                    <input type="search" placeholder="Search playlist" data-music-search aria-label="Search playlist" autocomplete="off">
+                    <span class="site-music__search-count" data-music-search-count hidden></span>
                   </div>
                   <div class="site-music__player" data-music-player></div>
                   <a class="site-music__fallback" href="{{ music.playlist_url }}" target="_blank" rel="noopener" data-music-fallback hidden>Open Playlist</a>
@@ -134,6 +167,18 @@
       </div>
     </div>
 
-    <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+    {% if music.enabled %}
+      <div class="site-lyrics" data-lyrics hidden aria-live="polite">
+        <div class="site-lyrics__stack">
+          <p class="site-lyrics__line" data-lyrics-line></p>
+          <p class="site-lyrics__line site-lyrics__line--next" data-lyrics-next></p>
+        </div>
+        <button class="site-lyrics__close" type="button" data-lyrics-close aria-label="Hide floating lyrics">×</button>
+      </div>
+    {% endif %}
+
+    <script src="{{ '/assets/js/site.js' | relative_url }}?v=33"></script>
+    <script src="{{ '/assets/js/world-coast.js' | relative_url }}?v=33"></script>
+    <script src="{{ '/assets/js/effects.js' | relative_url }}?v=33"></script>
   </body>
 </html>

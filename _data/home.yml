@@ -28,7 +28,11 @@ trajectory:
   # description: "A concise view of current roles, prior collaborations, and ongoing community work."
 
 experience:
-  - date: "2025.06 - Now"
+  - date: "2026.06 - Present"
+    text: >-
+      Student Researcher, Google AdsGenAI
+      (advisor: <a href="https://www.cs.utexas.edu/~rofuyu/" target="_blank" rel="noopener">Dr. Hsiang-Fu Yu</a>).
+  - date: "2025.06 - 2026.03"
     text: >-
       Student Researcher, Google Research
       (advisor: <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>).

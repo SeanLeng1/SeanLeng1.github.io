@@ -14,7 +14,12 @@ exclude:
   - docs
   - vendor
   - node_modules
+  - globe-worker
   - _site
+
+# Cloudflare Worker endpoint that powers the visitor globe (see globe-worker/).
+# Paste your deployed worker URL here, e.g. "https://visitor-globe.<you>.workers.dev"
+visitor_globe_api: "https://visitor-globe.jixuanleng.workers.dev"
 
 markdown: kramdown
 highlighter: rouge

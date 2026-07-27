@@ -14,6 +14,17 @@
   const musicTrack = musicRoot?.querySelector("[data-music-track]");
   const musicArtist = musicRoot?.querySelector("[data-music-artist]");
   const musicFallback = musicRoot?.querySelector("[data-music-fallback]");
+  const musicVolumeRow = musicRoot?.querySelector("[data-music-volume-row]");
+  const musicVolumeRange = musicRoot?.querySelector("[data-music-volume]");
+  const musicMute = musicRoot?.querySelector("[data-music-mute]");
+  const musicSearch = musicRoot?.querySelector("[data-music-search]");
+  const musicSearchCount = musicRoot?.querySelector("[data-music-search-count]");
+  const lyricsRoot = document.querySelector("[data-lyrics]");
+  const lyricsLine = document.querySelector("[data-lyrics-line]");
+  const lyricsNext = document.querySelector("[data-lyrics-next]");
+  const lyricsClose = document.querySelector("[data-lyrics-close]");
+  const lyricsToggle = musicRoot?.querySelector("[data-lyrics-toggle]");
+  const musicQuality = musicRoot?.querySelector("[data-music-quality]");
   const previewModal = document.getElementById("publication-preview-modal");
   const previewModalTitle = previewModal?.querySelector("[data-preview-modal-title]");
   const previewModalImage = previewModal?.querySelector("[data-preview-modal-image]");
@@ -23,7 +34,6 @@
   const narrowViewport = window.matchMedia("(max-width: 820px)");
   const LOADER_FADE_MS = 520;
   const MODAL_ANIMATION_MS = 360;
-  const MUSIC_PANEL_AUTO_CLOSE_MS = 30000;
   const INTERNAL_ROUTES = new Set(["/", "/publications/"]);
   const PERSISTENT_BODY_CLASSES = new Set(["has-modal"]);
   const PUBLICATION_EQUALIZE_MIN_WIDTH = 960;
@@ -55,9 +65,9 @@
   };
 
   let revealObserver = null;
+  let paperPreviewObserver = null;
   let isNavigating = false;
   let publicationEqualizeTimer = 0;
-  let musicPanelAutoCloseTimer = 0;
   const routeCache = new Map();
 
   const musicState = (window.__siteMusicState =
@@ -68,7 +78,13 @@
       playerReady: false,
       eventsBound: false,
       panelOpen: false,
-      aplayer: null
+      aplayer: null,
+      lyricsDismissed: false,
+      lyricsVisible: false,
+      lyricIndex: -1,
+      swapTimer: 0,
+      lastVolume: 10,
+      lazySongsStarted: false
     });
 
   const normalizePath = (value) => {
@@ -365,9 +381,44 @@
     window.setTimeout(run, 900);
   };
 
+  /* PDF previews: attach the real src only when a card nears the viewport.
+     Chrome's lazy-iframes fetch from several viewports away, so without this
+     every multi-MB PDF parses at once and scrolling stutters. Once loaded,
+     an iframe keeps its document — scrolling back never reloads it. */
+  const initPaperPreviews = (scope = document) => {
+    const iframes = scope.querySelectorAll(".paper-card__document[data-src]");
+    if (!iframes.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      iframes.forEach((iframe) => {
+        iframe.src = iframe.dataset.src;
+        iframe.removeAttribute("data-src");
+      });
+      return;
+    }
+
+    if (!paperPreviewObserver) {
+      paperPreviewObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const iframe = entry.target;
+            iframe.src = iframe.dataset.src;
+            iframe.removeAttribute("data-src");
+            paperPreviewObserver.unobserve(iframe);
+          });
+        },
+        { rootMargin: "400px 0px" }
+      );
+    }
+
+    iframes.forEach((iframe) => paperPreviewObserver.observe(iframe));
+  };
+
   const initDynamicContent = (scope = document) => {
     initYearFilters(scope);
     initReveal(scope);
+    initPaperPreviews(scope);
     syncHeader();
     schedulePublicationEqualization(scope);
   };
@@ -494,6 +545,215 @@
     musicRoot.classList.toggle("is-playing", isPlaying);
   };
 
+  /* floating lyrics — synced from APlayer's parsed LRC */
+  const syncLyricsToggle = () => {
+    if (!lyricsToggle) return;
+    const on = !musicState.lyricsDismissed;
+    lyricsToggle.classList.toggle("is-on", on);
+    lyricsToggle.setAttribute("aria-pressed", String(on));
+  };
+
+  const setLyricsVisible = (visible) => {
+    if (!lyricsRoot) return;
+    if (musicState.lyricsVisible === visible) return;
+    musicState.lyricsVisible = visible;
+    if (visible) {
+      lyricsRoot.hidden = false;
+      window.requestAnimationFrame(() => lyricsRoot.classList.add("is-active"));
+    } else {
+      lyricsRoot.classList.remove("is-active");
+      window.setTimeout(() => {
+        if (!musicState.lyricsVisible) lyricsRoot.hidden = true;
+      }, 380);
+    }
+  };
+
+  const updateLyrics = () => {
+    const player = musicState.aplayer;
+    if (!player || !lyricsRoot || !lyricsLine) return;
+
+    const listIndex = player.list?.index ?? 0;
+    const parsed = player.lrc?.parsed?.[listIndex];
+    const hasLyrics =
+      Array.isArray(parsed) && parsed.some((entry) => (entry?.[1] || "").trim().length > 0);
+
+    if (!hasLyrics) {
+      /* LRC still loading, or the song has none — never flash an empty bar */
+      if (musicState.lyricsVisible) setLyricsVisible(false);
+      return;
+    }
+
+    const index = Math.min(player.lrc?.index ?? 0, parsed.length - 1);
+    const text = (parsed[index]?.[1] || "").trim();
+    if (index !== musicState.lyricIndex && text) {
+      musicState.lyricIndex = index;
+      window.clearTimeout(musicState.swapTimer);
+
+      const commitSwap = () => {
+        musicState.swapTimer = 0;
+        lyricsLine.classList.remove("is-leaving");
+        lyricsNext?.classList.remove("is-fading");
+        lyricsLine.textContent = text;
+        lyricsLine.classList.remove("is-swapping");
+        void lyricsLine.offsetWidth; /* restart the line-change animation */
+        lyricsLine.classList.add("is-swapping");
+        lyricsRoot.classList.remove("is-pulsing");
+        void lyricsRoot.offsetWidth;
+        lyricsRoot.classList.add("is-pulsing");
+
+        /* next non-empty line, dimmed underneath */
+        if (lyricsNext) {
+          let nextText = "";
+          for (let i = index + 1; i < parsed.length; i++) {
+            const candidate = (parsed[i]?.[1] || "").trim();
+            if (candidate) {
+              nextText = candidate;
+              break;
+            }
+          }
+          lyricsNext.textContent = nextText;
+          lyricsNext.hidden = !nextText;
+        }
+      };
+
+      const hadText = lyricsLine.textContent.trim().length > 0;
+      if (hadText && musicState.lyricsVisible && !reduceMotion.matches) {
+        /* let the old line float out before the new one floats in */
+        lyricsLine.classList.add("is-leaving");
+        lyricsNext?.classList.add("is-fading");
+        musicState.swapTimer = window.setTimeout(commitSwap, 170);
+      } else {
+        commitSwap();
+      }
+    }
+
+    const isPlaying = Boolean(player.audio && !player.audio.paused);
+    if (isPlaying && !musicState.lyricsDismissed && !musicState.lyricsVisible && text) {
+      setLyricsVisible(true);
+    }
+  };
+
+  /* custom volume slider — APlayer's hover popup is too fiddly to drag */
+  const updateVolumeUI = (value) => {
+    if (!musicVolumeRow || !musicVolumeRange) return;
+    const percent = Math.max(0, Math.min(100, value));
+    musicVolumeRange.style.setProperty("--vol", `${percent}%`);
+    musicVolumeRow.classList.toggle("is-muted", percent === 0);
+  };
+
+  const setVolume = (value, glide = false) => {
+    const clamped = Math.max(0, Math.min(100, value));
+    if (!musicVolumeRange) return;
+    if (glide && !reduceMotion.matches) {
+      /* let the fill flow to the new level instead of jumping */
+      musicVolumeRange.classList.add("is-gliding");
+      window.clearTimeout(musicState.volumeGlideTimer);
+      musicState.volumeGlideTimer = window.setTimeout(
+        () => musicVolumeRange.classList.remove("is-gliding"),
+        420
+      );
+    }
+    musicVolumeRange.value = String(clamped);
+    musicState.aplayer?.volume(clamped / 100);
+    if (clamped > 0) musicState.lastVolume = clamped;
+    updateVolumeUI(clamped);
+  };
+
+  const initVolumeControl = () => {
+    if (!musicVolumeRange || !musicMute || musicVolumeRange.dataset.bound) return;
+    musicVolumeRange.dataset.bound = "true";
+    musicVolumeRange.addEventListener("input", () => {
+      /* a real drag must track the cursor instantly — cancel any glide */
+      musicVolumeRange.classList.remove("is-gliding");
+      setVolume(Number(musicVolumeRange.value));
+    });
+    musicMute.addEventListener("click", (event) => {
+      event.preventDefault();
+      const current = Number(musicVolumeRange.value);
+      setVolume(current > 0 ? 0 : musicState.lastVolume || 10, true);
+    });
+    updateVolumeUI(Number(musicVolumeRange.value));
+  };
+
+  /* playlist search — filters the loaded songs in place */
+  const applyMusicFilter = () => {
+    if (!musicSearch) return;
+    const query = musicSearch.value.trim().toLowerCase();
+    const items = musicPlayerMount?.querySelectorAll(".aplayer .aplayer-list ol li") || [];
+    let shown = 0;
+    items.forEach((li) => {
+      const hit = !query || li.textContent.toLowerCase().includes(query);
+      li.classList.toggle("is-filtered-out", !hit);
+      if (hit) shown += 1;
+    });
+    musicRoot.classList.toggle("is-searching", Boolean(query));
+    if (musicSearchCount) {
+      musicSearchCount.hidden = !query;
+      musicSearchCount.textContent = query ? `${shown} / ${items.length}` : "";
+    }
+  };
+
+  const initMusicSearch = () => {
+    if (!musicSearch || musicSearch.dataset.bound) return;
+    musicSearch.dataset.bound = "true";
+    musicSearch.addEventListener("input", applyMusicFilter);
+    /* native × of type=search fires input too, so clearing restores the list */
+    applyMusicFilter();
+  };
+
+  /* append more songs in the background after the first page is ready */
+  const lazyLoadSongs = () => {
+    const config = musicRoot?.dataset || {};
+    if (!config.api || !config.id || musicState.lazySongsStarted) return;
+    musicState.lazySongsStarted = true;
+
+    const PAGE = 48;
+    /* the playlist holds ~3.2k songs; loading stops on its own at the first
+       short page, MAX is only a runaway guard */
+    const MAX = 4000;
+    let offset = Number(config.limit) || 12;
+
+    const buildUrl = (off, lim) =>
+      config.api
+        .replace(":server", config.server || "netease")
+        .replace(":type", config.type || "playlist")
+        .replace(":id", config.id)
+        .replace(":auth", "")
+        .replace(":r", Math.random().toString())
+        .replace(/([?&])limit=\d+/, `$1limit=${lim}`) + `&offset=${off}`;
+
+    const loadNext = async () => {
+      const player = musicState.aplayer;
+      if (!player || offset >= MAX) return;
+      try {
+        const res = await fetch(buildUrl(offset, PAGE));
+        if (!res.ok) return;
+        const songs = await res.json();
+        if (!Array.isArray(songs) || !songs.length) return;
+        player.list.add(
+          songs.map((s) => ({
+            name: s.title,
+            artist: s.author,
+            url: s.url,
+            cover: s.pic,
+            lrc: s.lrc
+          }))
+        );
+        offset += songs.length;
+        applyMusicFilter(); /* keep the active query applied to new arrivals */
+        if (songs.length === PAGE) {
+          /* while the user is searching, pull the remaining pages faster */
+          const delay = musicRoot.classList.contains("is-searching") ? 350 : 1500;
+          window.setTimeout(loadNext, delay);
+        }
+      } catch (error) {
+        /* stop quietly — the first page still works */
+      }
+    };
+
+    window.setTimeout(loadNext, 1500);
+  };
+
   const bindMusicPlayerEvents = () => {
     if (!musicState.aplayer || musicState.eventsBound) return;
 
@@ -502,8 +762,28 @@
       musicState.aplayer.on(eventName, sync);
     });
 
+    musicState.aplayer.on("timeupdate", updateLyrics);
+    musicState.aplayer.on("lrcshow", updateLyrics);
+    musicState.aplayer.on("play", () => {
+      musicState.lyricIndex = -1;
+      updateLyrics(); /* shows itself once real lyric text is available */
+    });
+    musicState.aplayer.on("pause", () => setLyricsVisible(false));
+    musicState.aplayer.on("listswitch", () => {
+      musicState.lyricsDismissed = false; /* a new song re-enables auto-show */
+      syncLyricsToggle();
+      window.clearTimeout(musicState.swapTimer);
+      musicState.swapTimer = 0;
+      lyricsLine?.classList.remove("is-leaving");
+      lyricsNext?.classList.remove("is-fading");
+      musicState.lyricIndex = -1;
+      setLyricsVisible(false); /* drop the previous song's line immediately */
+      window.setTimeout(updateLyrics, 800); /* give the LRC fetch a beat */
+    });
+
     musicState.eventsBound = true;
     sync();
+    applyMusicFilter(); /* initial page of songs may already be listed */
   };
 
   const resolveMusicPlayerInstance = () => {
@@ -557,6 +837,7 @@
           metingElement.setAttribute("server", config.server || "netease");
           metingElement.setAttribute("type", config.type || "playlist");
           metingElement.setAttribute("id", config.id || "");
+          if (config.api) metingElement.setAttribute("api", config.api);
           metingElement.setAttribute("autoplay", config.autoplay || "false");
           metingElement.setAttribute("theme", config.theme || "#7f99c4");
           metingElement.setAttribute("volume", config.volume || "0.10");
@@ -581,6 +862,12 @@
         if (musicFallback) musicFallback.hidden = true;
         bindMusicPlayerEvents();
         updateMusicMeta();
+        initVolumeControl();
+        initMusicSearch();
+        if (musicVolumeRange && player.audio) {
+          setVolume(Math.round((player.audio.volume || 0) * 100));
+        }
+        lazyLoadSongs();
         return player;
       })
       .catch((error) => {
@@ -599,25 +886,8 @@
     return musicState.initPromise;
   };
 
-  const clearMusicPanelAutoClose = () => {
-    if (!musicPanelAutoCloseTimer) return;
-    window.clearTimeout(musicPanelAutoCloseTimer);
-    musicPanelAutoCloseTimer = 0;
-  };
-
-  const scheduleMusicPanelAutoClose = () => {
-    if (!musicState.panelOpen) return;
-
-    clearMusicPanelAutoClose();
-    musicPanelAutoCloseTimer = window.setTimeout(() => {
-      setMusicPanelOpen(false);
-    }, MUSIC_PANEL_AUTO_CLOSE_MS);
-  };
-
   const setMusicPanelOpen = (open) => {
     if (!musicRoot || !musicPanel || !musicToggle) return;
-
-    clearMusicPanelAutoClose();
 
     musicState.panelOpen = open;
     musicRoot.classList.toggle("is-open", open);
@@ -629,7 +899,6 @@
       musicPanel.hidden = false;
       window.requestAnimationFrame(() => musicPanel.classList.add("is-active"));
       initializeMusicPlayer();
-      scheduleMusicPanelAutoClose();
       return;
     }
 
@@ -643,11 +912,6 @@
     musicPanel.setAttribute("aria-hidden", "true");
     if ("inert" in musicPanel) musicPanel.inert = true;
 
-    const markMusicActivity = () => {
-      if (!musicState.panelOpen) return;
-      scheduleMusicPanelAutoClose();
-    };
-
     musicToggle.addEventListener("click", (event) => {
       event.preventDefault();
       closeNav();
@@ -659,13 +923,108 @@
       setMusicPanelOpen(false);
     });
 
-    ["click", "pointerdown", "keydown", "focusin", "input", "change"].forEach((eventName) => {
-      musicPanel.addEventListener(eventName, markMusicActivity, true);
+    lyricsClose?.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      musicState.lyricsDismissed = true;
+      syncLyricsToggle();
+      setLyricsVisible(false);
     });
 
-    ["wheel", "touchstart"].forEach((eventName) => {
-      musicPanel.addEventListener(eventName, markMusicActivity, { passive: true, capture: true });
+    /* manual lyrics switch next to the volume bar — re-open after × */
+    lyricsToggle?.addEventListener("click", (event) => {
+      event.preventDefault();
+      musicState.lyricsDismissed = !musicState.lyricsDismissed;
+      syncLyricsToggle();
+      if (musicState.lyricsDismissed) {
+        setLyricsVisible(false);
+      } else {
+        updateLyrics(); /* re-shows itself if the current song has lyrics */
+      }
     });
+    syncLyricsToggle();
+
+    /* quality badge — mirrors the worker's UA-based tier logic */
+    if (musicQuality) {
+      const ua = navigator.userAgent;
+      const noFlac =
+        /iPhone|iPad|iPod/.test(ua) ||
+        (/Safari/.test(ua) && !/Chrome|Chromium|Edg|OPR|CriOS|FxiOS|Android/.test(ua));
+      musicQuality.textContent = noFlac ? "320K · HIGH" : "FLAC · LOSSLESS";
+      musicQuality.hidden = false;
+    }
+
+    /* draggable lyrics bar — position persists per browser */
+    if (lyricsRoot) {
+      const POS_KEY = "site-lyrics-pos";
+      try {
+        const saved = JSON.parse(window.localStorage.getItem(POS_KEY) || "null");
+        if (saved && typeof saved.left === "number" && typeof saved.top === "number") {
+          lyricsRoot.style.left = `${saved.left}px`;
+          lyricsRoot.style.top = `${saved.top}px`;
+          lyricsRoot.style.bottom = "auto";
+          lyricsRoot.style.transform = "none";
+        }
+      } catch (error) {
+        /* storage blocked — keep the default dock */
+      }
+
+      lyricsRoot.addEventListener("pointerdown", (event) => {
+        if (event.target.closest("[data-lyrics-close]")) return;
+        if (event.button !== undefined && event.button !== 0) return;
+        event.preventDefault();
+        const rect = lyricsRoot.getBoundingClientRect();
+        const grabX = event.clientX - rect.left;
+        const grabY = event.clientY - rect.top;
+
+        lyricsRoot.style.left = `${rect.left}px`;
+        lyricsRoot.style.top = `${rect.top}px`;
+        lyricsRoot.style.bottom = "auto";
+        lyricsRoot.style.transform = "none";
+        lyricsRoot.classList.add("is-dragging");
+        try {
+          lyricsRoot.setPointerCapture(event.pointerId);
+        } catch (error) {
+          /* older browsers fall back to same-element listeners below */
+        }
+
+        /* rAF-throttled writes keep the drag glued to the cursor */
+        let pendingX = rect.left;
+        let pendingY = rect.top;
+        let rafId = 0;
+        const apply = () => {
+          rafId = 0;
+          lyricsRoot.style.left = `${pendingX}px`;
+          lyricsRoot.style.top = `${pendingY}px`;
+        };
+        const move = (ev) => {
+          pendingX = Math.min(Math.max(ev.clientX - grabX, 8), window.innerWidth - rect.width - 8);
+          pendingY = Math.min(Math.max(ev.clientY - grabY, 8), window.innerHeight - rect.height - 8);
+          if (!rafId) rafId = window.requestAnimationFrame(apply);
+        };
+        const up = () => {
+          lyricsRoot.removeEventListener("pointermove", move);
+          lyricsRoot.removeEventListener("pointerup", up);
+          lyricsRoot.removeEventListener("pointercancel", up);
+          if (rafId) {
+            window.cancelAnimationFrame(rafId);
+            apply();
+          }
+          lyricsRoot.classList.remove("is-dragging");
+          try {
+            window.localStorage.setItem(
+              POS_KEY,
+              JSON.stringify({ left: parseFloat(lyricsRoot.style.left), top: parseFloat(lyricsRoot.style.top) })
+            );
+          } catch (error) {
+            /* ignore */
+          }
+        };
+        lyricsRoot.addEventListener("pointermove", move);
+        lyricsRoot.addEventListener("pointerup", up);
+        lyricsRoot.addEventListener("pointercancel", up);
+      });
+    }
   };
 
   const shouldHandleInternalNavigation = (link, event) => {
@@ -843,7 +1202,13 @@
       return;
     }
 
-    if (musicState.panelOpen && musicRoot && !musicRoot.contains(event.target)) {
+    if (
+      musicState.panelOpen &&
+      musicRoot &&
+      event.target instanceof Element &&
+      event.target.isConnected &&
+      !event.target.closest("[data-music-root]")
+    ) {
       setMusicPanelOpen(false);
     }
   });

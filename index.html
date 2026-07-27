@@ -13,65 +13,72 @@ redirect_from:
 
 <section class="section section--hero">
   <div class="shell hero">
-    <div class="hero__copy" data-reveal>
-      <div class="hero__intro">
-        <div class="hero__intro-copy">
-        <h1 class="display display--hero">{{ home.hero.title }}</h1>
-        <p class="hero__summary">{{ home.hero.summary }}</p>
-        </div>
+    <p class="hero__eyebrow" data-reveal>
+      <span class="hero__pulse" aria-hidden="true"></span>{{ profile.short_role }}
+    </p>
 
-        <div class="hero__visual">
-          <div class="profile-panel profile-panel--hero">
-            <div class="profile-panel__art" aria-hidden="true">
-              <span class="profile-panel__glow profile-panel__glow--one"></span>
-              <span class="profile-panel__glow profile-panel__glow--two"></span>
-              <img src="{{ profile.avatar | relative_url }}" alt="{{ profile.name }}">
-            </div>
-          </div>
-        </div>
-      </div>
+    <h1 class="display display--hero">{{ home.hero.title }}</h1>
 
-        {% for paragraph in home.hero.intro %}
-          <p class="lead">{{ paragraph }}</p>
+    <div class="hero__meta" data-reveal>
+      <span class="hero__avatar">
+        <img src="{{ profile.avatar | relative_url }}" alt="{{ profile.name }}">
+      </span>
+      <p class="hero__summary">{{ home.hero.summary }}</p>
+    </div>
+
+    <div class="hero__bio" data-reveal>
+      {% for paragraph in home.hero.intro %}
+        <p class="lead">{{ paragraph }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="hero__actions" data-reveal>
+      <a class="button" href="{{ '/publications/' | relative_url }}">View All Publications</a>
+      <a class="button button--ghost" href="mailto:{{ email }}">Email Me</a>
+      <div class="hero__links">
+        {% for link in profile.social_links %}
+          <a class="text-link" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
         {% endfor %}
-
-        <div class="hero__actions">
-          <a class="button" href="{{ '/publications/' | relative_url }}">View All Publications</a>
-          <a class="button button--ghost" href="mailto:{{ email }}">Email Me</a>
-        </div>
-
-        <div class="hero__links">
-          {% for link in profile.social_links %}
-            <a class="text-link" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
-          {% endfor %}
-          <button class="text-link text-link--button" type="button" data-modal-target="wechat-modal">WeChat</button>
-        </div>
-
-        <ul class="tag-row" aria-label="Research areas">
-          {% for badge in home.hero.badges %}
-            <li>{{ badge }}</li>
-          {% endfor %}
-        </ul>
+        <button class="text-link text-link--button" type="button" data-modal-target="wechat-modal">WeChat</button>
       </div>
+    </div>
+
+    <ul class="sr-only" aria-label="Research areas">
+      {% for badge in home.hero.badges %}
+        <li>{{ badge }}</li>
+      {% endfor %}
+    </ul>
   </div>
 
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      {% for i in (1..2) %}
+        {% for badge in home.hero.badges %}
+          <span class="marquee__item">{{ badge }}</span>
+          <span class="marquee__sep">✦</span>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <span class="hero__scrollhint" aria-hidden="true"><span></span></span>
 </section>
 
-<section class="section">
+<section class="section section--news">
   <div class="shell">
     <div class="section-heading" data-reveal>
       <h2>{{ home.news.title }}</h2>
       <p>{{ home.news.description }}</p>
     </div>
 
-    <div class="highlight-grid">
+    <ol class="timeline">
       {% for item in home.news.items %}
-        <article class="highlight-card" data-reveal>
-          <span class="highlight-card__date">{{ item.date }}</span>
-          <p>{{ item.text }}</p>
-        </article>
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__date">{{ item.date }}</span>
+          <p class="timeline__text">{{ item.text }}</p>
+        </li>
       {% endfor %}
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -85,7 +92,7 @@ redirect_from:
     <div class="detail-grid">
       <article class="detail-card" data-reveal>
         <h3>Education</h3>
-        <ul class="detail-list">
+        <ul class="detail-list detail-list--narrow">
           {% for item in home.education %}
             <li>
               <span>{{ item.date }}</span>
@@ -111,7 +118,7 @@ redirect_from:
 
       <article class="detail-card" data-reveal>
         <h3>Research Experience</h3>
-        <ul class="detail-list">
+        <ul class="detail-list detail-list--wide">
           {% for item in home.experience %}
             <li>
               <span>{{ item.date }}</span>
@@ -136,7 +143,7 @@ redirect_from:
   </div>
 </section>
 
-<section class="section section--tinted">
+<section class="section">
   <div class="shell">
     <div class="section-heading" data-reveal>
       <h2>{{ home.selected.title }}</h2>
@@ -157,18 +164,29 @@ redirect_from:
 
 <section class="section" id="contact">
   <div class="shell">
-    <article class="detail-card detail-card--accent detail-card--contact" data-reveal>
-      <h2>{{ home.contact.title }}</h2>
-      <p class="section-copy">{{ home.contact.text }}</p>
-      <div class="contact-stack">
-        <a class="button" href="mailto:{{ email }}">{{ profile.email.display }}</a>
-        {% for link in profile.social_links %}
-          {% unless link.title == 'DBLP' %}
-            <a class="button button--ghost" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
-          {% endunless %}
-        {% endfor %}
-        <button class="button button--ghost" type="button" data-modal-target="wechat-modal">WeChat QR</button>
+    <div class="contact">
+      <div class="contact__globe" data-reveal>
+        <canvas
+          data-globe
+          data-markers='[{"lat":40.44,"lng":-79.99},{"lat":43.16,"lng":-77.61},{"lat":38.63,"lng":-90.20},{"lat":37.42,"lng":-122.08}]'
+          role="img"
+          aria-label="Rotating globe marking Pittsburgh, Rochester, St. Louis and Mountain View"></canvas>
+        <p class="contact__globe-caption">Pittsburgh · Rochester · St. Louis · Mountain View</p>
       </div>
-    </article>
+
+      <article class="detail-card detail-card--accent detail-card--contact" data-reveal>
+        <h2>{{ home.contact.title }}</h2>
+        <p class="section-copy">{{ home.contact.text }}</p>
+        <div class="contact-stack">
+          <a class="button" href="mailto:{{ email }}">{{ profile.email.display }}</a>
+          {% for link in profile.social_links %}
+            {% unless link.title == 'DBLP' %}
+              <a class="button button--ghost" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+            {% endunless %}
+          {% endfor %}
+          <button class="button button--ghost" type="button" data-modal-target="wechat-modal">WeChat QR</button>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
