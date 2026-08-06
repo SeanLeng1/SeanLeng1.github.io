@@ -36,8 +36,8 @@
   --content-width: 1280px;
   --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
   --ease-spring: cubic-bezier(0.34, 1.4, 0.44, 1);
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-    "Helvetica Neue", "Segoe UI", "Inter", Roboto, Arial, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
   --font-serif: "Instrument Serif", "New York", Georgia, "Times New Roman", serif;
   --pointer-x: 50vw;
   --pointer-y: 30vh;
@@ -984,6 +984,19 @@ body::before {
   margin-left: clamp(0px, 2vw, 18px);
 }
 
+/* phones: even 3+2 grid instead of a ragged 4+1 wrap */
+@media (max-width: 640px) {
+  .hero__links {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: 12px 28px;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 6px;
+  }
+}
+
 /* ==========================================================================
    Hero bio — intro paragraphs sit above the fold
    ========================================================================== */
@@ -1181,8 +1194,13 @@ body::before {
 /* research experience carries the longest copy — give it the widest lane */
 @media (min-width: 1080px) {
   .detail-grid {
-    grid-template-columns: 1.2fr 1.24fr 0.78fr;
+    grid-template-columns: 0.95fr 1.55fr 0.72fr;
   }
+}
+
+/* trajectory breathes better on a wider canvas than the default shell */
+#trajectory .shell {
+  max-width: 1440px;
 }
 
 .detail-card {

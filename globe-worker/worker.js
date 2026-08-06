@@ -24,6 +24,18 @@ const json = (data, status = 200) =>
     headers: { "Content-Type": "application/json", ...corsHeaders }
   });
 
+/* KV values are JSON { count, city } now; legacy keys hold a plain number */
+const parseVisit = (raw) => {
+  if (!raw) return { count: 0, city: "" };
+  try {
+    const v = JSON.parse(raw);
+    if (typeof v === "number") return { count: v, city: "" };
+    return { count: Number(v.count) || 0, city: String(v.city || "") };
+  } catch {
+    return { count: Number(raw) || 0, city: "" };
+  }
+};
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -45,9 +57,12 @@ export default {
       const rLat = Math.round(lat * 2) / 2;
       const rLng = Math.round(lng * 2) / 2;
       const key = `${rLat},${rLng}`;
+      const city = String(cf.city || cf.region || cf.country || "");
 
-      const current = Number((await env.VISITS.get(key)) || "0");
-      await env.VISITS.put(key, String(current + 1));
+      const prev = parseVisit(await env.VISITS.get(key));
+      /* keep an existing city label (may be a manual correction) — only
+         fill it from Cloudflare geo when nothing is stored yet */
+      await env.VISITS.put(key, JSON.stringify({ count: prev.count + 1, city: prev.city || city }));
 
       return json({ ok: true });
     }
@@ -61,9 +76,9 @@ export default {
         const page = await env.VISITS.list({ cursor, limit: 1000 });
         for (const { name } of page.keys) {
           const [lat, lng] = name.split(",").map(Number);
-          const count = Number((await env.VISITS.get(name)) || "0");
+          const { count, city } = parseVisit(await env.VISITS.get(name));
           if (Number.isFinite(lat) && Number.isFinite(lng) && count > 0) {
-            markers.push({ lat, lng, count });
+            markers.push({ lat, lng, count, city });
           }
         }
         cursor = page.list_complete ? undefined : page.cursor;
@@ -199,14 +214,43 @@ const handleMeting = async (request, url, env) => {
       /iPhone|iPad|iPod/.test(ua) ||
       (/Safari/.test(ua) && !/Chrome|Chromium|Edg|OPR|CriOS|FxiOS|Android/.test(ua));
     const br = url.searchParams.get("br") || (noFlac ? "320000" : "999000");
-    const res = await fetch(`${NETEASE}/api/song/enhance/player/url`, {
-      method: "POST",
-      headers: { ...headers, "Content-Type": "application/x-www-form-urlencoded" },
-      body: `ids=[${encodeURIComponent(id)}]&br=${encodeURIComponent(br)}`
-    });
-    const data = await res.json();
-    const songUrl = data?.data?.[0]?.url;
-    if (songUrl) return Response.redirect(normalizeCdnUrl(songUrl), 302);
+
+    const fetchSongUrl = async (bitrate) => {
+      const res = await fetch(`${NETEASE}/api/song/enhance/player/url`, {
+        method: "POST",
+        headers: { ...headers, "Content-Type": "application/x-www-form-urlencoded" },
+        body: `ids=[${encodeURIComponent(id)}]&br=${encodeURIComponent(bitrate)}`
+      });
+      const data = await res.json();
+      return data?.data?.[0]?.url || null;
+    };
+
+    /* some CDN links come back dead (403): the vuutv signature doesn't
+     * always survive the m701 host rewrite, and some lossless files are
+     * simply gone. Probe before redirecting; fall back original host,
+     * then drop a tier, then the outer gateway. */
+    const probe = async (u) => {
+      try {
+        const res = await fetch(u, { headers: { Range: "bytes=0-0" } });
+        return res.status === 200 || res.status === 206;
+      } catch (error) {
+        return false;
+      }
+    };
+
+    const songUrl = await fetchSongUrl(br);
+    if (songUrl) {
+      const normalized = normalizeCdnUrl(songUrl);
+      if (br === "320000" || (await probe(normalized))) {
+        return Response.redirect(normalized, 302);
+      }
+      const httpsOriginal = songUrl.replace(/^http:\/\//, "https://");
+      if (httpsOriginal !== normalized && (await probe(httpsOriginal))) {
+        return Response.redirect(httpsOriginal, 302);
+      }
+      const fallbackUrl = await fetchSongUrl("320000");
+      if (fallbackUrl) return Response.redirect(normalizeCdnUrl(fallbackUrl), 302);
+    }
 
     /* free songs are still reachable through the outer-url gateway */
     const outer = await fetch(`${NETEASE}/song/media/outer/url?id=${encodeURIComponent(id)}.mp3`, {

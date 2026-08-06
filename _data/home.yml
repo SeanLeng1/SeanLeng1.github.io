@@ -29,33 +29,45 @@ trajectory:
 
 experience:
   - date: "2026.06 - Present"
+    logo: "/images/logos/google.svg"
+    logo_alt: "Google logo"
     text: >-
-      Student Researcher, Google AdsGenAI
-      (advisor: <a href="https://www.cs.utexas.edu/~rofuyu/" target="_blank" rel="noopener">Dr. Hsiang-Fu Yu</a>).
+      <strong>Student Researcher, Google AdsGenAI</strong>
+      <div>advisor: <a href="https://www.cs.utexas.edu/~rofuyu/" target="_blank" rel="noopener">Dr. Hsiang-Fu Yu</a></div>
   - date: "2025.06 - 2026.03"
+    logo: "/images/logos/google.svg"
+    logo_alt: "Google logo"
     text: >-
-      Student Researcher, Google Research
-      (advisor: <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>).
+      <strong>Student Researcher, Google Research</strong>
+      <div>advisor: <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a></div>
   - date: "2025.01 - 2025.05"
+    logo: "/images/logos/cmu.png"
+    logo_alt: "Carnegie Mellon University mark"
     text: >-
-      Independent Study, Carnegie Mellon University
-      (advisor: <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>).
+      <strong>Independent Study, Carnegie Mellon University</strong>
+      <div>advisor: <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a></div>
   - date: "2024.06 - Now"
+    logo: "/images/logos/washu.svg"
+    logo_alt: "Washington University in St. Louis logo"
     text: >-
-      Visiting Researcher, Washington University in St. Louis
-      (advisor: <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a>).
+      <strong>Visiting Researcher, Washington University in St. Louis</strong>
+      <div>advisor: <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a></div>
   - date: "2023.12 - 2024.05"
+    logo: "/images/logos/rochester.svg"
+    logo_alt: "University of Rochester shield"
     text: >-
-      Honor Independent Study, VIStA Lab, University of Rochester
-      (advisors: <a href="https://www.cs.rochester.edu/u/jluo/" target="_blank" rel="noopener">Prof. Jiebo Luo</a> and
-      <a href="https://www.urmc.rochester.edu/people/112361798-rajat-k-jain" target="_blank" rel="noopener">Dr. Rajat K. Jain</a>).
+      <strong>Honor Independent Study, VIStA Lab, University of Rochester</strong>
+      <div>advisors: <a href="https://www.cs.rochester.edu/u/jluo/" target="_blank" rel="noopener">Prof. Jiebo Luo</a>
+      and <a href="https://www.urmc.rochester.edu/people/112361798-rajat-k-jain" target="_blank" rel="noopener">Dr. Rajat K. Jain</a></div>
   - date: "2022.12 - 2024.05"
+    logo: "/images/logos/uiuc.svg"
+    logo_alt: "University of Illinois Urbana-Champaign logo"
     text: >-
-      Research Intern, DREAM Lab
-      (advisor: <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>).
+      <strong>Research Intern, DREAM Lab</strong>
+      <div>advisor: <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a></div>
 
 education:
-  - date: "2024 - Now"
+  - date: "2024 - 2026"
     institution: "Carnegie Mellon University"
     program: "M.S. in Machine Learning"
     location: "USA"
@@ -69,6 +81,8 @@ education:
     logo_alt: "University of Rochester shield"
 
 service:
+  - date: "2026 - Now"
+    text: "Reviewer, NeurIPS."
   - date: "2026 - Now"
     text: "Reviewer, ICML."
   - date: "2025 - Now"

@@ -83,6 +83,7 @@
       lyricsVisible: false,
       lyricIndex: -1,
       swapTimer: 0,
+      errorSkips: 0,
       lastVolume: 10,
       lazySongsStarted: false
     });
@@ -769,6 +770,16 @@
       updateLyrics(); /* shows itself once real lyric text is available */
     });
     musicState.aplayer.on("pause", () => setLyricsVisible(false));
+    /* some tracks are removed / region-locked — the URL endpoint 404s.
+       Skip ahead instead of stalling on APlayer's error toast. */
+    musicState.aplayer.on("error", () => {
+      if (musicState.errorSkips >= 5) return; /* don't spin through a dead run */
+      musicState.errorSkips += 1;
+      window.setTimeout(() => musicState.aplayer?.list?.next(), 900);
+    });
+    musicState.aplayer.on("playing", () => {
+      musicState.errorSkips = 0;
+    });
     musicState.aplayer.on("listswitch", () => {
       musicState.lyricsDismissed = false; /* a new song re-enables auto-show */
       syncLyricsToggle();

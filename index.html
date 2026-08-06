@@ -122,7 +122,18 @@ redirect_from:
           {% for item in home.experience %}
             <li>
               <span>{{ item.date }}</span>
-              <div>{{ item.text }}</div>
+              <div>
+                {% if item.logo %}
+                  <div class="detail-list__institution">
+                    <span class="detail-list__logo">
+                      <img src="{{ item.logo | relative_url }}" alt="{{ item.logo_alt | default: 'Affiliation logo' }}">
+                    </span>
+                    <div class="detail-list__copy">{{ item.text }}</div>
+                  </div>
+                {% else %}
+                  {{ item.text }}
+                {% endif %}
+              </div>
             </li>
           {% endfor %}
         </ul>
@@ -168,7 +179,7 @@ redirect_from:
       <div class="contact__globe" data-reveal>
         <canvas
           data-globe
-          data-markers='[{"lat":40.44,"lng":-79.99},{"lat":43.16,"lng":-77.61},{"lat":38.63,"lng":-90.20},{"lat":37.42,"lng":-122.08}]'
+          data-markers='[{"lat":40.44,"lng":-79.99,"name":"Pittsburgh"},{"lat":43.16,"lng":-77.61,"name":"Rochester"},{"lat":38.63,"lng":-90.20,"name":"St. Louis"},{"lat":37.42,"lng":-122.08,"name":"Mountain View"}]'
           role="img"
           aria-label="Rotating globe marking Pittsburgh, Rochester, St. Louis and Mountain View"></canvas>
         <p class="contact__globe-caption">Pittsburgh · Rochester · St. Louis · Mountain View</p>
