@@ -468,11 +468,18 @@ void main() {
 
     /* markers are swappable: static fallback first, live API data when set */
     let markerData = [];
+    let hoveredMarker = null;
+    let arcMarkers = [];
     const setMarkers = (list) => {
+      hoveredMarker = null;
       markerData = list.map((m) => ({
         xyz: toXYZ(m.lat, m.lng),
+        name: m.name || m.city || "",
+        count: m.count || 0,
         weight: Math.min(Math.log2((m.count || 1) + 1), 5)
       }));
+      /* flight arcs are the priciest layer — cap them at the busiest 24 */
+      arcMarkers = [...markerData].sort((a, b) => b.count - a.count).slice(0, 24);
     };
     setMarkers(markers);
 
@@ -501,10 +508,21 @@ void main() {
       graticule.push(line);
     }
 
-    /* real coastline (Natural Earth 110m, loaded from world-coast.js) */
+    /* real coastline (Natural Earth 110m, loaded from world-coast.js).
+       Every second point is plenty at a ~430px canvas — halves the work. */
     const coastLines = (window.WORLD_COAST || []).map((line) =>
-      line.map(([lat, lng]) => toXYZ(lat, lng))
+      line.filter((_, idx) => idx % 2 === 0).map(([lat, lng]) => toXYZ(lat, lng))
     );
+
+    /* continent labels at their geographic label-points */
+    const CONTINENT_LABELS = [
+      ["NORTH AMERICA", 46, -102],
+      ["SOUTH AMERICA", -16, -60],
+      ["EUROPE", 52, 18],
+      ["AFRICA", 5, 20],
+      ["ASIA", 44, 92],
+      ["OCEANIA", -25, 134]
+    ].map(([name, lat, lng]) => ({ name, xyz: toXYZ(lat, lng) }));
 
     const TILT = -0.35;
     let rotY = 0.9;
@@ -517,18 +535,18 @@ void main() {
     let lastY = 0;
     let resumeTimer = 0;
 
-    const clampTilt = (v) => Math.max(-1.15, Math.min(1.15, v));
+    /* frame-constant trig — hoisted out of project(), which is called
+       ~8k times per frame (coastlines + graticule + arcs) */
+    let pCosR = 1;
+    let pSinR = 0;
+    let pCosT = 1;
+    let pSinT = 0;
 
     const project = ([x, y, z]) => {
-      const cosR = Math.cos(rotY);
-      const sinR = Math.sin(rotY);
-      const rx = x * cosR + z * sinR;
-      const rz = -x * sinR + z * cosR;
-      const tilt = TILT + rotX;
-      const cosT = Math.cos(tilt);
-      const sinT = Math.sin(tilt);
-      const ry = y * cosT - rz * sinT;
-      const rz2 = y * sinT + rz * cosT;
+      const rx = x * pCosR + z * pSinR;
+      const rz = -x * pSinR + z * pCosR;
+      const ry = y * pCosT - rz * pSinT;
+      const rz2 = y * pSinT + rz * pCosT;
       return [rx, ry, rz2];
     };
 
@@ -544,15 +562,41 @@ void main() {
     });
 
     canvas.addEventListener("pointermove", (event) => {
-      if (!dragging) return;
+      if (!dragging) {
+        /* hover hit-test against the last frame's marker screen positions */
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0) return;
+        const scale = canvas.width / rect.width;
+        const px = (event.clientX - rect.left) * scale;
+        const py = (event.clientY - rect.top) * scale;
+        let best = null;
+        let bestD = 18 * scale;
+        for (const m of markerData) {
+          if (m.sz === undefined || m.sz <= 0.02) continue;
+          const d = Math.hypot(m.sx - px, m.sy - py);
+          if (d < bestD) {
+            bestD = d;
+            best = m;
+          }
+        }
+        hoveredMarker = best;
+        return;
+      }
       const dx = event.clientX - lastX;
       const dy = event.clientY - lastY;
-      rotY += dx * 0.006;
-      rotX = clampTilt(rotX + dy * 0.005);
-      velY = dx * 0.006;
-      velX = dy * 0.005;
+      /* past a 90° tumble the surface faces away, so yaw looks reversed —
+         flip the drag sign and left/right always tracks the surface */
+      const flip = Math.cos(TILT + rotX) >= 0 ? 1 : -1;
+      rotY += flip * dx * 0.01; /* ~314px stroke per half-turn — no dead-stop feel */
+      rotX += dy * 0.009; /* free 360° tumble on both axes */
+      velY = flip * dx * 0.01;
+      velX = dy * 0.009;
       lastX = event.clientX;
       lastY = event.clientY;
+    });
+
+    canvas.addEventListener("pointerleave", () => {
+      hoveredMarker = null;
     });
 
     const endDrag = () => {
@@ -583,11 +627,17 @@ void main() {
 
       if (!dragging) {
         rotY += velY;
-        rotX = clampTilt(rotX + velX);
+        rotX += velX;
         velY *= 0.94;
         velX *= 0.94;
         if (autoRotate) rotY += 0.0028;
       }
+
+      /* refresh the frame-constant rotation basis once, not per point */
+      pCosR = Math.cos(rotY);
+      pSinR = Math.sin(rotY);
+      pCosT = Math.cos(TILT + rotX);
+      pSinT = Math.sin(TILT + rotX);
 
       const R = (size / 2) * 0.86 * dpr;
       const cx = canvas.width / 2;
@@ -672,6 +722,20 @@ void main() {
         ctx.stroke();
       }
 
+      /* continent labels — fade in as their hemisphere faces the viewer */
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = `600 ${dpr * 9}px -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", sans-serif`;
+      if ("letterSpacing" in ctx) ctx.letterSpacing = `${dpr * 1.5}px`;
+      for (const label of CONTINENT_LABELS) {
+        const [px, py, pz] = project(label.xyz);
+        if (pz <= 0.15) continue;
+        const alpha = Math.min(1, (pz - 0.15) / 0.5) * 0.45;
+        ctx.fillStyle = `rgba(43, 45, 92, ${alpha.toFixed(3)})`;
+        ctx.fillText(label.name, cx + px * R, cy - py * R);
+      }
+      if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
+
       /* limb outline */
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
@@ -699,7 +763,7 @@ void main() {
       ctx.setLineDash([dpr * 4, dpr * 9]);
       ctx.lineDashOffset = -((now / 24) % (dpr * 13));
       ctx.lineWidth = dpr * 1.1;
-      for (const m of markerData) {
+      for (const m of arcMarkers) {
         const a = hub;
         const b = m.xyz;
         let dot = a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
@@ -739,9 +803,12 @@ void main() {
       const t = now / 1000;
       markerData.forEach((m, i) => {
         const [px, py, pz] = project(m.xyz);
+        m.sz = pz;
         if (pz <= 0.02) return;
         const mx = cx + px * R;
         const my = cy - py * R;
+        m.sx = mx;
+        m.sy = my;
         const w = m.weight;
 
         const pulse = (t * 0.7 + i * 0.25) % 1;
@@ -752,10 +819,40 @@ void main() {
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.arc(mx, my, dpr * (2.4 + w * 0.9), 0, Math.PI * 2);
+        ctx.arc(mx, my, dpr * (2.4 + w * 0.9 + (m === hoveredMarker ? 1.8 : 0)), 0, Math.PI * 2);
         ctx.fillStyle = `rgba(94, 92, 230, ${(0.55 + pz * 0.45).toFixed(3)})`;
         ctx.fill();
       });
+
+      /* city tooltip for the hovered marker */
+      if (hoveredMarker && hoveredMarker.sz > 0.02 && hoveredMarker.sx !== undefined) {
+        const m = hoveredMarker;
+        let label;
+        if (m.name && m.count > 1) label = `${m.name} · ${m.count} visits`;
+        else if (m.name) label = m.name;
+        else if (m.count > 1) label = `${m.count} visits`;
+        else label = "1 visit";
+
+        ctx.font = `600 ${dpr * 10}px -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", sans-serif`;
+        const textW = ctx.measureText(label).width;
+        const padX = dpr * 10;
+        const bw = textW + padX * 2;
+        const bh = dpr * 22;
+        let bx = m.sx - bw / 2;
+        let by = m.sy - dpr * 16 - bh;
+        bx = Math.max(dpr * 6, Math.min(bx, canvas.width - bw - dpr * 6));
+        if (by < dpr * 6) by = m.sy + dpr * 16; /* flip below when clipped at the top */
+
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(bx, by, bw, bh, bh / 2);
+        else ctx.rect(bx, by, bw, bh);
+        ctx.fillStyle = "rgba(28, 28, 58, 0.88)";
+        ctx.fill();
+        ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "middle";
+        ctx.fillText(label, bx + padX, by + bh / 2 + dpr * 0.5);
+      }
 
       window.requestAnimationFrame(frame);
     };
