@@ -3,19 +3,18 @@ hero:
   summary: "Research on efficient, reliable, and aligned foundation models."
   intro:
     - >-
-      I am a second-year M.S. in Machine Learning student (And incoming Ph.D. in ML) at Carnegie Mellon University advised by
-      <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>.
+      I am a first-year PhD in Machine Learning at Carnegie Mellon University 
+      # advised by
+      # <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>.
       Before CMU, I completed my B.S. in Computer Science at the University of Rochester, where I was advised by
       <a href="https://www.cs.rochester.edu/u/jluo/#Prospective" target="_blank" rel="noopener">Prof. Jiebo Luo</a>.
     - >-
-      My research focuses on efficient training and inference, model alignment, and evaluation for large language and
-      vision-language models. I am currently a Student Researcher at Google Research advised by
+      My research focuses on LLMs post-training. I am currently a Student Researcher at Google Research advised by
       <a href="https://research.google/people/105487/" target="_blank" rel="noopener">Dr. Si Si</a>, and I also
       collaborate with <a href="https://teapot123.github.io/" target="_blank" rel="noopener">Prof. Jiaxin Huang</a>
       and <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a>.
   badges:
     - "LLMs"
-    - "VLMs"
     - "Efficiency"
     - "Alignment"
     - "Reasoning"
@@ -67,9 +66,15 @@ experience:
       <div>advisor: <a href="https://haohanwang.github.io/" target="_blank" rel="noopener">Prof. Haohan Wang</a></div>
 
 education:
+  - date: "2026 - Now"
+    institution: "Carnegie Mellon University"
+    program: "PhD in Machine Learning"
+    location: "USA"
+    logo: "/images/logos/cmu.png"
+    logo_alt: "Carnegie Mellon University mark"
   - date: "2024 - 2026"
     institution: "Carnegie Mellon University"
-    program: "M.S. in Machine Learning"
+    program: "MS in Machine Learning"
     location: "USA"
     logo: "/images/logos/cmu.png"
     logo_alt: "Carnegie Mellon University mark"
