@@ -3,9 +3,7 @@ hero:
   summary: "Research on efficient, reliable, and aligned foundation models."
   intro:
     - >-
-      I am a first-year PhD in Machine Learning at Carnegie Mellon University 
-      # advised by
-      # <a href="https://www.cs.cmu.edu/~wcohen/" target="_blank" rel="noopener">Prof. William W. Cohen</a>.
+      I am a first-year PhD in Machine Learning at Carnegie Mellon University. I also completed my M.S. in Machine Learning at CMU.
       Before CMU, I completed my B.S. in Computer Science at the University of Rochester, where I was advised by
       <a href="https://www.cs.rochester.edu/u/jluo/#Prospective" target="_blank" rel="noopener">Prof. Jiebo Luo</a>.
     - >-
@@ -103,7 +101,7 @@ news:
   items:
     - date: "2026.08"
       text: >-
-        <a href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener">GroupDPO</a> accepted by EMNLP (Findings).
+        <a href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener">🥳🥳 GroupDPO</a> accepted by EMNLP (Findings).
     - date: "2026.04"
       text: "🎓🎓 I will start my PhD in CMU MLD in Fall 2026."
     - date: "2026.04"
