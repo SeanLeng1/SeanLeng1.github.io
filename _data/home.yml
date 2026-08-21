@@ -96,6 +96,9 @@ news:
   title: "News"
   description: "Updates from papers, collaborations, and current roles."
   items:
+    - date: "2026.08"
+      text: >-
+        <a href="https://arxiv.org/abs/2604.15602" target="_blank" rel="noopener">GroupDPO</a> accepted by EMNLP (Findings).
     - date: "2026.04"
       text: "🎓🎓 I will start my PhD in CMU MLD in Fall 2026."
     - date: "2026.04"
